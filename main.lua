@@ -3,6 +3,11 @@ GLOBAL.setfenv(1, GLOBAL)
 
 CHEATS_ENABLED = true
 
+STRINGS.BATTLE_ROYALE = {
+    BUY = "Join Discord",
+    UNOWNED_CHARACTER_BODY = "You have not yet unlocked {character}.\nTo play this character, you must buy premium on this server through our discord server.",
+}
+
 require("constants")
 
 env.AddPrefabPostInit("forest_network", function(inst)
@@ -10,17 +15,38 @@ env.AddPrefabPostInit("forest_network", function(inst)
     TheWorld.character_unlocker = inst.components.character_unlocker
 end)
 
---https://discord.gg/wyEpdfBaKv
+local function BR_LockedCharacter(character)
+    return TheWorld and TheWorld.character_unlocker and TheWorld.character_unlocker:IsLocked(TheNet:GetUserID(), character)
+end
+
 -- Lock characters from lobby
 local _IsCharacterOwned = IsCharacterOwned
 IsCharacterOwned = function(character, ...)
-    print("IsCharacterOwned", CalledFrom())
-    if TheWorld and TheWorld.character_unlocker and
-    TheWorld.character_unlocker:IsLocked(TheNet:GetUserID(), character) then
-        print("TheWorld != null")
+    if BR_LockedCharacter(character) then
         return false
     end
     return _IsCharacterOwned(character, ...)
+end
+
+local _DisplayCharacterUnownedPopup = DisplayCharacterUnownedPopup
+function DisplayCharacterUnownedPopup(character, skins_subscreener, ...)
+    if not BR_LockedCharacter(character) then
+        return _DisplayCharacterUnownedPopup(character, skins_subscreener, ...)
+    end
+
+	local PopupDialogScreen = require "screens/redux/popupdialog"
+	local body_str = subfmt(STRINGS.BATTLE_ROYALE.UNOWNED_CHARACTER_BODY, {character = STRINGS.CHARACTER_NAMES[character] })
+    local unowned_popup = PopupDialogScreen(STRINGS.UI.LOBBYSCREEN.UNOWNED_CHARACTER_TITLE, body_str,
+    {
+        {text=STRINGS.BATTLE_ROYALE.BUY, cb = function()
+            VisitURL("https://discord.gg/wyEpdfBaKv")
+            TheFrontEnd:PopScreen()
+        end},
+        {text=STRINGS.UI.POPUPDIALOG.OK, cb = function()
+            TheFrontEnd:PopScreen()
+        end},
+    })
+    TheFrontEnd:PushScreen(unowned_popup)
 end
 
 if not TheNet:GetIsServer() then
