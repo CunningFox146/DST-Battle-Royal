@@ -6,6 +6,8 @@ CHEATS_ENABLED = true
 STRINGS.BATTLE_ROYALE = {
     BUY = "Join Discord",
     UNOWNED_CHARACTER_BODY = "You have not yet unlocked {character}.\nTo play this character, you must buy premium on this server through our discord server.",
+
+    RANK = "Level: ",
 }
 
 require("constants")
@@ -48,6 +50,8 @@ function DisplayCharacterUnownedPopup(character, skins_subscreener, ...)
     })
     TheFrontEnd:PushScreen(unowned_popup)
 end
+
+env.modimport "scripts/level_util.lua"
 
 if not TheNet:GetIsServer() then
     return
