@@ -15,6 +15,8 @@ require("constants")
 env.AddPrefabPostInit("forest_network", function(inst)
     inst:AddComponent("character_unlocker")
     TheWorld.character_unlocker = inst.components.character_unlocker
+    
+    inst:AddComponent("br_level_manager")
 end)
 
 local function BR_LockedCharacter(character)
@@ -72,3 +74,22 @@ SpawnNewPlayerOnServerFromSim = function(guid, ...)
     end
     return _SpawnNewPlayerOnServerFromSim(guid, ...)
 end
+
+env.AddPrefabPostInit("world", function(inst)
+    inst:AddComponent("br_progress")
+end)
+
+env.AddPlayerPostInit(function(inst)
+    local progress = TheWorld.components.br_progress
+
+    inst:ListenForEvent("death", function(inst, data)
+        print("data.afflicter", data.afflicter)
+        
+        progress:AddDeath(inst.userid)
+
+        if not data or not data.afflicter or not data.afflicter.userid then
+            return
+        end
+        progress:AddDeath(data.afflicter.userid)
+    end)
+end)
