@@ -84,7 +84,7 @@ env.AddPlayerPostInit(function(inst)
 
     inst:ListenForEvent("death", function(inst, data)
         print("data.afflicter", data.afflicter)
-        
+
         progress:AddDeath(inst.userid)
 
         if not data or not data.afflicter or not data.afflicter.userid then
@@ -93,3 +93,5 @@ env.AddPlayerPostInit(function(inst)
         progress:AddDeath(data.afflicter.userid)
     end)
 end)
+
+env.modimport "scripts/character_fix.lua"
