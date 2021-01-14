@@ -7,7 +7,7 @@ author =					"CunningFox"
 forumthread = 				""
 
 dst_compatible 				= true
-priority 					= -10.02001958
+priority 					= -10000.02001958
 api_version 				= 10
 
 all_clients_require_mod = true

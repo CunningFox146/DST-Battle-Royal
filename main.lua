@@ -3,6 +3,13 @@ GLOBAL.setfenv(1, GLOBAL)
 
 CHEATS_ENABLED = true
 
+if AllRecipes["frostmourne"] then
+    AllRecipes["frostmourne"].level = TECH.LOST
+end
+
+env.AddRecipe("shusui", {Ingredient("nightsword", 1),Ingredient("goldnugget", 3)}, RECIPETABS.WAR, TECH.NONE, nil, nil, nil, nil, "zorospecific").atlas = "images/inventoryimages/shusui.xml"
+env.AddRecipe("sandai", {Ingredient("spear", 1), Ingredient("tentaclespike", 1)}, RECIPETABS.WAR, TECH.NONE, nil, nil, nil, nil, "zorospecific").atlas = "images/inventoryimages/sandai.xml"
+
 STRINGS.BATTLE_ROYALE = {
     BUY = "Join Discord",
     UNOWNED_CHARACTER_BODY = "You have not yet unlocked {character}.\nTo play this character, you must buy premium on this server through our discord server.",

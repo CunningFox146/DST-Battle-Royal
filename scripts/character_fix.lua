@@ -31,3 +31,8 @@ if MOD_RPC_HANDLERS["adora"] then
         end
     end
 end
+
+-- Zoro
+env.AddPrefabPostInit("zoro", function(inst)
+    inst.starting_inventory = nil
+end)
