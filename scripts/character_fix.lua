@@ -36,3 +36,33 @@ end
 env.AddPrefabPostInit("zoro", function(inst)
     inst.starting_inventory = nil
 end)
+
+-- Wort
+env.AddPrefabPostInit("wort", function(inst)
+    if inst._onattackother then
+        return
+    end
+
+    inst._onattackother = function(attacker, data)
+        if data.projectile then
+            return
+        elseif data.weapon then
+            if data.weapon.components.projectile then
+                return
+            elseif data.weapon.components.complexprojectile then
+                return
+            elseif data.weapon.components.weapon:CanRangedAttack() then
+                return
+            end
+        end
+        
+        local target = data.target
+        if target and target:IsValid() and attacker:IsValid() and
+        target.components.debuffable and target.components.debuffable:IsEnabled() and
+        not (target.components.health and target.components.health:IsDead()) and
+        not target:HasTag("playerghost") then
+            target.components.debuffable:AddDebuff("debuff_poison", "debuff_poison")
+        end
+    end
+    inst:ListenForEvent("onattackother", inst._onattackother)
+end)

@@ -1,3 +1,7 @@
+PrefabFiles = {
+    "debuff_poison",
+}
+
 local env = env
 GLOBAL.setfenv(1, GLOBAL)
 
@@ -59,6 +63,17 @@ function DisplayCharacterUnownedPopup(character, skins_subscreener, ...)
     })
     TheFrontEnd:PushScreen(unowned_popup)
 end
+
+env.AddClassPostConstruct("widgets/fumeover", function(self)
+    self.inst:ListenForEvent("startpoisondebuff", function(owner, debuff)
+        if not self.corrosives[debuff] then
+            self.corrosives[debuff] = true
+            self.inst:ListenForEvent("onremove", self._onremovecorrosive, debuff)
+            self:TurnOn(self.top)
+            self:TurnOff(self.over)
+        end
+    end, self.owner)
+end)
 
 env.modimport "scripts/level_util.lua"
 
