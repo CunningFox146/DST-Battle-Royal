@@ -38,7 +38,7 @@ env.AddPrefabPostInit("zoro", function(inst)
 end)
 
 -- Wort
-env.AddPrefabPostInit("wort", function(inst)
+env.AddPrefabPostInit("wortox", function(inst)
     if inst._onattackother then
         return
     end
