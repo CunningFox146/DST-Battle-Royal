@@ -46,6 +46,12 @@ function LevelManager:AddDeath(id)
     self.inst:PushEvent("ranks_changed", self.ranks)
 end
 
+function LevelManager:PlayerWon(id)
+    self.ranks[id] = math.max((self.ranks[id] or 0) + 3, 0)
+    
+    self.inst:PushEvent("ranks_changed", self.ranks)
+end
+
 function LevelManager:GetRank(id)
     return math.floor(self.ranks[id] or 0)
 end

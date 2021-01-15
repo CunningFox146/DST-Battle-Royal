@@ -1,10 +1,6 @@
 local env = env
 GLOBAL.setfenv(1, GLOBAL)
 
-if not TheNet:GetIsServer() then
-    return
-end
-
 -- Despawn those who chose locked chars
 local _SpawnNewPlayerOnServerFromSim = SpawnNewPlayerOnServerFromSim
 SpawnNewPlayerOnServerFromSim = function(guid, ...)
@@ -23,20 +19,24 @@ end
 
 env.AddPrefabPostInit("world", function(inst)
     inst:AddComponent("br_progress")
+
+    local progress = TheWorld.components.br_progress
+
+    inst:ListenForEvent("player_won", function(inst, id)
+        progress:PlayerWon(id)
+    end)
 end)
 
 env.AddPlayerPostInit(function(inst)
     local progress = TheWorld.components.br_progress
 
     inst:ListenForEvent("death", function(inst, data)
-        print("data.afflicter", data.afflicter)
-
         progress:AddDeath(inst.userid)
 
         if not data or not data.afflicter or not data.afflicter.userid then
             return
         end
-        progress:AddDeath(data.afflicter.userid)
+        progress:AddKill(data.afflicter.userid)
     end)
 end)
 

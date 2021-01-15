@@ -5,7 +5,10 @@ PrefabFiles = {
 local env = env
 GLOBAL.setfenv(1, GLOBAL)
 
-CHEATS_ENABLED = true
+if not env.MODROOT:find("workshop-") then
+    CHEATS_ENABLED = true
+    NetworkProxy.GetPVPEnabled = function() return true end
+end
 
 if AllRecipes["frostmourne"] then
     AllRecipes["frostmourne"].level = TECH.LOST
@@ -20,6 +23,8 @@ STRINGS.BATTLE_ROYALE = {
 
     RANK = "Level: ",
 }
+
+STRINGS.NAMES.DEBUFF_POISON = "Poison"
 
 require("constants")
 

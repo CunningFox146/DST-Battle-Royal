@@ -10,7 +10,7 @@ dst_compatible 				= true
 priority 					= -10001.02001958
 api_version 				= 10
 
-all_clients_require_mod = true
+all_clients_require_mod = false
 
 configuration_options =
 {

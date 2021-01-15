@@ -38,7 +38,20 @@ env.AddPrefabPostInit("zoro", function(inst)
 end)
 
 -- Wort
-env.AddPrefabPostInit("wort", function(inst)
+local function IsCrownActive(inst)
+    local inv = inst.components.inventory
+    if not inv then
+        return false
+    end
+
+    local hat = inv:GetEquippedItem(EQUIPSLOTS.HEAD)
+    if hat and hat.prefab == "ruinshat" and hat._fx then
+        return true
+    end
+    return false
+end
+
+env.AddPrefabPostInit("wortox", function(inst)
     if inst._onattackother then
         return
     end
@@ -59,9 +72,10 @@ env.AddPrefabPostInit("wort", function(inst)
         local target = data.target
         if target and target:IsValid() and attacker:IsValid() and
         target.components.debuffable and target.components.debuffable:IsEnabled() and
-        not (target.components.health and target.components.health:IsDead()) and
-        not target:HasTag("playerghost") then
+        target.components.health and not target.components.health:IsDead() and not target.components.health:IsInvincible() and
+        not IsCrownActive(target) then
             target.components.debuffable:AddDebuff("debuff_poison", "debuff_poison")
+            target.components.debuffable.debuffs["debuff_poison"].owner = inst
         end
     end
     inst:ListenForEvent("onattackother", inst._onattackother)

@@ -1,6 +1,6 @@
 local DURATION = 5
 local DAMAGE = -10
-local PERIOD = 1
+local PERIOD = 0.5
 local DPS = DAMAGE / (DURATION / PERIOD)
 
 local assets =
@@ -8,11 +8,27 @@ local assets =
     Asset("ANIM", "anim/poison.zip"),
 }
 
+local function IsCrownActive(inst)
+    local inv = inst.components.inventory
+    if not inv then
+        return false
+    end
+
+    local hat = inv:GetEquippedItem(EQUIPSLOTS.HEAD)
+    if hat and hat.prefab == "ruinshat" and hat._fx then
+        return true
+    end
+    return false
+end
+
 local function DoDamage(inst, target)
     if target.components.health and
     not target.components.health:IsDead() and
-    not target:HasTag("playerghost") then
-        target.components.health:DoDelta(DPS, nil, inst.entity:GetParent() or inst)
+    not IsCrownActive(target) then
+        local parent = inst.entity:GetParent()
+        local source = parent and parent.owner or inst
+        
+        target.components.health:DoDelta(DPS, nil, nil, nil, source, true)
     else
         inst.components.debuff:Stop()
     end
@@ -60,6 +76,7 @@ local function fn()
     inst.AnimState:SetBuild("poison")
     inst.AnimState:PlayAnimation("level2_pre")
     inst.AnimState:PushAnimation("level2_loop", true)
+    inst.AnimState:SetDeltaTimeMultiplier(1.5)
 
     inst:AddTag("NOCLICK")
     inst:AddTag("FX")
