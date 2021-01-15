@@ -51,7 +51,7 @@ local function IsCrownActive(inst)
     return false
 end
 
-env.AddPrefabPostInit("wortox", function(inst)
+env.AddPrefabPostInit("wort", function(inst)
     if inst._onattackother then
         return
     end
