@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="65" height="65" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" source="D:/DST mods/tileset/ds-tiles-sw-dst.tsx"/>
+ <layer name="BG_TILES" width="65" height="65">
+  <data encoding="base64" compression="zlib">
+   eJzt2MGKg0AQhGET2EA27/++YcGDiGt6pqv/6TF9KPAW67NGgrdlWW6VSmVI7icZfW9k98eav+ufNVe12D/nxy5bg73F6HuPeOZHOTKYeRPW3haD2Sx6ulsNZrDo7d5qkPFd4Xn2HoMsDoruHoPRFsr+XoMR7wl1f4UBvQl1/9kMIjagNNhazNQ/yiDCYSaDCAfV/wDSQHkmIrtHGygciP6EgcfhCgYeB6o/YdDjQPanDFrfDVc2sDjQ/UkDqwPdnzawnIky+B6DM4dvMPi0BdLguea+uS6DPAZ0noN+98zgBeVoB79QysB2FiiH1/p7VHeLAb2FMshtQDpkNKC3UAa8gfVbCnkeshqQWyANWvqTW8hsQG2BMujpT20huwGxBcLA078MmPMQbeDtT2wh0kDVP3oLUQbK/tFbiDCI6B+5BbVBVP+9g9JCZfDpW2nmTSgM6P7qTXgNRvVXbsJjkKG/YhO9Bpn6/2dh9egxyNq/16PVYJb+LR4tBrP2P7PoyegOlcqV8waA51Fn
+  </data>
+ </layer>
+ <objectgroup name="FG_OBJECTS" width="65" height="65">
+  <object name="multiplayer_portal" type="multiplayer_portal" x="2080" y="2080"/>
+  <object name="spawnpoint_master" type="spawnpoint_master" x="2080" y="2080"/>
+ </objectgroup>
+</map>

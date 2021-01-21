@@ -19,6 +19,7 @@ end
 
 env.AddPrefabPostInit("world", function(inst)
     inst:AddComponent("br_progress")
+    inst:RemoveComponent("hounded")
 
     local progress = TheWorld.components.br_progress
 
