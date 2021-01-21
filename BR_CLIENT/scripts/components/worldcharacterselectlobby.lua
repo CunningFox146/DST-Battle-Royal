@@ -9,9 +9,10 @@ return Class(function(self, inst)
 --------------------------------------------------------------------------
 local DEBUG = CHEATS_ENABLED
 
-local COUNTDOWN_TIME = DEBUG and 10 or 180
+local COUNTDOWN_TIME = DEBUG and 3 or 180
 local COUNTDOWN_INACTIVE = 65535
 local PLAYERS_TO_START = DEBUG and 1 or 2
+local LOBBY_CLOSE_TIME = 10
 --------------------------------------------------------------------------
 --[[ Member variables ]]
 --------------------------------------------------------------------------
@@ -26,28 +27,11 @@ local _ismastersim = _world.ismastersim
 --Master simulation
 local _countdownf = -1
 local _countdown_start = nil
-local _spectators = false
 local _updating = false
 
 --Network
 local _countdowni = net_ushortint(inst.GUID, "worldcharacterselectlobby._countdowni", "spawncharacterdelaydirty")
-
---------------------------------------------------------------------------
---[[ Local Functions ]]
---------------------------------------------------------------------------
-local function GetPlayersClientTable()
-    local clients = TheNet:GetClientTable() or {}
-    if not TheNet:GetServerIsClientHosted() then
-		for i, v in ipairs(clients) do
-			if v.performance ~= nil then
-				table.remove(clients, i) -- remove "host" object
-				break
-			end
-		end
-    end
-    return clients
-end
-
+local _spectators = net_bool(inst.GUID, "worldcharacterselectlobby._spectators", "spectatorsdirty")
 --------------------------------------------------------------------------
 --[[ Global Setup ]]
 --------------------------------------------------------------------------
@@ -78,6 +62,9 @@ local function StarTimer(time)
 	_countdown_start = GetTimeRealSeconds()
 	_countdownf = time
 	_countdowni:set(math.ceil(time))
+
+	_updating = true
+	self.inst:StartWallUpdatingComponent(self)
 end
 
 local function StopTimer()
@@ -102,7 +89,6 @@ local function CountPlayersReadyToStart()
 	end
 	return count
 end
-rawset(_G, "CountPlayersReadyToStart", CountPlayersReadyToStart)
 
 local function TryStartCountdown()
 	if CountPlayersReadyToStart() >= PLAYERS_TO_START then
@@ -132,7 +118,7 @@ local function OnRequestLobbyCharacter(world, data)
 end
 
 local function EnableSpectators()
-	_spectators = true
+	_spectators:set(true)
 end
 
 --------------------------------------------------------------------------
@@ -144,15 +130,19 @@ local function OnCountdownDirty()
 		_updating = false
 		inst:StopWallUpdatingComponent(self)
 
-		inst:DoTaskInTime(5, EnableSpectators)
+		inst:DoTaskInTime(1, StopTimer)
+		inst:DoTaskInTime(3, EnableSpectators)
         print("[WorldCharacterSelectLobby] Countdown finished")
     end
 
 	local t = _countdowni:value()
-	--lobbyplayerspawndelay locks back button and shows countdown widget, we don't want that
-	-- _world:PushEvent("lobbyplayerspawndelay", { time = t, active = t ~= COUNTDOWN_INACTIVE })
+
+	_world:PushEvent("lobbyplayerspawndelay", { time = t == COUNTDOWN_INACTIVE and -1 or t, active = t <= LOBBY_CLOSE_TIME })
 	
-	_world:PushEvent("ms_countdown",  { time = t, active = t ~= COUNTDOWN_INACTIVE })
+	-- if t <= LOBBY_CLOSE_TIME then
+	-- 	_world:PushEvent("lobbyclosed", { time = t, active = t ~= COUNTDOWN_INACTIVE })
+	-- end
+	-- _world:PushEvent("ms_countdown",  { time = t, active = t ~= COUNTDOWN_INACTIVE })
 end
 
 local function OnLobbyClientDisconnected(_, data)
@@ -179,6 +169,7 @@ _countdowni:set(COUNTDOWN_INACTIVE)
 
 --Register network variable sync events
 inst:ListenForEvent("spawncharacterdelaydirty", OnCountdownDirty)
+inst:ListenForEvent("canchangedirty", OnCountdownDirty)
 
 if _ismastersim then
     --Register events
@@ -222,12 +213,24 @@ function self:Dump()
 	print(str)
 end
 
+function self:GetCountdown()
+	if _ismastersim then
+		return _countdownf
+	end
+	local val = _countdowni:value()
+	return val == COUNTDOWN_INACTIVE and -1 or val
+end
+
 function self:CanPlayersSpawn()
-	return _countdownf == 0
+	return self:SpectatorsEnabled() or _countdownf == 0
+end
+
+function self:CanChangeCharacter()
+	return _countdowni:value() > LOBBY_CLOSE_TIME
 end
 
 function self:SpectatorsEnabled()
-	return _spectators
+	return _spectators:value()
 end
 
 function self:GetDebugString()
@@ -242,7 +245,6 @@ end
 -- Since OnUpdate does not get called if there's not players in world (e.g. players are in lobby)
 -- And OnWallUpdate gets called with dt 0 for some reason
 function self:OnWallUpdate()
-	print("OnWallUpdate")
 	-- Fox: There's a listener for ms_requestedlobbycharacter event
 	-- But it never gets pushed
 	-- I found that it's supposed to be pushed from RequestedLobbyCharacter in networking.lua:272
@@ -254,7 +256,6 @@ function self:OnWallUpdate()
 		TryStoppingCountdown()
 	end
 
-	print("_countdown_start", _countdown_start)
 	if _countdown_start then
 		local t = GetTimeRealSeconds() - _countdown_start
 

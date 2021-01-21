@@ -36,7 +36,7 @@ game_modes =
 				"reviver",
 			},
 			hide_worldgen_loading_screen = true,
-			lobbywaitforallplayers = false,
+			lobbywaitforallplayers = true,
 			drop_everything_on_despawn = true,
 		},
 	}
