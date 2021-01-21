@@ -1,5 +1,5 @@
 name =						"Battle Royale"
-version = 					"1.1"
+version = 					"1.2"
 
 description =				"Version: "..version
 author =					"CunningFox"
