@@ -33,6 +33,7 @@ env.AddPrefabPostInit("forest_network", function(inst)
     TheWorld.character_unlocker = inst.components.character_unlocker
     
     inst:AddComponent("br_level_manager")
+    -- inst:AddComponent("worldcharacterselectlobby")
 end)
 
 local function BR_LockedCharacter(character)
@@ -78,6 +79,15 @@ env.AddClassPostConstruct("widgets/fumeover", function(self)
             self:TurnOff(self.over)
         end
     end, self.owner)
+end)
+
+env.AddPrefabPostInit("forest", function(inst)
+    inst:RemoveComponent("wavemanager")
+
+    inst.Map:SetTransparentOcean(false)
+    inst.Map:SetUndergroundFadeHeight(5)
+
+    inst.WaveComponent:SetWaveParams(13.5, 2.5)
 end)
 
 env.modimport "scripts/level_util.lua"
