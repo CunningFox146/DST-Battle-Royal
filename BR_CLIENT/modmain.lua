@@ -1,4 +1,7 @@
 PrefabFiles = {
+    "battleroyale",
+    "battleroyale_network",
+
     "debuff_poison",
 }
 

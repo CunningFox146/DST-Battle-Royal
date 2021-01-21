@@ -3,9 +3,12 @@ GLOBAL.setfenv(1, GLOBAL)
 
 local Layouts =  require("map/layouts").Layouts
 local StaticLayout = require("map/static_layout")
+
 require("constants")
 require("map/tasks")
 require("map/level")
+
+LEVELTYPE.BATTLE_ROYALE = "BATTLEROYALE"
 
 Layouts["BattleRoyaleArena"] = StaticLayout.Get("map/static_layouts/br_arena",{
 	start_mask = PLACE_MASK.IGNORE_IMPASSABLE_BARREN_RESERVED,
@@ -20,7 +23,7 @@ Layouts["BattleRoyaleArena"] = StaticLayout.Get("map/static_layouts/br_arena",{
 	
 env.AddStartLocation("BattleRoyaleStart", {
     name = STRINGS.UI.SANDBOXMENU.DEFAULTSTART,
-    location = "forest",
+    location = "battleroyale",
     start_setpeice = "BattleRoyaleArena",
     start_node = "Blank",
 })
@@ -36,7 +39,7 @@ env.AddTask("BattleRoyaleTask", {
 	background_room = "Blank",
 	colour={r=0,g=1,b=0,a=1}
 }) 
-
+--[[
 env.AddLevelPreInitAny(function(level)
 	if level.location ~= "forest" then
 		return
@@ -58,15 +61,65 @@ env.AddLevelPreInitAny(function(level)
 	level.required_prefabs = {}
 	level.overrides.has_ocean = false
 end)
+]]
 
-env.AddRoomPreInit("OceanSwell", function(room) 
-	room.required_prefabs = nil
-end)
+env.AddLocation({
+    location = "battleroyale",
+    version = 2,
+    overrides = {
+        task_set = "battleroyale_taskset",
+        start_location = "BattleRoyaleStart",
+        season_start = "default",
+        world_size = "default",
+        layout_mode = "LinkNodesByKeys", --LinkNodesByKeys
+        wormhole_prefab = nil,
+        roads = "never",
+        keep_disconnected_tiles = true,
+		no_wormholes_to_disconnected_tiles = true,
+		no_joining_islands = true,
+    },
+    required_prefabs = {
+        --"lavaarena_portal",
+    },
+})
 
-env.AddRoomPreInit("OceanRough", function(room) 
-	room.required_prefabs = nil
-end)
+env.AddLevel(LEVELTYPE.BATTLE_ROYALE,
+{
+	id = "BATTLEROYALE",
+	name = "Battle royale",
+	desc = "",
+	location = "battleroyale", -- Prefab
+	version = 4,
+	overrides={
+		start_location = "BattleRoyaleStart",
+		keep_disconnected_tiles = true,
+		roads = "never",
+		required_prefabs = {},
+		has_ocean = false,
 
-env.AddRoomPreInit("MoonIsland_Baths", function(room) 
-	room.required_prefabs = nil
-end)
+		boons = "never",
+		touchstone = "never",
+		traps = "never",
+		poi = "never",
+		protected = "never",
+		disease_delay = "none",
+		prefabswaps_start = "classic",
+		petrification = "none",
+		wildfires = "never",
+	},
+	background_node_range = {0,1},
+})
+
+env.AddTaskSet("battleroyale_taskset", {
+    name = "Battle Royale",
+    location = "battleroyale",
+    tasks = {"BattleRoyaleTask"},
+    valid_start_tasks = {"BattleRoyaleStart"},
+ 
+	set_pieces = {},
+})
+
+function GenerateNew(debug, world_gen_data)
+	printwrap("level_data", world_gen_data.level_data)
+	return _GenerateNew(debug, world_gen_data)
+end

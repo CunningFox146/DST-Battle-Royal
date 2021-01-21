@@ -115,7 +115,7 @@ env.AddClassPostConstruct("screens/redux/lobbyscreen", function(self)
 				print("OnNextButton")
 				if TheWorld and TheWorld.net and TheWorld.net.components.worldcharacterselectlobby:SpectatorsEnabled() then
 					_OnNextButton(this, ...)
-					StartGame(self)
+					self.inst:DoTaskInTime(FRAMES, StartGame(self))
 					return false
 				end
 				return _OnNextButton(this, ...)
