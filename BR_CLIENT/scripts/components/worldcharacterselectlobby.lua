@@ -132,17 +132,14 @@ local function OnCountdownDirty()
 
 		inst:DoTaskInTime(1, StopTimer)
 		inst:DoTaskInTime(3, EnableSpectators)
+
+		TheWorld.components.battleroyale:StartGame()
         print("[WorldCharacterSelectLobby] Countdown finished")
     end
 
 	local t = _countdowni:value()
 
 	_world:PushEvent("lobbyplayerspawndelay", { time = t == COUNTDOWN_INACTIVE and -1 or t, active = t <= LOBBY_CLOSE_TIME })
-	
-	-- if t <= LOBBY_CLOSE_TIME then
-	-- 	_world:PushEvent("lobbyclosed", { time = t, active = t ~= COUNTDOWN_INACTIVE })
-	-- end
-	-- _world:PushEvent("ms_countdown",  { time = t, active = t ~= COUNTDOWN_INACTIVE })
 end
 
 local function OnLobbyClientDisconnected(_, data)

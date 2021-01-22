@@ -1,3 +1,5 @@
+BR_CLIENT/exported
+BR_CLIENT/toexport
 BR_SERVER/battleroyale_map.json
 
 # Compiled Lua sources

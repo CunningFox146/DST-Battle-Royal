@@ -1,6 +1,8 @@
 local env = env
 GLOBAL.setfenv(1, GLOBAL)
 
+require("components/battleroyale_statistics")
+
 require("br/tuning")
 
 local server_states = require("br/sg_server")
@@ -16,9 +18,6 @@ env.AddComponentPostInit("playerspawner", function(self)
     local function GetMasterPos()
         return _masterpt and _masterpt.Transform:GetWorldPosition() or 0, 0, 0
     end
-
-    -- printwrap("", spawnpoints)
-    rawset(_G, "spawnpoints", spawnpoints)
 
     local function GetNextSpawnPosition()
         local worldcharacterselectlobby = TheWorld and TheWorld.net and TheWorld.net.components.worldcharacterselectlobby
@@ -87,19 +86,49 @@ SpawnNewPlayerOnServerFromSim = function(guid, ...)
     return _SpawnNewPlayerOnServerFromSim(guid, ...)
 end
 
-env.AddPlayerPostInit(function(inst)
-    inst:ListenForEvent("death", function(inst, data)
+env.AddComponentPostInit("health", function(self)
+    self.inst:ListenForEvent("healthdelta", function(inst, data)
+		if not data or not data.afflicter or
+		type(data.afflicter) ~= "table" or not data.afflicter:IsValid() or not
+		data.afflicter:HasTag("player") then
+			return
+		end
+		
+		data.afflicter:PushEvent("applied_damage", {target = inst, amount = math.abs(data.amount), other = data})
+	end)
+end)
+
+do
+    local function OnDeath(inst, data)
         inst:BecomeSpectator()
         TheWorld.components.battleroyale:PlayerDied(inst, data)
+    end
+
+    local function OnAppliedDamage(inst, data)
+        if data then
+            if data.target.userid then
+                UpdateStat(data.target.userid, "damage", data.amount)
+            end
+            --[[
+            local num = SpawnPrefab("damagenumber")
+            num.entity:SetParent(inst.entity)
+            num.Network:SetClassifiedTarget(inst)
+            num:Set(data.target, math.floor(data.amount + 0.5))]]
+        end
+    end
+
+    env.AddPlayerPostInit(function(inst)
+        function inst:BR_OnNewSpawn()
+            inst.sg:GoToState("spawn_on_arena")
+        end
+
+        function inst:BecomeSpectator()
+            inst.spectator = true
+        end
+        
+        inst:ListenForEvent("death", OnDeath)
+        inst:ListenForEvent("applied_damage", OnAppliedDamage)
     end)
-
-    function inst:BR_OnNewSpawn()
-        inst.sg:GoToState("spawn_on_arena")
-    end
-
-    function inst:BecomeSpectator()
-        inst.spectator = true
-    end
-end)
+end
 
 env.modimport "scripts/br/character_fix.lua"

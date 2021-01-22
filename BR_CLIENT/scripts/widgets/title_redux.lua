@@ -31,6 +31,7 @@ local TitleRedux = Class(Widget, function(self, owner, data)
 
 	if data.time then
 		self.inst:DoTaskInTime(data.time, function()
+			self.proot:MoveTo(self.proot:GetPosition(), Vector3(0, 50, 0), 0.5)
 			body:FadeTo(UICOLOURS.EGGSHELL, BLANK, 0.5)
 			t:FadeTo(UICOLOURS.GOLD, BLANK, 0.5, function()
 				self:Kill()

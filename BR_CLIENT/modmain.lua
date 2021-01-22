@@ -8,6 +8,8 @@ PrefabFiles = {
 }
 
 Assets = {
+    Asset("ANIM", "anim/winner_fx.zip"),
+    
     Asset("ANIM", "anim/player_actions_twister.zip"),
 }
 

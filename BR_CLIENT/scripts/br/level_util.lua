@@ -134,6 +134,7 @@ TEMPLATES.RankBadge = function(...)
 	local _SetRank = rank.SetRank
 	rank.SetRank = function(self, profileflair, rank_value, hide_hover_text, ...)
 		_SetRank(self, profileflair, rank_value, hide_hover_text, ...)
+		rank_value = rank_value or 0
         
         if hide_hover_text then
 			self.flair:ClearHoverText()
