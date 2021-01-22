@@ -10,8 +10,9 @@ require("constants")
 require("map/tasks")
 require("map/level")
 
-require("map_saver")
+TheMapSaver = require("map_saver")(env.MODROOT)
 
+TheMapSaver:Load()
 local SELECTED_MAP = TheMapSaver:GetMap()
 
 print("[BattleRoyale World Gen] About to generate arena:", BATTLE_ROYALE_SETPIECES[SELECTED_MAP])

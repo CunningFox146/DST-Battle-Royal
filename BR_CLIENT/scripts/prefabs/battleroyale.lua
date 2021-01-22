@@ -46,6 +46,55 @@ for _, defs in pairs(BATTLE_ROYALE_MAP_DEFS) do
     end
 end
 
+-- Fox: Since we don't have weather component, but we have lightning
+local LIGHTNINGSTRIKE_CANT_TAGS = { "playerghost", "INLIMBO" }
+local LIGHTNINGSTRIKE_ONEOF_TAGS = { "lightningrod", "lightningtarget" }
+local function OnSendLightningStrike(src, pos)
+    local target = nil
+    local isrod = false
+    local mindistsq = nil
+    local pos0 = pos
+
+    local ents = TheSim:FindEntities(pos.x, pos.y, pos.z, 40, nil, LIGHTNINGSTRIKE_CANT_TAGS, LIGHTNINGSTRIKE_ONEOF_TAGS)
+    for k, v in pairs(ents) do
+        local visrod = v:HasTag("lightningrod")
+        local vpos = v:GetPosition()
+        local vdistsq = distsq(pos0.x, pos0.z, vpos.x, vpos.z)
+        --First, check if we're a valid target:
+        --rods are always valid
+        --playerlightning target is valid by chance (when not invincible)
+        if (visrod or
+            (   (v.components.health == nil or not v.components.health:IsInvincible()) and
+                (v.components.playerlightningtarget == nil or math.random() <= v.components.playerlightningtarget:GetHitChance())
+            ))
+            --Now check for better match
+            and (target == nil or
+                (visrod and not isrod) or
+                (visrod == isrod and vdistsq < mindistsq)) then
+            target = v
+            isrod = visrod
+            pos = vpos
+            mindistsq = vdistsq
+        end
+    end
+
+    if isrod then
+        target:PushEvent("lightningstrike")
+    else
+        if target and target.components.playerlightningtarget then
+            target.components.playerlightningtarget:DoStrike()
+        end
+        
+        for k, v in pairs(TheSim:FindEntities(pos.x, pos.y, pos.z, 3, nil, {"player", "INLIMBO"})) do
+            if v.components.burnable then
+                v.components.burnable:Ignite()
+            end
+        end
+    end
+
+    SpawnAt("lightning", pos)
+end
+
 local function common_postinit(inst)
     --Add waves
     inst.entity:AddWaveComponent()
@@ -77,9 +126,10 @@ local function master_postinit(inst)
     inst:AddComponent("butterflyspawner")
 
     inst:AddComponent("shadowcreaturespawner")
-    inst:AddComponent("shadowhandspawner")
 
     inst:AddComponent("br_progress")
+
+    inst:ListenForEvent("ms_sendlightningstrike", OnSendLightningStrike)
 
     local progress = TheWorld.components.br_progress
     inst:ListenForEvent("player_won", function(inst, id)

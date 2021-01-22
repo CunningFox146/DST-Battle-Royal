@@ -1,7 +1,7 @@
 require "class"
 
-local MapSaver = Class(function(self, options)
-    self.path = "battleroyale_map.json"
+local MapSaver = Class(function(self, root)
+    self.path = (root or "") .. "battleroyale_map.json"
     
     self.selected_map = nil
     self.default_map = BATTLE_ROYALE_MAPS.TEST
@@ -24,7 +24,7 @@ function MapSaver:Load()
         return
     end
     for line in f:lines() do
-        self.selected_map = line
+        self.selected_map = tonumber(line)
         break
     end
     f:close()
@@ -34,4 +34,4 @@ function MapSaver:GetMap()
     return self.selected_map or self.default_map
 end
 
-TheMapSaver = MapSaver()
+return MapSaver

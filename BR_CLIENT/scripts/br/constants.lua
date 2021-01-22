@@ -13,7 +13,7 @@ BATTLE_ROYALE_MAP_DEFS = {
 
 		resource_common = {"sapling", "grass"},
 		trees = {"evergreen"},
-		rocks = {"rock1", "rock2", "rock3"},
+		rocks = {"rock1", "rock2", "rock_flintless"},
 
 		structure_1 = {"researchlab", "researchlab4"},
 		structure_2 = {"researchlab2", "researchlab3"},
