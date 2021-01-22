@@ -1,1 +1,1 @@
-modimport("main.lua")
+modimport("scripts/br/main.lua")

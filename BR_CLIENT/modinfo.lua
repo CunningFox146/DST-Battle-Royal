@@ -31,13 +31,18 @@ game_modes =
 			ghost_enabled = true,
 			portal_rez = false,
 			reset_time = nil,
-			invalid_recipes = {
-				"resurrectionstatue",
-				"reviver",
-			},
 			hide_worldgen_loading_screen = true,
 			lobbywaitforallplayers = true,
 			drop_everything_on_despawn = true,
+			no_avatar_popup = true,
+			disable_bird_mercy_items = true,
+			disable_transplanting = true,
+
+			invalid_recipes = {
+				"resurrectionstatue",
+				"reviver",
+				"pitchfork",
+			},
 		},
 	}
 }

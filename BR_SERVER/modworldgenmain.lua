@@ -1,6 +1,8 @@
 local env = env
 GLOBAL.setfenv(1, GLOBAL)
 
+require("br/constants")
+
 local Layouts =  require("map/layouts").Layouts
 local StaticLayout = require("map/static_layout")
 
@@ -8,17 +10,20 @@ require("constants")
 require("map/tasks")
 require("map/level")
 
-LEVELTYPE.BATTLE_ROYALE = "BATTLEROYALE"
+require("map_saver")
 
-Layouts["BattleRoyaleArena"] = StaticLayout.Get("map/static_layouts/br_arena",{
+local SELECTED_MAP = TheMapSaver:GetMap()
+
+print("[BattleRoyale World Gen] About to generate arena:", BATTLE_ROYALE_SETPIECES[SELECTED_MAP])
+
+Layouts["BattleRoyaleArena"] = StaticLayout.Get("map/static_layouts/battleroyale/"..BATTLE_ROYALE_SETPIECES[SELECTED_MAP],
+{
 	start_mask = PLACE_MASK.IGNORE_IMPASSABLE_BARREN_RESERVED,
 	fill_mask = PLACE_MASK.IGNORE_IMPASSABLE_BARREN_RESERVED,
 	layout_position = LAYOUT_POSITION.CENTER,
 	disable_transform = true,
-	--[[        
-	defs={
-		
-	},]]
+	  
+	defs = BATTLE_ROYALE_MAP_DEFS[SELECTED_MAP],
 })	
 	
 env.AddStartLocation("BattleRoyaleStart", {
@@ -39,29 +44,6 @@ env.AddTask("BattleRoyaleTask", {
 	background_room = "Blank",
 	colour={r=0,g=1,b=0,a=1}
 }) 
---[[
-env.AddLevelPreInitAny(function(level)
-	if level.location ~= "forest" then
-		return
-	end
-
-	level.tasks = {"BattleRoyaleTask"}
-	level.numoptionaltasks = 0
-	level.optionaltasks = {}
-	level.valid_start_tasks = nil
-	level.set_pieces = {}
-
-	level.random_set_pieces = {}
-	level.ordered_story_setpieces = {}
-	level.numrandom_set_pieces = 0
-
-	level.overrides.start_location = "BattleRoyaleStart"
-	level.overrides.keep_disconnected_tiles = true
-	level.overrides.roads = "never"
-	level.required_prefabs = {}
-	level.overrides.has_ocean = false
-end)
-]]
 
 env.AddLocation({
     location = "battleroyale",
@@ -71,7 +53,7 @@ env.AddLocation({
         start_location = "BattleRoyaleStart",
         season_start = "default",
         world_size = "default",
-        layout_mode = "LinkNodesByKeys", --LinkNodesByKeys
+        layout_mode = "RestrictNodesByKey", --LinkNodesByKeys
         wormhole_prefab = nil,
         roads = "never",
         keep_disconnected_tiles = true,

@@ -17,17 +17,6 @@ SpawnNewPlayerOnServerFromSim = function(guid, ...)
     return _SpawnNewPlayerOnServerFromSim(guid, ...)
 end
 
-env.AddPrefabPostInit("world", function(inst)
-    inst:AddComponent("br_progress")
-    inst:RemoveComponent("hounded")
-
-    local progress = TheWorld.components.br_progress
-
-    inst:ListenForEvent("player_won", function(inst, id)
-        progress:PlayerWon(id)
-    end)
-end)
-
 env.AddPlayerPostInit(function(inst)
     local progress = TheWorld.components.br_progress
 
@@ -41,4 +30,4 @@ env.AddPlayerPostInit(function(inst)
     end)
 end)
 
-env.modimport "scripts/character_fix.lua"
+env.modimport "scripts/br/character_fix.lua"
