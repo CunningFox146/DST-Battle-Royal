@@ -1,0 +1,112 @@
+local GAME_DURATION = TUNING.BATTLE_ROYALE.GAME_DURATION
+local WIN_DELAY = TUNING.BATTLE_ROYALE.WIN_DELAY
+
+local function GetNetwork(w)
+    return w.net and w.net.components.battleroyale_network
+end
+
+local BattleRoyale = Class(function(self, inst)
+    self.inst = inst
+
+    self.winner = nil
+    self.game_duration = 0
+    
+    self.update_task = self.inst:DoPeriodicTask(1, function() self:Update() end)
+end)
+
+function BattleRoyale:Update()
+    self.game_duration = self.game_duration + 1
+    self:CheckDuration()
+end
+
+function BattleRoyale:CheckDuration()
+    if self.game_duration < GAME_DURATION then
+        return
+    end
+
+    if self.update_task then
+        self.update_task:Cancel()
+        self.update_task = nil
+    end
+
+    self:ApplyEndgame()
+end
+
+function BattleRoyale:ApplyEndgame()
+    for _, v in ipairs(self:GetAlivePlayers()) do
+        ---
+    end
+end
+
+function BattleRoyale:GetAlivePlayers()
+    local alive = {}
+    for _, player in ipairs(AllPlayers) do
+        if not player.spectator then
+            table.insert(alive, player)
+        end
+    end
+    return alive
+end
+
+function BattleRoyale:PlayerDied(player, data)
+    self:CheckWinner()
+
+    local progress = self.inst.components.br_progress
+
+    progress:AddDeath(player.userid)
+
+    if data and data.afflicter and data.afflicter.userid then
+        progress:AddKill(data.afflicter.userid)
+    end
+end
+
+function BattleRoyale:CheckWinner()
+    if self.winner then
+        return
+    end
+
+    local alive = self:GetAlivePlayers()
+    if #alive == 1 then
+        self.winner = alive[1]
+        self:FinishGame()
+    end
+end
+
+function BattleRoyale:FinishGame()
+    if not self.winner then
+        print("[BattleRoyale Component] Error! Failed to finish game: winner is undefined!", debugstack())
+        return
+    end
+
+    self:AnnounceWinner()
+
+    self.win_task = self.inst:DoTaskInTime(WIN_DELAY, function()
+        self:ResetWorld()
+    end)
+end
+
+function BattleRoyale:AnnounceWinner()
+    local net = GetNetwork(self.inst)
+    if net then
+        net:SetWinner(self.winner)
+    end
+end
+
+function BattleRoyale:ResetWorld()
+    self:SelectMap()
+
+    local function doreset()
+		StartNextInstance({
+			reset_action = RESET_ACTION.LOAD_SLOT,
+			save_slot = SaveGameIndex:GetCurrentSaveSlot(),
+		})
+	end
+	ShardGameIndex:Delete(doreset, true)
+end
+
+function BattleRoyale:SelectMap()
+    local selected_map = GetRandomItem(BATTLE_ROYALE_MAPS)
+    TheMapSaver:Save(selected_map)
+end
+
+return BattleRoyale

@@ -130,6 +130,8 @@ local function master_postinit(inst)
 
     inst:AddComponent("br_progress")
 
+    inst:AddComponent("battleroyale")
+
     inst:ListenForEvent("ms_sendlightningstrike", OnSendLightningStrike)
 
     local progress = TheWorld.components.br_progress

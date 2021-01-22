@@ -244,3 +244,25 @@ env.AddClassPostConstruct("widgets/fumeover", function(self)
         end
     end, self.owner)
 end)
+
+env.AddClassPostConstruct("screens/playerhud", function(self)
+	local TitleRedux = require("widgets/title_redux")
+
+	function self:ShowReduxTitle(title, body, duration)	
+		if self.title_redux then
+			self.title_redux:Kill()
+		end
+		
+		local popupdata =
+		{
+			title = title,
+			body = body,
+			time = duration
+		}
+		self.title_redux = self.root:AddChild(TitleRedux(self.owner, popupdata))
+	end
+
+	self.inst:DoTaskInTime(1, function()
+		self:ShowReduxTitle("Now entering map: " .. TheWorld.net.components.battleroyale_network:GetMap(), "Gather resources before other players kill you!", 5)
+	end)
+end)

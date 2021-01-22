@@ -58,8 +58,10 @@ env.AddComponentPostInit("playerspawner", function(self)
 		if not data or not data.player then
 			return
         end
-        if not worldcharacterselectlobby or not worldcharacterselectlobby:SpectatorsEnabled() then
-            print("BR_OnNewSpawn")
+        
+        if worldcharacterselectlobby and worldcharacterselectlobby:SpectatorsEnabled() then
+            data.player:BecomeSpectator()
+        else
             data.player:BR_OnNewSpawn()
         end
     end
@@ -86,19 +88,17 @@ SpawnNewPlayerOnServerFromSim = function(guid, ...)
 end
 
 env.AddPlayerPostInit(function(inst)
-    local progress = TheWorld.components.br_progress
-
     inst:ListenForEvent("death", function(inst, data)
-        progress:AddDeath(inst.userid)
-
-        if not data or not data.afflicter or not data.afflicter.userid then
-            return
-        end
-        progress:AddKill(data.afflicter.userid)
+        inst:BecomeSpectator()
+        TheWorld.components.battleroyale:PlayerDied(inst, data)
     end)
 
     function inst:BR_OnNewSpawn()
         inst.sg:GoToState("spawn_on_arena")
+    end
+
+    function inst:BecomeSpectator()
+        inst.spectator = true
     end
 end)
 

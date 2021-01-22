@@ -1,4 +1,8 @@
 TUNING.BATTLE_ROYALE = {
     SPAWN_HEIGHT = 50,
     FALLING_SPEED = -10,
+
+    GAME_DURATION = 10 * 60,
+    WIN_DELAY = 10,
+
 }
