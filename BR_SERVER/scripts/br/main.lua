@@ -1,6 +1,54 @@
 local env = env
 GLOBAL.setfenv(1, GLOBAL)
 
+env.AddComponentPostInit("playerspawner", function(self)
+    local spawnpoints = {}
+    local _masterpt = nil
+    local currentspawnpoint = 0
+    local worldcharacterselectlobby = TheWorld and TheWorld.net and TheWorld.net.components.worldcharacterselectlobby
+
+    local function GetMasterPos()
+        return _masterpt and _masterpt.Transform:GetWorldPosition() or 0, 0, 0
+    end
+
+    -- printwrap("", spawnpoints)
+    rawset(_G, "spawnpoints", spawnpoints)
+
+    local function GetNextSpawnPosition()
+        print("GetNextSpawnPosition", CalledFrom())
+        if worldcharacterselectlobby and worldcharacterselectlobby:SpectatorsEnabled() then
+            return GetMasterPos()
+        end
+
+        currentspawnpoint = currentspawnpoint + 1
+
+        if spawnpoints[currentspawnpoint] then
+            return spawnpoints[currentspawnpoint].Transform:GetWorldPosition()
+        end
+
+        return GetMasterPos()
+    end
+
+    function self:SpawnAtNextLocation(inst, player)
+        local x, y, z = GetNextSpawnPosition()
+        self:SpawnAtLocation(inst, player, x, y, z)
+    end
+
+    function self:BR_RegisterPoint(point)
+        if not table.contains(spawnpoints, point) then
+            table.insert(spawnpoints, point)
+        end
+    end
+
+    self.inst:ListenForEvent("ms_register_br_spawnpoint", function(_, point) self:BR_RegisterPoint(point) end)
+
+    local function OnRegisterSpawnPoint(inst, spawnpt)
+        if _masterpt == nil and spawnpt.master then
+            _masterpt = spawnpt
+        end
+    end
+end)
+
 -- Despawn those who chose locked chars
 local _SpawnNewPlayerOnServerFromSim = SpawnNewPlayerOnServerFromSim
 SpawnNewPlayerOnServerFromSim = function(guid, ...)

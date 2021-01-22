@@ -6,8 +6,6 @@ BATTLE_ROYALE_MAPS = {
 
 BATTLE_ROYALE_MAP_DEFS = {
     [BATTLE_ROYALE_MAPS.TEST] = {
-		spawn_main = {"multiplayer_portal"},
-
 		aggro = {"hound"},
 		mob = {"beefalo"},
 

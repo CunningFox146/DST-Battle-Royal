@@ -35,7 +35,8 @@ local assets =
 
 local prefabs =
 {
-    "battleroyale_network",    
+    "battleroyale_network",
+    "battleroyale_spawnpoint",
 }
 
 for _, defs in pairs(BATTLE_ROYALE_MAP_DEFS) do
