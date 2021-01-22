@@ -1,11 +1,17 @@
 local env = env
 GLOBAL.setfenv(1, GLOBAL)
 
+require("br/tuning")
+
+local server_states = require("br/sg_server")
+for i, state in ipairs(server_states) do
+	env.AddStategraphState("wilson", state)
+end
+
 env.AddComponentPostInit("playerspawner", function(self)
     local spawnpoints = {}
     local _masterpt = nil
     local currentspawnpoint = 0
-    local worldcharacterselectlobby = TheWorld and TheWorld.net and TheWorld.net.components.worldcharacterselectlobby
 
     local function GetMasterPos()
         return _masterpt and _masterpt.Transform:GetWorldPosition() or 0, 0, 0
@@ -15,7 +21,7 @@ env.AddComponentPostInit("playerspawner", function(self)
     rawset(_G, "spawnpoints", spawnpoints)
 
     local function GetNextSpawnPosition()
-        print("GetNextSpawnPosition", CalledFrom())
+        local worldcharacterselectlobby = TheWorld and TheWorld.net and TheWorld.net.components.worldcharacterselectlobby
         if worldcharacterselectlobby and worldcharacterselectlobby:SpectatorsEnabled() then
             return GetMasterPos()
         end
@@ -23,7 +29,8 @@ env.AddComponentPostInit("playerspawner", function(self)
         currentspawnpoint = currentspawnpoint + 1
 
         if spawnpoints[currentspawnpoint] then
-            return spawnpoints[currentspawnpoint].Transform:GetWorldPosition()
+            local x, _, z = spawnpoints[currentspawnpoint].Transform:GetWorldPosition()
+            return x, TUNING.BATTLE_ROYALE.SPAWN_HEIGHT, z
         end
 
         return GetMasterPos()
@@ -40,13 +47,26 @@ env.AddComponentPostInit("playerspawner", function(self)
         end
     end
 
-    self.inst:ListenForEvent("ms_register_br_spawnpoint", function(_, point) self:BR_RegisterPoint(point) end)
-
     local function OnRegisterSpawnPoint(inst, spawnpt)
         if _masterpt == nil and spawnpt.master then
             _masterpt = spawnpt
         end
     end
+
+    local function OnNewPlayer(_, data)
+        local worldcharacterselectlobby = TheWorld and TheWorld.net and TheWorld.net.components.worldcharacterselectlobby
+		if not data or not data.player then
+			return
+        end
+        if not worldcharacterselectlobby or not worldcharacterselectlobby:SpectatorsEnabled() then
+            print("BR_OnNewSpawn")
+            data.player:BR_OnNewSpawn()
+        end
+    end
+    
+    self.inst:ListenForEvent("ms_register_br_spawnpoint", function(_, point) self:BR_RegisterPoint(point) end)
+    self.inst:ListenForEvent("ms_registerspawnpoint", OnRegisterSpawnPoint)
+    self.inst:ListenForEvent("ms_newplayercharacterspawned", OnNewPlayer)
 end)
 
 -- Despawn those who chose locked chars
@@ -76,6 +96,10 @@ env.AddPlayerPostInit(function(inst)
         end
         progress:AddKill(data.afflicter.userid)
     end)
+
+    function inst:BR_OnNewSpawn()
+        inst.sg:GoToState("spawn_on_arena")
+    end
 end)
 
 env.modimport "scripts/br/character_fix.lua"
