@@ -2,7 +2,10 @@ PrefabFiles = {
     "battleroyale",
     "battleroyale_network",
 
-    "battleroyale_spawnpoint",
+    "battleroyale_points",
+
+    "debuff_lunar",
+    "poison_dots",
 
     "debuff_poison",
 }

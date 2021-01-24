@@ -125,12 +125,11 @@ local function master_postinit(inst)
     --Spawners
     inst:AddComponent("birdspawner")
     inst:AddComponent("butterflyspawner")
-
     inst:AddComponent("shadowcreaturespawner")
 
     inst:AddComponent("br_progress")
-
     inst:AddComponent("battleroyale_statistics")
+    inst:AddComponent("poisonmanager")
     inst:AddComponent("battleroyale")
 
     inst:ListenForEvent("ms_sendlightningstrike", OnSendLightningStrike)

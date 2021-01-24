@@ -12,11 +12,17 @@ local BattleRoyale = Class(function(self, inst)
     self.winner = nil
     self.game_duration = 0
 
+    self.center = nil
+    self.range = nil
+
     if not CHEATS_ENABLED then
         local CheckWinner = function() self:CheckWinner() self:CheckIsEmpty() end
         inst:ListenForEvent("ms_playerjoined", CheckWinner)
         inst:ListenForEvent("ms_playerleft", CheckWinner)
     end
+
+    inst:ListenForEvent("ms_register_br_center", function(_, point) self:RegisterCenter(point) end)
+    inst:ListenForEvent("ms_register_br_range", function(_, point) self:RegisterRange(point) end)
 
     if CHEATS_ENABLED then
         rawset(_G, "win", function()
@@ -145,6 +151,24 @@ end
 function BattleRoyale:SelectMap()
     local selected_map = GetRandomItem(BATTLE_ROYALE_MAPS)
     TheMapSaver:Save(selected_map)
+end
+
+function BattleRoyale:RegisterCenter(point)
+    self.center = point
+end
+
+function BattleRoyale:RegisterRange(point)
+    self.range = point
+end
+
+function BattleRoyale:GetCenter()
+    return self.center
+end
+
+function BattleRoyale:GetPoisonRange()
+    local center = self.center:GetPosition()
+    local range = self.range:GetPosition()
+    return distsq(center.x, center.z, range.x, range.z)
 end
 
 return BattleRoyale

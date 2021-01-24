@@ -6,6 +6,8 @@ if not env.MODROOT:find("workshop-") then
     NetworkProxy.GetPVPEnabled = function() return true end
 end
 
+require("server_data")
+
 require("br/constants")
 require("br/util")
 require("br/strings")

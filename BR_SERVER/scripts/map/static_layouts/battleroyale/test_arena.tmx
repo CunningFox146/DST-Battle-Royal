@@ -1,46 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="65" height="65" tilewidth="64" tileheight="64" infinite="0" nextlayerid="3" nextobjectid="30">
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="64" tileheight="64">
  <tileset firstgid="1" source="D:/DST mods/tileset/ds-tiles-sw-dst.tsx"/>
- <layer id="1" name="BG_TILES" width="65" height="65">
+ <layer name="BG_TILES" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt2MGKg0AQhGET2EA27/++YcGDiGt6pqv/6TF9KPAW67NGgrdlWW6VSmVI7icZfW9k98eav+ufNVe12D/nxy5bg73F6HuPeOZHOTKYeRPW3haD2Sx6ulsNZrDo7d5qkPFd4Xn2HoMsDoruHoPRFsr+XoMR7wl1f4UBvQl1/9kMIjagNNhazNQ/yiDCYSaDCAfV/wDSQHkmIrtHGygciP6EgcfhCgYeB6o/YdDjQPanDFrfDVc2sDjQ/UkDqwPdnzawnIky+B6DM4dvMPi0BdLguea+uS6DPAZ0noN+98zgBeVoB79QysB2FiiH1/p7VHeLAb2FMshtQDpkNKC3UAa8gfVbCnkeshqQWyANWvqTW8hsQG2BMujpT20huwGxBcLA078MmPMQbeDtT2wh0kDVP3oLUQbK/tFbiDCI6B+5BbVBVP+9g9JCZfDpW2nmTSgM6P7qTXgNRvVXbsJjkKG/YhO9Bpn6/2dh9egxyNq/16PVYJb+LR4tBrP2P7PoyegOlcqV8waA51Fn
+   eJzt1DEKACAMBMGkFPz/e+0txEI04BTTbzhIRkQCAAAAAAAAAAAAAAAAAAAAAAAAW/rkdc+tm1uBjlVbs0cJP+5R2Y//CgAAAAAAAAAAAAAAAAAAAAAAAE4ZIYUn2w==
   </data>
  </layer>
- <objectgroup id="2" name="FG_OBJECTS">
-  <object id="1" name="spawn" type="spawnpoint_master" x="2080.67" y="2072"/>
-  <object id="2" name="spawnpoint_multiplayer" type="spawnpoint_multiplayer" x="2081.33" y="2072"/>
-  <object id="3" name="aggro" type="aggro" x="1920" y="2176"/>
-  <object id="4" name="mob" type="mob" x="1920" y="2240"/>
-  <object id="5" name="resource_common" type="resource_common" x="1984" y="2176"/>
-  <object id="6" name="trees" type="trees" x="1984" y="2240"/>
-  <object id="7" name="rocks" type="rocks" x="2048" y="2176"/>
-  <object id="8" name="structure_1" type="structure_1" x="2048" y="2240"/>
-  <object id="9" name="structure_2" type="structure_2" x="2112" y="2176"/>
-  <object id="10" name="structure_3" type="structure_3" x="2112" y="2240"/>
-  <object id="11" name="item_1" type="item_1" x="2176" y="2176"/>
-  <object id="12" name="item_2" type="item_2" x="2176" y="2240"/>
-  <object id="13" name="item_3" type="item_3" x="2240" y="2240"/>
-  <object id="14" name="item_4" type="item_4" x="2240" y="2176"/>
-  <object id="15" name="healing_1" type="healing_1" x="1920" y="2048"/>
-  <object id="16" name="healing_2" type="healing_2" x="1984" y="2112"/>
-  <object id="17" name="healing_3" type="healing_3" x="1920" y="2112"/>
-  <object id="19" name="spawn" type="spawnpoint_battleroyale" x="1920" y="1984">
+ <objectgroup name="FG_OBJECTS" width="100" height="100">
+  <object name="center" type="center_battleroyale" x="3200" y="3200">
    <ellipse/>
   </object>
-  <object id="25" name="spawn" type="spawnpoint_battleroyale" x="1984" y="1984">
+  <object name="range_battleroyale" type="range_battleroyale" x="640" y="3200">
    <ellipse/>
   </object>
-  <object id="26" name="spawn" type="spawnpoint_battleroyale" x="2048" y="1984">
+  <object name="spawnpoint_master" type="spawnpoint_master" x="3200" y="3200">
    <ellipse/>
   </object>
-  <object id="27" name="spawn" type="spawnpoint_battleroyale" x="2112" y="1984">
+  <object name="spawnpoint_multiplayer" type="spawnpoint_multiplayer" x="3200" y="3200">
    <ellipse/>
   </object>
-  <object id="28" name="spawn" type="spawnpoint_battleroyale" x="2240" y="1984">
+  <object name="spawnpoint_battleroyale" type="spawnpoint_battleroyale" x="3136" y="3136">
    <ellipse/>
   </object>
-  <object id="29" name="spawn" type="spawnpoint_battleroyale" x="2176" y="1984">
+  <object name="spawnpoint_battleroyale" type="spawnpoint_battleroyale" x="3200" y="3136">
    <ellipse/>
   </object>
+  <object name="spawnpoint_battleroyale" type="spawnpoint_battleroyale" x="3264" y="3136">
+   <ellipse/>
+  </object>
+  <object name="spawnpoint_battleroyale" type="spawnpoint_battleroyale" x="3264" y="3200">
+   <ellipse/>
+  </object>
+  <object name="spawnpoint_battleroyale" type="spawnpoint_battleroyale" x="3264" y="3264">
+   <ellipse/>
+  </object>
+  <object name="spawnpoint_battleroyale" type="spawnpoint_battleroyale" x="3200" y="3264">
+   <ellipse/>
+  </object>
+  <object name="spawnpoint_battleroyale" type="spawnpoint_battleroyale" x="3136" y="3264">
+   <ellipse/>
+  </object>
+  <object name="spawnpoint_battleroyale" type="spawnpoint_battleroyale" x="3136" y="3200">
+   <ellipse/>
+  </object>
+  <object type="poop" x="640" y="3200"/>
  </objectgroup>
 </map>
