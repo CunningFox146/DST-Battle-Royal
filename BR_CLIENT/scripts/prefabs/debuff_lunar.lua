@@ -28,21 +28,12 @@ local function OnDetached(inst)
         inst.task = nil
     end
 	
-	inst:RemoveTag("lunar_zone")
-	
 	inst.AnimState:PlayAnimation("pst")
 	inst:ListenForEvent("animover", inst.Remove)
 end
 
 local function DoRemove(inst)
     inst.components.debuff:Stop()
-end
-
-local function OnInit(inst)
-    local parent = inst.entity:GetParent()
-    if parent then
-        parent:PushEvent("start_lunar_zone", inst)
-    end
 end
 
 local function fn()
@@ -61,9 +52,6 @@ local function fn()
 
     inst:AddTag("NOCLICK")
     inst:AddTag("FX")
-    inst:AddTag("lunar_zone")
-
-    inst:DoTaskInTime(0, OnInit)
 
     inst.entity:SetPristine()
 
@@ -83,4 +71,4 @@ local function fn()
     return inst
 end
 
-return Prefab("lunar_disaster_fx", fn, assets)
+return Prefab("debuff_lunar", fn, assets)

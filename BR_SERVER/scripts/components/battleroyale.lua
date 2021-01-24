@@ -36,6 +36,8 @@ function BattleRoyale:StartGame()
     self.update_task = self.inst:DoPeriodicTask(1, function() self:Update() end)
 
     self.inst.components.battleroyale_statistics:InitPlayers() -- Fox: Other players considired spectators
+
+    self.fog_task = self.inst:DoTaskInTime(TUNING.BATTLE_ROYALE.FOG.START_TIME, function() self.inst.components.poisonmanager:StartFog() end)
 end
 
 function BattleRoyale:Update()
@@ -162,7 +164,7 @@ function BattleRoyale:RegisterRange(point)
 end
 
 function BattleRoyale:GetCenter()
-    return self.center
+    return self.center:GetPosition()
 end
 
 function BattleRoyale:GetPoisonRange()

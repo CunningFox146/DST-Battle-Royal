@@ -7,11 +7,11 @@ local function SpawnPrefabsAround(obj, prefab, n, radius)
 	elseif obj.Transform then
 		x0, y0, z0 = obj.Transform:GetWorldPosition()
 	end
-	
-	local theta = math.random() * 2 * PI
-	for i = 1, n do
-		local a = i / n * 2 * PI + theta
-		local pos = Vector3(x0 + math.cos(a)*radius, 0, z0 + math.sin(a) * radius)
+
+	--n = n - 1
+	for i = 0, n do
+		local a = i / n * math.pi * 2
+		local pos = Vector3(x0 + math.cos(a) * radius, 0, z0 + math.sin(a) * radius)
 		
 		local sp = SpawnAt(prefab, pos)
 		
@@ -31,11 +31,11 @@ local PoisonFog = Class(function(self, inst)
 	self.center = nil
 	self.delta = nil
 	
-	self.min_range = TILE_SCALE * 3
+	self.min_range = TUNING.BATTLE_ROYALE.FOG.MIN_RANGE
 
 	self.current_scale = nil
-	self.scale_time = 50
-	self.scale_num = 5
+	self.scale_time = TUNING.BATTLE_ROYALE.FOG.SCALE_TIME
+	self.scale_num = TUNING.BATTLE_ROYALE.FOG.SCALE_NUMS
 	self.scale_period = self.scale_time / self.scale_num
 
 	self.task = nil
@@ -65,7 +65,7 @@ end
 
 function PoisonFog:CreateDots(r)
 	self:ClearDots()
-	self.cached_dots = SpawnPrefabsAround(self.center, "poison_dot", r * 0.5, r)
+	self.cached_dots = SpawnPrefabsAround(self.center, "poison_dot", r / 3, r)
 end
 
 function PoisonFog:ClearDots()
@@ -95,6 +95,10 @@ function PoisonFog:Update()
 	if self.current_scale == self.min_range then
 		self:Stop()
 	end
+end
+
+function PoisonFog:GetRange()
+	return self.current_scale
 end
 
 return PoisonFog

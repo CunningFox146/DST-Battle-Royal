@@ -1,4 +1,6 @@
 local RANGE = 14
+local RANGE_SIZE = 14
+local RANGE_SIZE_SQ = RANGE_SIZE * RANGE_SIZE
 local FX_HEIGHT = 10
 local FX_PERIOD = 22 * FRAMES
 local SCALE = .675
@@ -19,12 +21,15 @@ end
 local function PlayPoison(proxy)
 	local function DoFx(inst)
 		local pos1 = inst:GetPosition()
-		for _, other in ipairs(TheSim:FindEntities(pos1.x, 0, pos1.z, RANGE, {"POISON"})) do
+		for _, other in ipairs(TheSim:FindEntities(pos1.x, 0, pos1.z, 20, {"POISON"})) do
 			if other ~= inst then
 				local pos2 = other:GetPosition()
+
+				local range = distsq(pos1.x, pos1.z, pos2.x, pos2.z)
+				local scale = range / RANGE_SIZE_SQ
 				
 				local fx = SpawnAt("poison_fx", Vector3(pos1.x, math.random() * FX_HEIGHT, pos1.z))
-				fx.AnimState:SetScale(SCALE, SCALE * (math.random() <= 0.5 and 1 or -1))
+				fx.AnimState:SetScale(scale, 1)
 				
 				fx:ListenForEvent("onremove", function() fx:DoRemove() end, proxy)
 				RotateToTarget(fx, pos2)
@@ -95,7 +100,7 @@ local function fn() --inst = c_spawn("poison_dot")
 	inst.entity:AddMiniMapEntity()
 	inst.entity:AddNetwork()
 
-	inst.MiniMapEntity:SetIcon("fog.tex")
+	inst.MiniMapEntity:SetIcon("messagebottletreasure_marker.png")
 	inst.MiniMapEntity:SetCanUseCache(false)
 	inst.MiniMapEntity:SetDrawOverFogOfWar(true)
 	

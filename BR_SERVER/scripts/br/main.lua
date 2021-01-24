@@ -118,6 +118,8 @@ do
     end
 
     env.AddPlayerPostInit(function(inst)
+        inst:AddComponent("br_poisonable")
+
         function inst:BR_OnNewSpawn()
             inst.sg:GoToState("spawn_on_arena")
         end
