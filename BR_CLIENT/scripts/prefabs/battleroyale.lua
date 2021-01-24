@@ -134,11 +134,6 @@ local function master_postinit(inst)
     inst:AddComponent("battleroyale")
 
     inst:ListenForEvent("ms_sendlightningstrike", OnSendLightningStrike)
-
-    local progress = TheWorld.components.br_progress
-    inst:ListenForEvent("player_won", function(inst, id)
-        progress:PlayerWon(id)
-    end)
 end
 
 return MakeWorld("battleroyale", prefabs, assets, common_postinit, master_postinit, {"battleroyale"})

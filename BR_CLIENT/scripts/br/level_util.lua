@@ -4,16 +4,58 @@ GLOBAL.setfenv(1, GLOBAL)
 FESTIVAL_EVENTS.BATTLE_ROYALE = "battleroyale"
 WORLD_FESTIVAL_EVENT = FESTIVAL_EVENTS.BATTLE_ROYALE
 
+local function GetWXPForLevel(level)
+	local wxp = RANKS.RANK_VALUE
+	if level > 1 then
+		wxp = wxp + RANKS.RANK_VALUE * (level + (level - 1) * RANKS.RANK_DIFFICULTY)
+	end
+	return wxp
+end
+
+local function GetLevelForWXP(target_wxp)
+	local max_level = RANKS.MAX_RANK
+    local level = 0
+    local wxp = 0
+    local lvl_wxp = GetWXPForLevel(level)
+    local next_wxp = GetWXPForLevel(level + 1)
+    repeat
+        level = level + 1
+        lvl_wxp = GetWXPForLevel(level)
+        next_wxp = GetWXPForLevel(level + 1)
+    until (target_wxp < next_wxp and target_wxp >= lvl_wxp) or level >= RANKS.MAX_RANK
+    return level
+end
+
 local function GetLevelManager()
-	return TheWorld and TheWorld.net and TheWorld.net.components.br_level_manager
+	return TheWorld and TheWorld.net and TheWorld.net.components.battleroyale_network
+end
+
+function BR_GetWxp(id)
+	local manager = GetLevelManager()
+	if manager then
+		return manager:GetWxp(id)
+	end
+	return 0
 end
 
 function BR_GetLevel(id)
-	local manager = GetLevelManager()
-	if manager then
-		return manager:GetLevel(id)
-	end
-	return 0
+	return GetLevelForWXP(BR_GetWxp(TheNet:GetUserID()))
+end
+
+function InventoryProxy:GetWXPLevel()
+	return BR_GetLevel(TheNet:GetUserID())
+end
+
+function InventoryProxy:GetWXP()
+	return BR_GetWxp()
+end
+
+function ItemServerProxy:GetLevelForWXP(wxp)
+	return GetLevelForWXP(wxp)
+end
+
+function ItemServerProxy:GetWXPForLevel(level)
+	return GetWXPForLevel(level)
 end
 
 local _GetSkinsDataFromClientTableData = GetSkinsDataFromClientTableData
@@ -23,17 +65,8 @@ GetSkinsDataFromClientTableData = function(data, ...)
 	return _GetSkinsDataFromClientTableData(data, ...)
 end
 
+--[[
 require("wxputils")
-
-local _GetLevel = wxputils.GetLevel
-function wxputils.GetLevel(festival_key, ...)
-	local level = BR_GetLevel(TheNet:GetUserID())
-	if level then
-		return level
-	end
-
-    return _GetLevel(festival_key, ...)
-end
 
 function wxputils.GetLevelPercentage()
     local level = wxputils.GetLevel()
@@ -46,15 +79,39 @@ function wxputils.BuildProgressString()
     return subfmt(STRINGS.UI.XPUTILS.XPPROGRESS, {num = current, max = 100})
 end
 
+local _GetLevel = wxputils.GetLevel
+function wxputils.GetLevel(festival_key, ...)
+	local level = BR_GetLevel(TheNet:GetUserID())
+	if level then
+		return level
+	end
+
+    return _GetLevel(festival_key, ...)
+end
+
 local _GetActiveLevel = wxputils.GetActiveLevel
 function wxputils.GetActiveLevel(...)
 	local level = BR_GetLevel(TheNet:GetUserID())
 	if level then
 		return level
 	end
-	
+
 	return _GetActiveLevel(...)
 end
+
+function wxputils.GetLevelForWXP(wxp)
+    return math.floor(wxp / 100)
+end
+
+function wxputils.GetWXPForLevel(level)
+    return level * 100, (level + 1) * 100
+end
+
+function wxputils.GetActiveWXP()
+    return BR_GetWxp(TheNet:GetUserID())
+end]]
+
+--------------------------------------------------------------------------
 
 local _GetSkinsDataFromClientTableData = GetSkinsDataFromClientTableData
 function GetSkinsDataFromClientTableData(client, ...)

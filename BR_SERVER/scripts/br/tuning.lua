@@ -4,5 +4,4 @@ TUNING.BATTLE_ROYALE = {
 
     GAME_DURATION = 10 * 60,
     WIN_DELAY = 10,
-
 }

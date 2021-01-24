@@ -58,12 +58,11 @@ local function fn()
     inst:AddComponent("worldvoter")
     inst:AddComponent("worldcharacterselectlobby")
     
-    inst:AddComponent("br_level_manager")
     inst:AddComponent("character_unlocker")
     TheWorld.character_unlocker = inst.components.character_unlocker
 
     inst:AddComponent("battleroyale_network")
-    
+
     -- inst:AddComponent("clock")
     -- inst:AddComponent("worldtemperature")
     -- inst:AddComponent("seasons")

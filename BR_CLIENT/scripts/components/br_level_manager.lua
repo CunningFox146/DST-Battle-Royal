@@ -1,12 +1,13 @@
 local LevelManager = Class(function(self, inst)
     self.inst = inst
 	
-	self._data = net_string(inst.GUID, "hg_level_manager._data", "hg_level_dirty")
+	self._data = net_string(inst.GUID, "level_manager._data", "battleroyale_levels_dirty")
 	
 	self.ismastersim = TheWorld.ismastersim
 	
 	if self.ismastersim then
 		local rebuild = function() self:RebuildData() end
+
 		inst:ListenForEvent("ms_clientauthenticationcomplete", rebuild, TheWorld)
 		inst:ListenForEvent("ranks_changed", rebuild, TheWorld)
 		inst:DoTaskInTime(0, rebuild)
@@ -19,7 +20,7 @@ local LevelManager = Class(function(self, inst)
 			self:UpdateLevel()
 		end
 		
-		inst:ListenForEvent("hg_level_dirty", UpdateLevel)
+		inst:ListenForEvent("battleroyale_levels_dirty", UpdateLevel)
 		inst:DoTaskInTime(0, UpdateLevel)
 	end
 	

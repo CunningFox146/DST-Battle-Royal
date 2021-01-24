@@ -266,3 +266,9 @@ env.AddClassPostConstruct("screens/playerhud", function(self)
 		self:ShowReduxTitle("Now entering map: " .. TheWorld.net.components.battleroyale_network:GetMap(), "Gather resources before other players kill you!", 5)
 	end)
 end)
+
+env.AddClassPostConstruct("widgets/redux/wxplobbypanel", function(self)
+	if self.displayinfo then
+		self.displayinfo.duration = 5
+	end
+end)

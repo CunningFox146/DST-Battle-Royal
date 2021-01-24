@@ -14,7 +14,15 @@ local Statistics = Class(function(self, inst)
     
     UpdateStat = function(...)
         self:UpdateStat(...)
-    end
+	end
+	
+	if CHEATS_ENABLED then
+		rawset(_G, "pdat", function()
+			for k, v in pairs(self.player_data) do
+				printwrap(k, v)
+			end
+		end)
+	end
 end)
 
 function Statistics:InitPlayers()
@@ -76,7 +84,7 @@ function Statistics:PushMatchResults()
 	
 	TheFrontEnd.match_results.mvp_cards = self:GetMvpAwards()
 	TheFrontEnd.match_results.wxp_data = self:GetAwardedWxp()
-	TheFrontEnd.match_results.player_stats = {gametype = "ReGorgeItated-"..(Settings.gorge_game_mode or "default"), session = TheWorld.meta.session_identifier, data = player_stats, fields = field_order}
+	TheFrontEnd.match_results.player_stats = {gametype = "battleroyale", session = TheWorld.meta.session_identifier, data = player_stats, fields = field_order}
 	TheFrontEnd.match_results.outcome = self:GetMatchOutcome()
 end
 
@@ -112,18 +120,15 @@ end
 
 function Statistics:GetAwardedWxp()
 	local wxp_data = {}
-	
-	if CHEATS_ENABLED then
-		printwrap("player", self.player_data[TheNet:GetUserID()].achievements)
-		printwrap("shared", self.shared_achievements)
-	end
-	
+	local progress = TheWorld.components.br_progress
 	for id, data in pairs(self.player_data) do
+		local wxp = progress:GetWxp(id)
+		local delta = progress:GetDelta(id)
 		wxp_data[id] = {
-			new_xp = 0,
-			match_xp = 0,
+			new_xp = wxp + delta,
+			match_xp = delta,
 			earned_boxes = 0,
-			details = {}, -- Fox: Maybe it's better to deepcopy it?
+			details = {},
 		}
 	end
 	

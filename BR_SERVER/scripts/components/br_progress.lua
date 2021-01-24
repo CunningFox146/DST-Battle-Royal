@@ -1,13 +1,21 @@
+global("UpdateRank")
+UpdateRank = nil
+
 local LevelManager = Class(function(self, inst)
     self.inst = inst
 	
     self.path = "br_ranks.json"
 
     self.ranks = {}
+    self.delta = {} -- Fox: Add ranks only after the match is over
+
+    UpdateRank = function(...)
+        self:DoDelta(...)
+    end
     
     self:LoadData()
 
-    self.inst:ListenForEvent("ms_save", function() self:SaveData() end)
+    self.inst:ListenForEvent("ms_matchover", function() self:SaveData() end)
 end)
 
 function LevelManager:LoadData()
@@ -29,31 +37,28 @@ function LevelManager:SaveData()
         return
     end
 
+    for id, val in pairs(self.delta) do
+        self.ranks[id] = (self.ranks[id] or 0) + val
+    end
+    self.delta = {}
+
     f:write(json.encode_compliant(self.ranks))
 
     f:close()
 end
 
-function LevelManager:AddKill(id)
-    self.ranks[id] = (self.ranks[id] or 0) + 1
+function LevelManager:DoDelta(id, delta)
+    self.delta[id] = (self.delta[id] or 0) + delta
     
-    self.inst:PushEvent("ranks_changed", self.ranks)
+    --self.inst:PushEvent("ranks_changed", self.ranks)
 end
 
-function LevelManager:AddDeath(id)
-    self.ranks[id] = math.max((self.ranks[id] or 0) - 0.5, 0)
-    
-    self.inst:PushEvent("ranks_changed", self.ranks)
+function LevelManager:GetWxp(id)
+    return self.ranks[id] or 0
 end
 
-function LevelManager:PlayerWon(id)
-    self.ranks[id] = math.max((self.ranks[id] or 0) + 3, 0)
-    
-    self.inst:PushEvent("ranks_changed", self.ranks)
-end
-
-function LevelManager:GetRank(id)
-    return math.floor(self.ranks[id] or 0)
+function LevelManager:GetDelta(id)
+    return self.delta[id] or 0
 end
 
 return LevelManager

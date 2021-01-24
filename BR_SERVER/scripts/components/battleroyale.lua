@@ -75,12 +75,12 @@ end
 function BattleRoyale:PlayerDied(player, data)
     self:CheckWinner()
 
-    local progress = self.inst.components.br_progress
-
-    progress:AddDeath(player.userid)
+    local UpdateRank = UpdateRank
+    
+    -- UpdateRank(player.userid, RANKS.DELTA.DEATH)
 
     if data and data.afflicter and data.afflicter.userid then
-        progress:AddKill(data.afflicter.userid)
+        UpdateRank(data.afflicter.userid, RANKS.DELTA.KILL)
         UpdateStat(data.afflicter.userid, "kills", 1)
     end
 end
@@ -93,7 +93,10 @@ function BattleRoyale:CheckWinner()
     local alive = self:GetAlivePlayers()
     if #alive == 1 then
         self.winner = alive[1]
+
         UpdateStat(self.winner.userid, "winner", nil, 1)
+        UpdateRank(self.winner.userid, RANKS.DELTA.WIN)
+
         self:FinishGame()
     end
 end
@@ -112,6 +115,8 @@ function BattleRoyale:FinishGame()
     self:AnnounceWinner()
 
     self.inst.components.battleroyale_statistics:PushMatchResults()
+    
+    self.inst:PushEvent("ms_matchover") -- Fox: Ranks + delta happeneds here
 
     self.win_task = self.inst:DoTaskInTime(WIN_DELAY, function()
         self:ResetWorld()
