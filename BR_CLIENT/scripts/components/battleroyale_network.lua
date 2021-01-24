@@ -38,7 +38,7 @@ end
 function Network:UpdateWinner()
     local winner = self._winner:value()
     if winner and ThePlayer then
-        ThePlayer.HUD:ShowReduxTitle(winner.name .. " won!", "The match will restart in a moment.")
+        ThePlayer.HUD:ShowReduxTitle(string.format(STRINGS.BATTLE_ROYALE.WIN_TITLE.TITLE, winner.name), STRINGS.BATTLE_ROYALE.WIN_TITLE.BODY)
     end
 end
 

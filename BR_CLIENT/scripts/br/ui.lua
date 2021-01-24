@@ -26,7 +26,7 @@ env.AddClassPostConstruct("screens/redux/lobbyscreen", function(self)
 		local worldcharacterselectlobby = TheWorld and TheWorld.net and TheWorld.net.components.worldcharacterselectlobby
 
 		if worldcharacterselectlobby:SpectatorsEnabled() then
-			self:SetString("Game is on! You'll spawn as a spectator")
+			self:SetString(STRINGS.BATTLE_ROYALE.LOBBY.SPECTATOR)
 			self:Show()
 			return
 		end
@@ -73,12 +73,16 @@ env.AddClassPostConstruct("screens/redux/lobbyscreen", function(self)
 		end
 	end, TheWorld)
 
-	function self:ForceStart()
-		print("[Lobby]: Auto-set character to Random.")
+	local function ClearScreen()
 		if TheFrontEnd:GetActiveScreen().name ~= "LobbyScreen" then
 			TheFrontEnd:PopScreen()
 		end
-		
+	end
+
+	function self:ForceStart()
+		print("[Lobby]: Auto-set character to Random.")
+		ClearScreen()
+
 		if not self.lobbycharacter then
 			self.lobbycharacter = "random"
 		end
@@ -87,6 +91,7 @@ env.AddClassPostConstruct("screens/redux/lobbyscreen", function(self)
 		local count = #self.panels
 		for i = self.current_panel_index, count do
 			self.inst:DoTaskInTime(FRAMES * 2 * timing, function()
+				ClearScreen()
 				if i == count then
 					self.inst:DoTaskInTime(FRAMES, function() _Start(TheWorld, {time = 0, active = true}) end)
 				else
@@ -112,7 +117,6 @@ env.AddClassPostConstruct("screens/redux/lobbyscreen", function(self)
 			local _OnNextButton = this.OnNextButton
 
 			function this.OnNextButton(this, ...)
-				print("OnNextButton")
 				if TheWorld and TheWorld.net and TheWorld.net.components.worldcharacterselectlobby:SpectatorsEnabled() then
 					_OnNextButton(this, ...)
 					self.inst:DoTaskInTime(FRAMES, StartGame(self))
@@ -263,8 +267,20 @@ env.AddClassPostConstruct("screens/playerhud", function(self)
 	end
 
 	self.inst:DoTaskInTime(1, function()
-		self:ShowReduxTitle("Now entering map: " .. TheWorld.net.components.battleroyale_network:GetMap(), "Gather resources before other players kill you!", 5)
+		local map = TheWorld and TheWorld.net and TheWorld.net.components.battleroyale_network:GetMap()
+		if map then
+			self:ShowReduxTitle(string.format(STRINGS.BATTLE_ROYALE.MAPS.NAME_INTRO, STRINGS.BATTLE_ROYALE.MAPS.NAMES[map]), STRINGS.BATTLE_ROYALE.MAPS.DESCRIPTIONS[map], 5)
+		end
 	end)
+end)
+
+env.AddClassPostConstruct("widgets/controls", function(self)
+	if self.clock then
+		self.clock:Hide()
+		self.clock:SetPosition(2000, 2000)
+
+		self.status:SetPosition(0, 0)
+	end
 end)
 
 env.AddClassPostConstruct("widgets/redux/wxplobbypanel", function(self)
