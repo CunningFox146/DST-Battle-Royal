@@ -34,14 +34,11 @@ BATTLE_ROYALE_SETPIECES = {
 
 RANKS = {
 	MAX_RANK = 500,
-	RANK_VALUE = 1000,
-	RANK_DIFFICULTY = 0.05,  -- Add 5% for every level (level 1 is RANK_VALUE, level 2 is RANK_VALUE * 1.05, etc)
+	EXP_DIFFICULTY = 75,
 
 	DELTA = {
-		-- DEATH = -100,
-		
-		DAMAGE = 0.75, -- 1 damage dealt == 0.75 exp
-        KILL = 1000,
-        WIN = 3000,
+		DAMAGE = 1.25,
+        KILL = 1250,
+        WIN = 3500,
     }
 }

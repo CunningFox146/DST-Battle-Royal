@@ -59,7 +59,6 @@ function Spectator:Update()
 end
 
 function Spectator:UpdateData(data)
-	printwrap("UpdateData", data)
 	self._players = {}
 	self.count = #data
 	

@@ -4,26 +4,26 @@ GLOBAL.setfenv(1, GLOBAL)
 FESTIVAL_EVENTS.BATTLE_ROYALE = "battleroyale"
 WORLD_FESTIVAL_EVENT = FESTIVAL_EVENTS.BATTLE_ROYALE
 
+local starting_level = 1
+local exp_rate = RANKS.EXP_DIFFICULTY
+local level_cap = RANKS.MAX_RANK
 local function GetWXPForLevel(level)
-	local wxp = RANKS.RANK_VALUE
-	if level > 1 then
-		wxp = wxp + RANKS.RANK_VALUE * (level + (level - 1) * RANKS.RANK_DIFFICULTY)
+	local exp = 0
+	for i = starting_level + 1, level do
+		exp = exp + (i - 1) * exp_rate
 	end
-	return wxp
+    return exp
 end
 
-local function GetLevelForWXP(target_wxp)
-	local max_level = RANKS.MAX_RANK
-    local level = 0
-    local wxp = 0
-    local lvl_wxp = GetWXPForLevel(level)
-    local next_wxp = GetWXPForLevel(level + 1)
-    repeat
-        level = level + 1
-        lvl_wxp = GetWXPForLevel(level)
-        next_wxp = GetWXPForLevel(level + 1)
-    until (target_wxp < next_wxp and target_wxp >= lvl_wxp) or level >= RANKS.MAX_RANK
-    return level
+local function GetLevelForWXP(wxp)
+	local current_level = 1
+	local current_exp = wxp - current_level * exp_rate
+	while current_exp >= 0 and current_level < level_cap do
+		current_level = current_level + 1
+		current_exp = current_exp - current_level * exp_rate
+	end
+	
+	return current_level
 end
 
 local function GetLevelManager()
