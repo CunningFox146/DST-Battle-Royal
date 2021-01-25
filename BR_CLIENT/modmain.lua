@@ -8,6 +8,8 @@ PrefabFiles = {
     "poison_dots",
 
     "debuff_poison",
+    
+    "damagenumber",
 }
 
 Assets = {

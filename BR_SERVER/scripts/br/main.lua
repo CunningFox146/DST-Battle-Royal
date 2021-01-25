@@ -106,11 +106,11 @@ do
             if data.target.userid then
                 UpdateStat(data.target.userid, "damage", data.amount)
             end
-            --[[
+            
             local num = SpawnPrefab("damagenumber")
             num.entity:SetParent(inst.entity)
             num.Network:SetClassifiedTarget(inst)
-            num:Set(data.target, math.floor(data.amount + 0.5))]]
+            num:Set(data.target, math.floor(data.amount + 0.5))
         end
     end
 
