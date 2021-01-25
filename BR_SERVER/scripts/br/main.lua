@@ -144,7 +144,7 @@ do
             if show and inst.spectator then
                 return true
             end
-            return _ShowHUD(show, ...)
+            return _ShowHUD(inst, show, ...)
         end
     end)
 end
