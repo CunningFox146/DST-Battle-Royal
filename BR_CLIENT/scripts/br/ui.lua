@@ -274,6 +274,9 @@ env.AddClassPostConstruct("screens/playerhud", function(self)
 	end)
 end)
 
+local SpectatorWgt = require "widgets/hg_spectator_wgt"
+local SpectatorEye = require "widgets/spectator_eye"
+
 env.AddClassPostConstruct("widgets/controls", function(self)
 	if self.clock then
 		self.clock:Hide()
@@ -281,6 +284,14 @@ env.AddClassPostConstruct("widgets/controls", function(self)
 
 		self.status:SetPosition(0, 0)
 	end
+
+	self.hg_spectator_wgt = self.bottom_root:AddChild(SpectatorWgt(self.owner))
+    self.hg_spectator_wgt:SetPosition(0, 70)
+	self.hg_spectator_wgt:Hide()
+	
+	self.spectator_eye = self.inv:AddChild(SpectatorEye(self.owner))
+	self.spectator_eye:SetPosition(-1000, 75)
+	self.spectator_eye:MoveToBack()
 end)
 
 env.AddClassPostConstruct("widgets/redux/wxplobbypanel", function(self)

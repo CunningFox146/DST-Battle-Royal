@@ -6,11 +6,14 @@ if not env.MODROOT:find("workshop-") then
     NetworkProxy.GetPVPEnabled = function() return true end
 end
 
+env.AddReplicableComponent("spectator")
+
 require("server_data")
 
 require("br/constants")
 require("br/util")
 require("br/strings")
+require("br/rpc")
 
 env.modimport("scripts/br/recipes.lua")
 env.modimport("scripts/br/ui.lua")
@@ -52,24 +55,4 @@ env.AddComponentPostInit("playervision", function(self)
 	end
 end)
 
-env.AddPrefabPostInit("player_classified", function(inst)
-    inst.infog = net_bool(inst.GUID, "battleroyale._infog", "infogdirty")
-
-    if not TheNet:IsDedicated() then
-        inst:ListenForEvent("infogdirty", function(inst)
-            local parent = inst._parent
-            if not parent or not parent.components.playervision then
-                return
-            end
-
-            local old = parent.components.playervision.infog
-            local val = inst.infog:value()
-            
-            parent.components.playervision.infog = val
-            
-            if old ~= val then
-                parent.components.playervision:UpdateCCTable()
-            end
-        end)
-    end
-end)
+env.AddPrefabPostInit("player_classified", require("br/networking"))

@@ -25,6 +25,11 @@ STRINGS.BATTLE_ROYALE = {
             [BATTLE_ROYALE_MAPS.TEST] = "For debuging only. If you see this in game then something went wrong...",
         }
     },
+
+    UI = {
+        SPECTATORS_AMNT = "Viewers:",
+        UNKNOWN = "Nobody",
+    },
 }
 
 STRINGS.UI.WXPLOBBYPANEL.LEVEL_UP = "RANK UP!"

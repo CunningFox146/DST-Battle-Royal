@@ -1,26 +1,29 @@
+
+
 local Network = Class(function(self, inst)
     self.inst = inst
     
-    self._wxp = net_string(inst.GUID, "battleroyale_network._wxp", "battleroyale_wxp_dirty")
+    self._player_data = net_string(inst.GUID, "battleroyale_network._wxp", "battleroyale_playerdata_dirty")
     self._winner = net_entity(inst.GUID, "battleroyale_network._winner", "battleroyale_winner_dirty")
     self._map = net_tinybyte(inst.GUID, "battleroyale_network._map")
 
     self.ismastersim = TheWorld.ismastersim
 	
     if not TheNet:IsDedicated() then
-        self.wxp = {}
+        self.participating = {}
         
         local function UpdateWinner() self:UpdateWinner() end
-        local function UpdateWxp() self:UpdateWxp() end
+        local function UpdatePlayerData() self:UpdatePlayerData() end
 
-        self.inst:ListenForEvent("battleroyale_wxp_dirty", UpdateWxp)
+        self.inst:ListenForEvent("battleroyale_playerdata_dirty", UpdatePlayerData)
         self.inst:ListenForEvent("battleroyale_winner_dirty", UpdateWinner)
 
         self.inst:DoTaskInTime(0, UpdateWinner)
-        self.inst:DoTaskInTime(0, UpdateWxp)
+        self.inst:DoTaskInTime(0, UpdatePlayerData)
     end
     
     if self.ismastersim then
+        self.cached_ranks = {}
         self:Init()
     end
 end)
@@ -55,26 +58,37 @@ function Network:GetMap()
 end
 
 function Network:RebuildData()
-	local levels = {}
-	for _, data in ipairs(TheNet:GetClientTable()) do
-		local rank = self:GetWxp(data.userid)
-		if rank > 0 then
-			levels[data.userid] = rank
-		end
-	end
-	self._wxp:set(DataDumper(levels))
+    local player_data = {}
+    for _, data in pairs(GetPlayersClientTable()) do
+        -- Fox: data format is (1: rank, 2: alive)
+        player_data[data.userid] = {
+            self:GetWxp(data.userid),
+            GetIsPlaying(data.userid),
+        }
+    end
+	self._player_data:set(json.encode(player_data))
 end
 
-function Network:UpdateWxp()
-	self.data = loadstring(self._wxp:value())()
-	TheWorld:PushEvent("ms_leveldataupdated", self.data)
+function Network:UpdatePlayerData()
+    self.data = json.decode(self._player_data:value())
+    for id, data in pairs(self.data) do
+        if data[2] then
+            table.insert(self.participating, id)
+        end
+    end
+    table.sort(self.participating) -- Fox: So we always have mostly same layout for spectators
+	TheGlobalInstance:PushEvent("player_data_update", self.data)
+end
+
+function Network:GetParticipators()
+    return self.participating or {}
 end
 
 function Network:GetWxp(id)
 	if self.ismastersim then
 		return TheWorld.components.br_progress:GetWxp(id)
 	end
-	return self.data[id] or 0
+	return self.data[id] and (self.data[id][1] or 1) or 1
 end
 
 return Network

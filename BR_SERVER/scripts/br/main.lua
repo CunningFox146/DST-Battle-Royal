@@ -53,16 +53,10 @@ env.AddComponentPostInit("playerspawner", function(self)
     end
 
     local function OnNewPlayer(_, data)
-        local worldcharacterselectlobby = TheWorld and TheWorld.net and TheWorld.net.components.worldcharacterselectlobby
 		if not data or not data.player then
 			return
         end
-        
-        if worldcharacterselectlobby and worldcharacterselectlobby:SpectatorsEnabled() then
-            data.player:BecomeSpectator()
-        else
-            data.player:BR_OnNewSpawn()
-        end
+        data.player:BR_OnNewSpawn()
     end
     
     self.inst:ListenForEvent("ms_register_br_spawnpoint", function(_, point) self:BR_RegisterPoint(point) end)
@@ -100,8 +94,11 @@ end)
 
 do
     local function OnDeath(inst, data)
-        inst:BecomeSpectator()
         TheWorld.components.battleroyale:PlayerDied(inst, data)
+    end
+
+    local function OnBecameGhost(inst)
+        inst:BecomeSpectator()
     end
 
     local function OnAppliedDamage(inst, data)
@@ -119,17 +116,36 @@ do
 
     env.AddPlayerPostInit(function(inst)
         inst:AddComponent("br_poisonable")
+        inst:AddComponent("spectator")
 
         function inst:BR_OnNewSpawn()
-            inst.sg:GoToState("spawn_on_arena")
+            local worldcharacterselectlobby = TheWorld and TheWorld.net and TheWorld.net.components.worldcharacterselectlobby
+            if worldcharacterselectlobby and worldcharacterselectlobby:SpectatorsEnabled() then
+                inst:BecomeSpectator()
+            else
+                inst.sg:GoToState("spawn_on_arena")
+            end
         end
 
         function inst:BecomeSpectator()
             inst.spectator = true
+            if inst.player_classified then
+                inst.player_classified.isspectator:set(true)
+            end
+            FullyHidePlayer(inst)
         end
         
         inst:ListenForEvent("death", OnDeath)
+        inst:ListenForEvent("ms_becameghost", OnBecameGhost)
         inst:ListenForEvent("applied_damage", OnAppliedDamage)
+
+        local _ShowHUD = inst.ShowHUD
+        function inst:ShowHUD(show, ...)
+            if show and inst.spectator then
+                return true
+            end
+            return _ShowHUD(show, ...)
+        end
     end)
 end
 
