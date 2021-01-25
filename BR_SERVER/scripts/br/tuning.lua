@@ -8,6 +8,9 @@ if CHEATS_ENABLED then
     
         GAME_DURATION = GAME_DURATION,
         WIN_DELAY = 10,
+        
+        PVP_SLOWDOWN = 0.75,
+        PVP_SLOWDOWN_DURATION = 3,
     
         FOG = { 
             START_TIME = 10,--120,
@@ -23,6 +26,9 @@ else
     
         GAME_DURATION = GAME_DURATION,
         WIN_DELAY = 10,
+
+        PVP_SLOWDOWN = 0.75,
+        PVP_SLOWDOWN_DURATION = 3,
     
         FOG = { 
             START_TIME = 0.2 * GAME_DURATION,
@@ -32,3 +38,6 @@ else
         }
     }
 end
+
+TUNING.PVP_DAMAGE_MOD = 1
+TUNING.BASE_COOK_TIME = 0

@@ -8,6 +8,7 @@ PrefabFiles = {
     "poison_dots",
 
     "debuff_poison",
+    "debuff_pvp",
     
     "damagenumber",
 }

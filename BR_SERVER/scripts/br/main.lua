@@ -101,11 +101,20 @@ do
         inst:BecomeSpectator()
     end
 
+    local function PvPSlowdown(inst, seconds, percent)
+        if inst and (inst.components.rider and not inst.components.rider:IsRiding()) and 
+        inst.components.debuffable and inst.components.debuffable:IsEnabled() and not inst.spectator then
+            inst.components.debuffable:AddDebuff("debuff_pvp", "debuff_pvp")
+        end
+    end
+
     local function OnAppliedDamage(inst, data)
         if data then
             if data.target.userid then
                 UpdateStat(data.target.userid, "damage", data.amount)
             end
+
+            PvPSlowdown(data.target)
             
             local num = SpawnPrefab("damagenumber")
             num.entity:SetParent(inst.entity)
@@ -114,26 +123,32 @@ do
         end
     end
 
+    local function BecomeSpectator(inst)
+        inst.spectator = true
+        if inst.player_classified then
+            inst.player_classified.isspectator:set(true)
+        end
+        FullyHidePlayer(inst)
+    end
+
+    local function BR_OnNewSpawn(inst)
+        local worldcharacterselectlobby = TheWorld and TheWorld.net and TheWorld.net.components.worldcharacterselectlobby
+        if worldcharacterselectlobby and worldcharacterselectlobby:SpectatorsEnabled() then
+            inst:BecomeSpectator()
+        else
+            inst.sg:GoToState("spawn_on_arena")
+        end
+    end
+
     env.AddPlayerPostInit(function(inst)
         inst:AddComponent("br_poisonable")
         inst:AddComponent("spectator")
 
-        function inst:BR_OnNewSpawn()
-            local worldcharacterselectlobby = TheWorld and TheWorld.net and TheWorld.net.components.worldcharacterselectlobby
-            if worldcharacterselectlobby and worldcharacterselectlobby:SpectatorsEnabled() then
-                inst:BecomeSpectator()
-            else
-                inst.sg:GoToState("spawn_on_arena")
-            end
-        end
+        if inst.components.combat then
+			inst.components.combat:SetPlayerStunlock(PLAYERSTUNLOCK.NEVER)
+		end
 
-        function inst:BecomeSpectator()
-            inst.spectator = true
-            if inst.player_classified then
-                inst.player_classified.isspectator:set(true)
-            end
-            FullyHidePlayer(inst)
-        end
+        inst.BecomeSpectator = BecomeSpectator
         
         inst:ListenForEvent("death", OnDeath)
         inst:ListenForEvent("ms_becameghost", OnBecameGhost)
