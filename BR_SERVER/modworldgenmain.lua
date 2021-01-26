@@ -10,6 +10,70 @@ require("constants")
 require("map/tasks")
 require("map/level")
 
+-- Fox: Patch defs so each time they get random value
+-- layout.layout[prefab name] = info
+-- info is array of 
+--[[
+	[00:11:17]: K:  height   V:     0
+	[00:11:17]: K:  properties       V:     table: 1A3385A0
+	[00:11:17]: K:  width    V:     0
+	[00:11:17]: K:  x        V:     44.25
+	[00:11:17]: K:  y        V:     8.4375
+]]
+do
+	local UpvalueHacker = require("tools/upvaluehacker")
+	local object_layout = require("map/object_layout")
+	
+	local _ConvertLayoutToEntitylist = UpvalueHacker.GetUpvalue(object_layout.Convert, "ConvertLayoutToEntitylist")
+	local ConvertLayoutToEntitylist = function(layout, ...)
+		if layout.layout then
+			local toremove = {}
+			local toadd = {}
+
+			for current_prefab, v in pairs(layout.layout) do
+				print("current_prefab: '"..tostring(current_prefab).."'", layout.defs[current_prefab])
+				if layout.defs[current_prefab] then
+					for i, data in pairs(v) do
+						-- printwrap(i, data)
+						local idx = math.random(1, #layout.defs[current_prefab])
+						local swap_prefab = layout.defs[current_prefab][idx]
+						print("about to swap to", swap_prefab)
+						
+						local add = false
+						if not layout.layout[swap_prefab] then
+							if not toadd[swap_prefab] then
+								toadd[swap_prefab] = {}
+							end
+							table.insert(toadd[swap_prefab], data)
+						else
+							table.insert(layout.layout[swap_prefab], data)
+						end
+					end
+					table.insert(toremove, current_prefab)
+					print("!!!!REMOVED", current_prefab)
+				end
+			end
+
+			printwrap("!!ABOUT TO ADD", toadd)
+			printwrap("!!ABOUT TO REOMVE", toremove)
+
+			for _, remove in ipairs(toremove) do
+				layout.layout[remove] = nil
+			end
+
+			for pref, toadd in pairs(toadd) do
+				layout.layout[pref] = toadd
+			end
+		end
+
+		layout.defs = nil
+
+		printwrap("!!Final:", layout.layout)
+		return _ConvertLayoutToEntitylist(layout, ...)
+	end
+	UpvalueHacker.SetUpvalue(object_layout.Convert, ConvertLayoutToEntitylist, "ConvertLayoutToEntitylist")
+end
+
 TheMapSaver = require("map_saver")(env.MODROOT)
 
 TheMapSaver:Load()

@@ -19,10 +19,12 @@ STRINGS.BATTLE_ROYALE = {
 
         NAMES = {
             [BATTLE_ROYALE_MAPS.TEST] = "Testing Chamber",
+            [BATTLE_ROYALE_MAPS.CLASSIC] = "Green and Yellow",
         },
 
         DESCRIPTIONS = {
-            [BATTLE_ROYALE_MAPS.TEST] = "For debuging only. If you see this in game then something went wrong...",
+            [BATTLE_ROYALE_MAPS.CLASSIC] = "For debuging only. If you see this in game then something went wrong...",
+            [BATTLE_ROYALE_MAPS.CLASSIC] = "Gather resources before other players kill you!",
         }
     },
 

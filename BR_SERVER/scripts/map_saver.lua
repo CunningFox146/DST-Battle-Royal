@@ -1,5 +1,7 @@
 require "class"
 
+local OVERRIDE_MAP = BATTLE_ROYALE_MAPS.CLASSIC
+
 local MapSaver = Class(function(self, root)
     self.path = (root or "") .. "battleroyale_map.json"
     
@@ -8,6 +10,7 @@ local MapSaver = Class(function(self, root)
 end)
 
 function MapSaver:Save(map)
+    map = CHEATS_ENABLED and OVERRIDE_MAP or map
     local f = io.open(self.path, "w")
     if not f then
         print("[Map Saver] Error! Failed to open file for writing: ", self.path)
