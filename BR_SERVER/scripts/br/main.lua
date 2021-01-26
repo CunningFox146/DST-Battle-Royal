@@ -64,6 +64,30 @@ env.AddComponentPostInit("playerspawner", function(self)
     self.inst:ListenForEvent("ms_newplayercharacterspawned", OnNewPlayer)
 end)
 
+env.AddComponentPostInit("birdspawner", function(self)
+    local _map = TheWorld.Map
+    local _groundcreep = TheWorld.GroundCreep
+    local BIRDBLOCKER_TAGS = {"birdblocker"}
+    function self:GetSpawnPoint(pt)
+        --We have to use custom test function because birds can't land on creep
+        local function TestSpawnPoint(offset)
+            local spawnpoint_x, spawnpoint_y, spawnpoint_z = (pt + offset):Get()
+            return _map:IsPassableAtPoint(spawnpoint_x, spawnpoint_y, spawnpoint_z, false) and
+                _map:GetTileAtPoint(spawnpoint_x, spawnpoint_y, spawnpoint_z) ~= GROUND.OCEAN_COASTAL_SHORE and
+                not _groundcreep:OnCreep(spawnpoint_x, spawnpoint_y, spawnpoint_z) and
+                #(TheSim:FindEntities(spawnpoint_x, 0, spawnpoint_z, 4, BIRDBLOCKER_TAGS)) == 0
+        end
+
+        local theta = math.random() * 2 * PI
+        local radius = 6 + math.random() * 6
+        local resultoffset = FindValidPositionByFan(theta, radius, 12, TestSpawnPoint)
+
+        if resultoffset ~= nil then
+            return pt + resultoffset
+        end
+    end
+end)
+
 -- Despawn those who chose locked chars
 local _SpawnNewPlayerOnServerFromSim = SpawnNewPlayerOnServerFromSim
 SpawnNewPlayerOnServerFromSim = function(guid, ...)
