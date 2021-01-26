@@ -36,6 +36,10 @@ return {
 
             inst:SetCameraDistance(inst.sg.statemem.camera.max)
             inst:SnapCamera()
+
+            if inst.player_classified then
+                inst.player_classified.falling:set(true)
+            end
         end,
 		
         onupdate = function(inst, dt)
@@ -81,6 +85,10 @@ return {
             inst.DynamicShadow:Enable(true)
             inst:SetCameraDistance()
             inst.SoundEmitter:KillSound("player_hurt")
+
+            if inst.player_classified then
+                inst.player_classified.falling:set(false)
+            end
         end,
     },
 

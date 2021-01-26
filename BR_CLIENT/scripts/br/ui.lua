@@ -269,6 +269,7 @@ env.AddClassPostConstruct("screens/playerhud", function(self)
 	self.inst:DoTaskInTime(1, function()
 		local map = TheWorld and TheWorld.net and TheWorld.net.components.battleroyale_network:GetMap()
 		if map then
+			TheFrontEnd:GetSound():PlaySound("dontstarve/music/stalker_enter_music")
 			self:ShowReduxTitle(string.format(STRINGS.BATTLE_ROYALE.MAPS.NAME_INTRO, STRINGS.BATTLE_ROYALE.MAPS.NAMES[map]), STRINGS.BATTLE_ROYALE.MAPS.DESCRIPTIONS[map], 5)
 		end
 	end)

@@ -10,6 +10,21 @@ local function OnEntityReplicated(inst)
 	end
 end
 
+local function OnFalling(inst)
+	local parent = inst._parent
+	if not parent then
+		return
+	end
+
+	if inst.falling:value() then
+		TheMixer:PushMix("high")
+		TheFocalPoint.SoundEmitter:PlaySound("dontstarve/common/clouds", "falling_wind")
+	else
+		TheMixer:PopMix("high")
+		TheFocalPoint.SoundEmitter:KillSound("falling_wind")
+	end
+end
+
 local function OnFogDirty(inst)
     local parent = inst._parent
     if not parent or not parent.components.playervision then
@@ -61,11 +76,14 @@ return function(inst)
 		target = net_entity(inst.GUID, "spectator._target", "spect_target_dirty"),
 		spectators = net_smallbyte(inst.GUID, "spectator._spectators", "spect_amount_dirty"),
     }
-    inst.isspectator = net_bool(inst.GUID, "spectator._isspectator", "isspectatordirty")
+	inst.isspectator = net_bool(inst.GUID, "spectator._isspectator", "isspectatordirty")
+	
+	inst.falling = net_bool(inst.GUID, "battleroyale._falling", "fallingdirty")
 
     if not TheNet:IsDedicated() then
         inst:ListenForEvent("infogdirty", OnFogDirty)
 		inst:ListenForEvent("isspectatordirty", OnSpectatorModeDirty)
+		inst:ListenForEvent("fallingdirty", OnFalling)
 	end
 	
 	if not TheWorld.ismastersim then

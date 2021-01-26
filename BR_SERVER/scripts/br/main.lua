@@ -149,6 +149,7 @@ do
 		end
 
         inst.BecomeSpectator = BecomeSpectator
+        inst.BR_OnNewSpawn = BR_OnNewSpawn
         
         inst:ListenForEvent("death", OnDeath)
         inst:ListenForEvent("ms_becameghost", OnBecameGhost)

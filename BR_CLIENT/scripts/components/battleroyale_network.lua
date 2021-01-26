@@ -42,6 +42,7 @@ function Network:UpdateWinner()
     local winner = self._winner:value()
     if winner and ThePlayer then
         ThePlayer.HUD:ShowReduxTitle(string.format(STRINGS.BATTLE_ROYALE.WIN_TITLE.TITLE, winner.name), STRINGS.BATTLE_ROYALE.WIN_TITLE.BODY)
+        TheFrontEnd:GetSound():PlaySound("dontstarve/common/lava_arena/match_begin") 
     end
 end
 

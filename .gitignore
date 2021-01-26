@@ -1,3 +1,9 @@
+BR_CLIENT/sound/exported/.fsbcache
+BR_CLIENT/sound/exported/*.log
+BR_CLIENT/sound/exported/*.txt
+BR_CLIENT/sound/exported/*.fev
+BR_CLIENT/sound/exported/*.fsb
+
 BR_CLIENT/exported
 BR_CLIENT/toexport
 BR_SERVER/battleroyale_map.json

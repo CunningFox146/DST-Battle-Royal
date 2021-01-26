@@ -14,6 +14,9 @@ PrefabFiles = {
 }
 
 Assets = {
+    Asset("SOUNDPACKAGE", "sound/battleroyale.fev"),
+	Asset("SOUND", "sound/battleroyale.fsb"),
+
     Asset("ANIM", "anim/winner_fx.zip"),
     Asset("ANIM", "anim/player_actions_twister.zip"),
     Asset("ANIM", "anim/spectator_eye.zip"),

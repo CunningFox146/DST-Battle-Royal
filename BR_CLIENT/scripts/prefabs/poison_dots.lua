@@ -74,8 +74,8 @@ local function PlayPoison(proxy)
 	inst.OnEntityWake = DoFx
 	
 	inst:DoTaskInTime(0, function()
-		inst.SoundEmitter:PlaySound("HG_sounds/fog/loop", "loop")
-		inst.SoundEmitter:PlaySound("HG_sounds/fog/spawn")
+		inst.SoundEmitter:PlaySound("battleroyale/fog/loop", "loop")
+		inst.SoundEmitter:PlaySound("battleroyale/fog/spawn")
 	end)
 	
 	inst:ListenForEvent("onremove", function()
@@ -85,7 +85,7 @@ local function PlayPoison(proxy)
 		end
 		
 		inst.SoundEmitter:KillSound("loop")
-		inst.SoundEmitter:PlaySound("HG_sounds/fog/despawn")
+		inst.SoundEmitter:PlaySound("battleroyale/fog/despawn")
 		inst.AnimState:PlayAnimation("lunar_back_pst")
 		inst:DoTaskInTime(17 * FRAMES, inst.Remove)
 	end, proxy)
