@@ -300,3 +300,12 @@ env.AddClassPostConstruct("widgets/redux/wxplobbypanel", function(self)
 		self.displayinfo.duration = 5
 	end
 end)
+
+env.AddClassPostConstruct("screens/giftitempopup", function(self)
+	local _ShowMenu = self.ShowMenu
+	
+	function self:ShowMenu(...)
+		_ShowMenu(self, ...)
+		self.menu:DisableItem(2)
+	end
+end)

@@ -1,5 +1,10 @@
 require("constants")
 
+function SetDirty(netvar, val) --Forces a netvar to be dirty regardless of value
+    netvar:set_local(val)
+    netvar:set(val)
+end
+
 function GetPlayersClientTable()
     local clients = TheNet:GetClientTable() or {}
     if not TheNet:GetServerIsClientHosted() then

@@ -11,6 +11,7 @@ STRINGS.BATTLE_ROYALE = {
 
     WIN_TITLE = {
         TITLE = "%s won!",
+        TITLE_NOWINNER = "Everyone died!",
         BODY = "The match will restart in a moment.",
     },
 

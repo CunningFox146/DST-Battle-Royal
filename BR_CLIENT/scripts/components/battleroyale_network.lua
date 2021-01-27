@@ -40,14 +40,17 @@ end
 
 function Network:UpdateWinner()
     local winner = self._winner:value()
-    if winner and ThePlayer then
-        ThePlayer.HUD:ShowReduxTitle(string.format(STRINGS.BATTLE_ROYALE.WIN_TITLE.TITLE, winner.name), STRINGS.BATTLE_ROYALE.WIN_TITLE.BODY)
+    if ThePlayer then
+        ThePlayer.HUD:ShowReduxTitle(
+            winner and string.format(STRINGS.BATTLE_ROYALE.WIN_TITLE.TITLE, winner.name) or STRINGS.BATTLE_ROYALE.WIN_TITLE.TITLE_NOWINNER,
+            STRINGS.BATTLE_ROYALE.WIN_TITLE.BODY
+        )
         TheFrontEnd:GetSound():PlaySound("dontstarve/common/lava_arena/match_begin") 
     end
 end
 
 function Network:SetWinner(winner)
-    self._winner:set(winner)
+    SetDirty(self._winner:set(winner))
 end
 
 function Network:SetMap(map)

@@ -81,6 +81,8 @@ function BattleRoyale:GetAlivePlayers()
 end
 
 function BattleRoyale:PlayerDied(player, data)
+    player.spectator = true
+
     self:CheckWinner()
 
     local UpdateRank = UpdateRank
@@ -99,12 +101,16 @@ function BattleRoyale:CheckWinner()
     end
 
     local alive = self:GetAlivePlayers()
-    if #alive == 1 then
+    local num = #alive
+    if num == 1 then
         self.winner = alive[1]
 
         UpdateStat(self.winner.userid, "winner", nil, 1)
         UpdateRank(self.winner.userid, RANKS.DELTA.WIN)
 
+        self:FinishGame()
+    elseif num == 0 then
+        self.winner = 0
         self:FinishGame()
     end
 end
@@ -134,7 +140,7 @@ end
 function BattleRoyale:AnnounceWinner()
     local net = GetNetwork(self.inst)
     if net then
-        net:SetWinner(self.winner)
+        net:SetWinner(self.winner == 0 and nil or self.winner)
     end
 end
 
