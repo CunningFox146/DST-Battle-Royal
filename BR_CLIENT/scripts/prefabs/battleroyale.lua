@@ -24,6 +24,7 @@ local assets =
 	Asset("IMAGE", "images/colour_cubes/lunacy_regular_cc.tex"), -- So cc won't crash
 
     Asset("ANIM", "anim/lightning.zip"),
+    Asset("ANIM", "anim/snow.zip"),
 
     Asset("SOUND", "sound/forest_stream.fsb"),
     Asset("SOUND", "sound/amb_stream.fsb"),    

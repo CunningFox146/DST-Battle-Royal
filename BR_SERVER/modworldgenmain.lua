@@ -55,12 +55,12 @@ do
 			end
 
 			printwrap("!!ABOUT TO ADD", toadd)
-			printwrap("!!ABOUT TO REOMVE", toremove)
 
 			for _, remove in ipairs(toremove) do
 				layout.layout[remove] = nil
 			end
 
+			printwrap("!!ABOUT TO REOMVE", toremove)
 			for pref, toadd in pairs(toadd) do
 				layout.layout[pref] = toadd
 			end

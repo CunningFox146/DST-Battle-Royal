@@ -17,9 +17,11 @@ local function OnFalling(inst)
 	end
 
 	if inst.falling:value() then
+		TheCamera:SetControllable(false)
 		TheMixer:PushMix("high")
 		TheFocalPoint.SoundEmitter:PlaySound("dontstarve/common/clouds", "falling_wind")
 	else
+		TheCamera:SetControllable(true)
 		TheMixer:PopMix("high")
 		TheFocalPoint.SoundEmitter:KillSound("falling_wind")
 	end

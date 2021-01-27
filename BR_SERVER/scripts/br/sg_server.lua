@@ -36,10 +36,7 @@ return {
 
             inst:SetCameraDistance(inst.sg.statemem.camera.max)
             inst:SnapCamera()
-
-            if inst.player_classified then
-                inst.player_classified.falling:set(true)
-            end
+            -- inst:SetCameraZoomed(true)
         end,
 		
         onupdate = function(inst, dt)
@@ -65,6 +62,8 @@ return {
             local dist = inst.sg.statemem.camera.min + delta * prcnt
             inst:SetCameraDistance(dist)
 
+            inst:ForceFacePoint(TheWorld.components.battleroyale:GetCenter())
+
             if y <= .1 then
                 inst.Physics:Stop()
                 inst.Physics:Teleport(x, 0, z)
@@ -75,8 +74,12 @@ return {
 		
         timeline =
         {
-            TimeEvent(1, function(inst) -- So fade removes first
+            TimeEvent(0.25, function(inst) -- So fade removes first
                 inst.sg.statemem.falling = true
+
+                if inst.player_classified then
+                    inst.player_classified.falling:set(true)
+                end
             end),
         },
 
@@ -111,6 +114,8 @@ return {
         },
 
         onexit = function(inst)
+            -- inst:SetCameraZoomed(false)
+
 			if inst.components.health then
 				inst.components.health:SetInvincible(false)
             end

@@ -3,7 +3,7 @@
  <tileset firstgid="1" source="D:/DST mods/tileset/ground.tsx"/>
  <layer name="BG_TILES" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt28FSwkAQBNBwkIN8gEdz9P+/UC1J1bguCMnMds9sH7pAQ1k7/VxAEk/LspwURbmbFwUaeXCl9TgTrGnWnG94yARjcc9DJnwechlr8aiHTPg8ZBJvIQ8ui2c9ZBJrscdDJnEWez1kEmNxxEMm/hZHPWTia+HhIRM/Cy8PufhYeHsgTV6/crneog32OFTzuJhktYjwQLmw7I+jvUV5zPh64tGZPHgsoj1mMfHsK9qjuot3T/LgsRjpUc0kqqORHpVM5MGVKh4VTCK7QXhkNonuBeWR1aSyRzaTEX2gPbK4jOpBHjwWTB6sJqM7YPJgM0HMz+bBYoKaXR48FqweSBf0zPLgcMjgMcoFPV82jygT9EyZPazJttb1mnaG9nvb1+wW2Tw2k17X69J3sveZHbJ62DWvTXr7w95Hr7u6R7s/1kUeiKw7kmW2jB69PfDexB7PNlvWNa8m3wYf17Qe22M817Bdu3154LFvJl4ez/zMXuz15x4ebd89Dxvv37VXk4we9v8zjnbRdr15jHy+0v747dG+x7qVrM/FGdfc9t67tcfR667sYXtu/9Zoj8kjNrcsegZR76/k8ZPt86vWo2eg/THGo8pn69k9Kp7vmNkjg0kWj+rnBWf2YDbJ4BFx7pzVZXYPNhNmj2gHRhN5cJmweoy2YHFh9EBaoE3YPNAOaBN5cJkweaC7ZzBh8PDqzZ7Tlgd+T9hrPrLukUoeUftjpAnSI6Kz6MiDL9U80H0ym4z2QPfIbiIPLpNRHujesrjIYy4PdE/ZTCI90P1kNInwQHeCDpMHuguWMHigO2AL0gM9O2sQHuiZ2TPKAz1npkR7oOfLmCgP9FyZ4+mBnqVKjnqg1181z3qg1ztDHvFAr3Gm/OeBXt/MkQdf5MGV1kNRlL/5BEg/06o=
+   eJzt3c1SwkAQBGBygAM8gCfKHH3/J1RLtmpdk0jIzHbPbB+6CD+FM/O5EEnU6XQ6TYqibOasQCMPrrQeF4KaRs1lxUMmGIstD5nwecilr8WzHjLh85CJv0UPjztBz9ax6mlpxns8tEbssjbfvR4y8bN41UMmPhZHPGRib3HUQya2FhYeMrGzsPKQi42FtQfS5PqV2+MSbfCKQzaPW5WoFh4eKBeW9XF0bl4eI76fWMxMHjwW3h6jmFjOa6/HXS5uFj3WR2YPjzn18shm4jWjnh6ZTOTBlSweGUw8Z4PwiGziPReUR1STzB7RTHrMA+0RxaXXHOTBY8HkwWrSewZMHmwmiP7ZPFhMUL3L47jFq595R/FAuqB7lgeHQwSPXi7o/qJ5eJmge4rssWQyP1KuT9XtU3M9gkU0j9qk1Ds3l2V7XthmdojqUdc8N2mN6m10zSN4tOtjPq17ROwtSs3zC0HXnNljaQ28N6nvj9JXVI/apOTb4OOR1qM8xvLrl3O3b0889q2Klcee51xKff65lUW7PlqPOtbfa9cqET3q3884Oot21sVj6/XK2kPr47dHu4+1loivw9HeP5Yc2n3fpfvRdWf2qOe89bNIfTu67qweaxZLBl77V/L4Sfnsqsz73Ny2to2uO7NHls/Wo3tkPN4xskcEkyge2Y8LjuzBbBLBw+PYOavL6B5sJswe3g6MJvLgMmH16G1xxCX7+btIC/RaYfNAO6BN5MFlwuSBnj2DCYOH1dzqY9rywK+J+pyPqGskk4fX+uhpgvTwmJl35MGXbB7oeTKb9PZAz5HdRB5cJr080HOL4iKPmB76O8h9TDzXB3o+EU08PNAzQYfJAz0LljB4oGfAFqQHunfWIDzQPbOnlwe6z0jx9kD3FzFeHui+ULH4v+eWHp51jpSjHuj6s2avB7reEfKMB7rGkfKfB7q+kSMPvsiDK62Hoih/8wkoQ9S0
   </data>
  </layer>
  <objectgroup name="FG_OBJECTS" width="100" height="100">
@@ -715,10 +715,10 @@
   <object name="tentacle" type="tentacle" x="571" y="3334"/>
   <object name="tentacle" type="tentacle" x="604" y="3337"/>
   <object name="tentacle" type="tentacle" x="621" y="3336"/>
-  <object name="tentacle" type="tentacle" x="631" y="3334"/>
+  <object name="tentacle" type="tentacle" x="640" y="3328"/>
   <object name="tentacle" type="tentacle" x="641" y="3330"/>
   <object name="tentacle" type="tentacle" x="644" y="3299"/>
-  <object name="tentacle" type="tentacle" x="645" y="3271"/>
+  <object name="tentacle" type="tentacle" x="640" y="3264"/>
   <object name="tentacle" type="tentacle" x="639" y="3256"/>
   <object name="tentacle" type="tentacle" x="609" y="3257"/>
   <object name="tentacle" type="tentacle" x="587" y="3256"/>
@@ -733,80 +733,6 @@
   <object name="tentacle" type="tentacle" x="621" y="3277"/>
   <object name="tentacle" type="tentacle" x="590" y="3278"/>
   <object name="tentacle" type="tentacle" x="586" y="3288"/>
-  <object name="tentacle" type="tentacle" x="5719" y="3297"/>
-  <object name="tentacle" type="tentacle" x="5681" y="3274"/>
-  <object name="tentacle" type="tentacle" x="5686" y="3174"/>
-  <object name="tentacle" type="tentacle" x="5602" y="3170"/>
-  <object name="tentacle" type="tentacle" x="5600" y="3291"/>
-  <object name="tentacle" type="tentacle" x="5607" y="3206"/>
-  <object name="tentacle" type="tentacle" x="5692" y="3235"/>
-  <object name="tentacle" type="tentacle" x="5606" y="3185"/>
-  <object name="tentacle" type="tentacle" x="5690" y="3222"/>
-  <object name="tentacle" type="tentacle" x="5725" y="3230"/>
-  <object name="tentacle" type="tentacle" x="5754" y="3276"/>
-  <object name="tentacle" type="tentacle" x="5750" y="3238"/>
-  <object name="tentacle" type="tentacle" x="5583" y="3216"/>
-  <object name="tentacle" type="tentacle" x="5634" y="3200"/>
-  <object name="tentacle" type="tentacle" x="5750" y="3216"/>
-  <object name="tentacle" type="tentacle" x="5759" y="3318"/>
-  <object name="tentacle" type="tentacle" x="5718" y="3145"/>
-  <object name="tentacle" type="tentacle" x="5651" y="3143"/>
-  <object name="tentacle" type="tentacle" x="5627" y="3321"/>
-  <object name="tentacle" type="tentacle" x="5650" y="3216"/>
-  <object name="tentacle" type="tentacle" x="5582" y="3195"/>
-  <object name="tentacle" type="tentacle" x="5668" y="3321"/>
-  <object name="tentacle" type="tentacle" x="5727" y="3279"/>
-  <object name="tentacle" type="tentacle" x="5644" y="3263"/>
-  <object name="tentacle" type="tentacle" x="5674" y="3297"/>
-  <object name="tentacle" type="tentacle" x="5718" y="3172"/>
-  <object name="tentacle" type="tentacle" x="5622" y="3252"/>
-  <object name="tentacle" type="tentacle" x="5631" y="3272"/>
-  <object name="tentacle" type="tentacle" x="5701" y="3268"/>
-  <object name="tentacle" type="tentacle" x="5704" y="3237"/>
-  <object name="tentacle" type="tentacle" x="5666" y="3261"/>
-  <object name="tentacle" type="tentacle" x="5598" y="3144"/>
-  <object name="tentacle" type="tentacle" x="5647" y="3170"/>
-  <object name="tentacle" type="tentacle" x="5635" y="3294"/>
-  <object name="tentacle" type="tentacle" x="5647" y="3194"/>
-  <object name="tentacle" type="tentacle" x="5579" y="3317"/>
-  <object name="tentacle" type="tentacle" x="5651" y="3322"/>
-  <object name="tentacle" type="tentacle" x="5707" y="3324"/>
-  <object name="tentacle" type="tentacle" x="5577" y="3291"/>
-  <object name="tentacle" type="tentacle" x="5749" y="3148"/>
-  <object name="tentacle" type="tentacle" x="5582" y="3239"/>
-  <object name="tentacle" type="tentacle" x="5699" y="3194"/>
-  <object name="tentacle" type="tentacle" x="5682" y="3144"/>
-  <object name="tentacle" type="tentacle" x="5681" y="3215"/>
-  <object name="tentacle" type="tentacle" x="5578" y="3143"/>
-  <object name="tentacle" type="tentacle" x="5579" y="3264"/>
-  <object name="tentacle" type="tentacle" x="5705" y="3209"/>
-  <object name="tentacle" type="tentacle" x="5595" y="3279"/>
-  <object name="tentacle" type="tentacle" x="5720" y="3202"/>
-  <object name="tentacle" type="tentacle" x="5623" y="3230"/>
-  <object name="tentacle" type="tentacle" x="5622" y="3269"/>
-  <object name="tentacle" type="tentacle" x="5691" y="3272"/>
-  <object name="tentacle" type="tentacle" x="5664" y="3275"/>
-  <object name="tentacle" type="tentacle" x="5623" y="3186"/>
-  <object name="tentacle" type="tentacle" x="5640" y="3248"/>
-  <object name="tentacle" type="tentacle" x="5719" y="3186"/>
-  <object name="tentacle" type="tentacle" x="5683" y="3257"/>
-  <object name="tentacle" type="tentacle" x="5597" y="3259"/>
-  <object name="tentacle" type="tentacle" x="5624" y="3173"/>
-  <object name="tentacle" type="tentacle" x="5738" y="3325"/>
-  <object name="tentacle" type="tentacle" x="5634" y="3212"/>
-  <object name="tentacle" type="tentacle" x="5751" y="3255"/>
-  <object name="tentacle" type="tentacle" x="5646" y="3226"/>
-  <object name="tentacle" type="tentacle" x="5749" y="3188"/>
-  <object name="tentacle" type="tentacle" x="5669" y="3195"/>
-  <object name="tentacle" type="tentacle" x="5750" y="3165"/>
-  <object name="tentacle" type="tentacle" x="5579" y="3167"/>
-  <object name="tentacle" type="tentacle" x="5620" y="3142"/>
-  <object name="tentacle" type="tentacle" x="5598" y="3318"/>
-  <object name="tentacle" type="tentacle" x="5756" y="3296"/>
-  <object name="tentacle" type="tentacle" x="5602" y="3229"/>
-  <object name="tentacle" type="tentacle" x="5697" y="3298"/>
-  <object name="item_4" type="item_4" x="5667" y="3234"/>
-  <object name="tentacle" type="tentacle" x="5726" y="3251"/>
   <object name="aggro" type="aggro" x="4896" y="3168"/>
   <object name="aggro" type="aggro" x="5024" y="3168"/>
   <object name="aggro" type="aggro" x="5025" y="3296"/>
@@ -883,5 +809,179 @@
   <object name="flint" type="flint" x="3832" y="1288"/>
   <object name="flint" type="flint" x="2928" y="1816"/>
   <object name="flint" type="flint" x="3712" y="2016"/>
+  <object name="thulecite" type="thulecite" x="4831" y="672"/>
+  <object name="bishop" type="bishop" x="4800" y="640"/>
+  <object name="knight" type="knight" x="4800" y="704"/>
+  <object name="knight" type="knight" x="4864" y="704"/>
+  <object name="thulecite" type="thulecite" x="4827" y="678"/>
+  <object name="thulecite" type="thulecite" x="4837" y="681"/>
+  <object name="thulecite" type="thulecite" x="4828" y="668"/>
+  <object name="thulecite" type="thulecite" x="4828" y="671"/>
+  <object name="knight" type="knight" x="4864" y="640"/>
+  <object name="thulecite" type="thulecite" x="4837" y="670"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="3328" y="3072"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="3072" y="3072"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="3072" y="3328"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="3328" y="3328"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="576" y="3264"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="637" y="3269"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="576" y="3328"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="643" y="3333"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="704" y="3200"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="704" y="3392"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="512" y="3392"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="512" y="3200"/>
+  <object name="tentacle" type="tentacle" x="5677" y="3213"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="5760" y="3328"/>
+  <object name="tentacle" type="tentacle" x="5745" y="3186"/>
+  <object name="tentacle" type="tentacle" x="5752" y="3294"/>
+  <object name="tentacle" type="tentacle" x="5686" y="3220"/>
+  <object name="tentacle" type="tentacle" x="5594" y="3142"/>
+  <object name="tentacle" type="tentacle" x="5642" y="3224"/>
+  <object name="tentacle" type="tentacle" x="5703" y="3322"/>
+  <object name="tentacle" type="tentacle" x="5598" y="3227"/>
+  <object name="tentacle" type="tentacle" x="5677" y="3272"/>
+  <object name="tentacle" type="tentacle" x="5664" y="3319"/>
+  <object name="tentacle" type="tentacle" x="5619" y="3184"/>
+  <object name="tentacle" type="tentacle" x="5755" y="3316"/>
+  <object name="tentacle" type="tentacle" x="5721" y="3228"/>
+  <object name="tentacle" type="tentacle" x="5623" y="3319"/>
+  <object name="tentacle" type="tentacle" x="5631" y="3292"/>
+  <object name="tentacle" type="tentacle" x="5630" y="3198"/>
+  <object name="tentacle" type="tentacle" x="5636" y="3246"/>
+  <object name="tentacle" type="tentacle" x="5618" y="3250"/>
+  <object name="tentacle" type="tentacle" x="5723" y="3277"/>
+  <object name="tentacle" type="tentacle" x="5714" y="3170"/>
+  <object name="tentacle" type="tentacle" x="5716" y="3200"/>
+  <object name="tentacle" type="tentacle" x="5574" y="3141"/>
+  <object name="tentacle" type="tentacle" x="5575" y="3165"/>
+  <object name="tentacle" type="tentacle" x="5578" y="3237"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="5632" y="3200"/>
+  <object name="tentacle" type="tentacle" x="5734" y="3323"/>
+  <object name="tentacle" type="tentacle" x="5647" y="3320"/>
+  <object name="tentacle" type="tentacle" x="5662" y="3259"/>
+  <object name="tentacle" type="tentacle" x="5616" y="3140"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="5760" y="3136"/>
+  <object name="tentacle" type="tentacle" x="5602" y="3183"/>
+  <object name="tentacle" type="tentacle" x="5688" y="3233"/>
+  <object name="tentacle" type="tentacle" x="5603" y="3204"/>
+  <object name="tentacle" type="tentacle" x="5627" y="3270"/>
+  <object name="tentacle" type="tentacle" x="5593" y="3257"/>
+  <object name="tentacle" type="tentacle" x="5696" y="3264"/>
+  <object name="tentacle" type="tentacle" x="5750" y="3274"/>
+  <object name="tentacle" type="tentacle" x="5696" y="3200"/>
+  <object name="tentacle" type="tentacle" x="5594" y="3316"/>
+  <object name="tentacle" type="tentacle" x="5660" y="3273"/>
+  <object name="tentacle" type="tentacle" x="5746" y="3236"/>
+  <object name="tentacle" type="tentacle" x="5620" y="3171"/>
+  <object name="tentacle" type="tentacle" x="5695" y="3192"/>
+  <object name="tentacle" type="tentacle" x="5670" y="3295"/>
+  <object name="tentacle" type="tentacle" x="5693" y="3296"/>
+  <object name="tentacle" type="tentacle" x="5700" y="3235"/>
+  <object name="tentacle" type="tentacle" x="5591" y="3277"/>
+  <object name="tentacle" type="tentacle" x="5682" y="3172"/>
+  <object name="tentacle" type="tentacle" x="5578" y="3193"/>
+  <object name="tentacle" type="tentacle" x="5573" y="3289"/>
+  <object name="tentacle" type="tentacle" x="5575" y="3315"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="5568" y="3136"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="5632" y="3264"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="5693" y="3205"/>
+  <object name="tentacle" type="tentacle" x="5646" y="3214"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="5568" y="3328"/>
+  <object name="tentacle" type="tentacle" x="5640" y="3261"/>
+  <object name="tentacle" type="tentacle" x="5678" y="3142"/>
+  <object name="tentacle" type="tentacle" x="5714" y="3143"/>
+  <object name="tentacle" type="tentacle" x="5679" y="3255"/>
+  <object name="tentacle" type="tentacle" x="5598" y="3168"/>
+  <object name="tentacle" type="tentacle" x="5746" y="3214"/>
+  <object name="tentacle" type="tentacle" x="5619" y="3228"/>
+  <object name="tentacle" type="tentacle" x="5647" y="3141"/>
+  <object name="tentacle" type="tentacle" x="5618" y="3267"/>
+  <object name="tentacle" type="tentacle" x="5745" y="3146"/>
+  <object name="tentacle" type="tentacle" x="5697" y="3266"/>
+  <object name="tentacle" type="tentacle" x="5746" y="3163"/>
+  <object name="tentacle" type="tentacle" x="5665" y="3193"/>
+  <object name="tentacle" type="tentacle" x="5747" y="3253"/>
+  <object name="tentacle" type="tentacle" x="5643" y="3192"/>
+  <object name="tentacle" type="tentacle" x="5630" y="3210"/>
+  <object name="tentacle" type="tentacle" x="5596" y="3289"/>
+  <object name="tentacle" type="tentacle" x="5715" y="3184"/>
+  <object name="tentacle" type="tentacle" x="5643" y="3168"/>
+  <object name="tentacle" type="tentacle" x="5722" y="3249"/>
+  <object name="item_4" type="item_4" x="5663" y="3232"/>
+  <object name="tentacle" type="tentacle" x="5715" y="3295"/>
+  <object name="tentacle" type="tentacle" x="5579" y="3214"/>
+  <object name="nightmarefuel" type="nightmarefuel" x="5699" y="3269"/>
+  <object name="tentacle" type="tentacle" x="5575" y="3262"/>
+  <object name="thulecite" type="thulecite" x="1445" y="670"/>
+  <object name="thulecite" type="thulecite" x="1436" y="668"/>
+  <object name="thulecite" type="thulecite" x="1436" y="671"/>
+  <object name="thulecite" type="thulecite" x="1439" y="672"/>
+  <object name="bishop" type="bishop" x="1408" y="640"/>
+  <object name="thulecite" type="thulecite" x="1445" y="681"/>
+  <object name="knight" type="knight" x="1408" y="704"/>
+  <object name="knight" type="knight" x="1472" y="704"/>
+  <object name="thulecite" type="thulecite" x="1435" y="678"/>
+  <object name="knight" type="knight" x="1472" y="640"/>
+  <object name="thulecite" type="thulecite" x="677" y="1566"/>
+  <object name="thulecite" type="thulecite" x="668" y="1564"/>
+  <object name="thulecite" type="thulecite" x="668" y="1567"/>
+  <object name="thulecite" type="thulecite" x="671" y="1568"/>
+  <object name="bishop" type="bishop" x="640" y="1536"/>
+  <object name="thulecite" type="thulecite" x="677" y="1577"/>
+  <object name="knight" type="knight" x="640" y="1600"/>
+  <object name="knight" type="knight" x="704" y="1600"/>
+  <object name="thulecite" type="thulecite" x="667" y="1574"/>
+  <object name="knight" type="knight" x="704" y="1536"/>
+  <object name="thulecite" type="thulecite" x="549" y="5214"/>
+  <object name="thulecite" type="thulecite" x="540" y="5212"/>
+  <object name="thulecite" type="thulecite" x="540" y="5215"/>
+  <object name="thulecite" type="thulecite" x="543" y="5216"/>
+  <object name="bishop" type="bishop" x="512" y="5184"/>
+  <object name="thulecite" type="thulecite" x="549" y="5225"/>
+  <object name="knight" type="knight" x="512" y="5248"/>
+  <object name="knight" type="knight" x="576" y="5248"/>
+  <object name="thulecite" type="thulecite" x="539" y="5222"/>
+  <object name="knight" type="knight" x="576" y="5184"/>
+  <object name="thulecite" type="thulecite" x="997" y="5854"/>
+  <object name="thulecite" type="thulecite" x="988" y="5852"/>
+  <object name="thulecite" type="thulecite" x="988" y="5855"/>
+  <object name="thulecite" type="thulecite" x="991" y="5856"/>
+  <object name="bishop" type="bishop" x="960" y="5824"/>
+  <object name="thulecite" type="thulecite" x="997" y="5865"/>
+  <object name="knight" type="knight" x="960" y="5888"/>
+  <object name="knight" type="knight" x="1024" y="5888"/>
+  <object name="thulecite" type="thulecite" x="987" y="5862"/>
+  <object name="knight" type="knight" x="1024" y="5824"/>
+  <object name="thulecite" type="thulecite" x="4709" y="5790"/>
+  <object name="thulecite" type="thulecite" x="4700" y="5788"/>
+  <object name="thulecite" type="thulecite" x="4700" y="5791"/>
+  <object name="thulecite" type="thulecite" x="4703" y="5792"/>
+  <object name="bishop" type="bishop" x="4672" y="5760"/>
+  <object name="thulecite" type="thulecite" x="4709" y="5801"/>
+  <object name="knight" type="knight" x="4672" y="5824"/>
+  <object name="knight" type="knight" x="4736" y="5824"/>
+  <object name="thulecite" type="thulecite" x="4699" y="5798"/>
+  <object name="knight" type="knight" x="4736" y="5760"/>
+  <object name="thulecite" type="thulecite" x="5093" y="4254"/>
+  <object name="thulecite" type="thulecite" x="5084" y="4252"/>
+  <object name="thulecite" type="thulecite" x="5084" y="4255"/>
+  <object name="thulecite" type="thulecite" x="5087" y="4256"/>
+  <object name="bishop" type="bishop" x="5056" y="4224"/>
+  <object name="thulecite" type="thulecite" x="5093" y="4265"/>
+  <object name="knight" type="knight" x="5056" y="4288"/>
+  <object name="knight" type="knight" x="5120" y="4288"/>
+  <object name="thulecite" type="thulecite" x="5083" y="4262"/>
+  <object name="knight" type="knight" x="5120" y="4224"/>
+  <object name="thulecite" type="thulecite" x="5093" y="2462"/>
+  <object name="thulecite" type="thulecite" x="5084" y="2460"/>
+  <object name="thulecite" type="thulecite" x="5084" y="2463"/>
+  <object name="thulecite" type="thulecite" x="5087" y="2464"/>
+  <object name="bishop" type="bishop" x="5056" y="2432"/>
+  <object name="thulecite" type="thulecite" x="5093" y="2473"/>
+  <object name="knight" type="knight" x="5056" y="2496"/>
+  <object name="knight" type="knight" x="5120" y="2496"/>
+  <object name="thulecite" type="thulecite" x="5083" y="2470"/>
+  <object name="knight" type="knight" x="5120" y="2432"/>
  </objectgroup>
 </map>

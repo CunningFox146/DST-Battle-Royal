@@ -1,3 +1,23 @@
+local function center()
+    local inst = CreateEntity()
+    inst.entity:AddTransform()
+    inst.entity:AddNetwork()
+    
+    TheWorld.center = inst
+
+    inst.entity:SetCanSleep(false)
+    inst.persists = false
+    
+    inst:AddTag("CLASSIFIED")
+    inst:AddTag("center_battleroyale")
+
+    inst.entity:SetPristine()
+
+    TheWorld:PushEvent("ms_register_br_center", inst)
+
+    return inst
+end
+
 local function common()
     local inst = CreateEntity()
 
@@ -15,16 +35,6 @@ local function spawnpoint()
     inst:AddTag("spawnpoint_battleroyale")
 
     TheWorld:PushEvent("ms_register_br_spawnpoint", inst)
-
-    return inst
-end
-
-local function center()
-    local inst = common()
-
-    inst:AddTag("center_battleroyale")
-
-    TheWorld:PushEvent("ms_register_br_center", inst)
 
     return inst
 end

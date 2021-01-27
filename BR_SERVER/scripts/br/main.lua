@@ -12,11 +12,10 @@ end
 
 env.AddComponentPostInit("playerspawner", function(self)
     local spawnpoints = {}
-    local _masterpt = nil
-    local currentspawnpoint = 0
+    local currentspawnpoints = {}
 
     local function GetMasterPos()
-        return _masterpt and _masterpt.Transform:GetWorldPosition() or 0, 0, 0
+        return self.inst.components.battleroyale:GetCenter():Get()
     end
 
     local function GetNextSpawnPosition()
@@ -25,14 +24,14 @@ env.AddComponentPostInit("playerspawner", function(self)
             return GetMasterPos()
         end
 
-        currentspawnpoint = currentspawnpoint + 1
-
-        if spawnpoints[currentspawnpoint] then
-            local x, _, z = spawnpoints[currentspawnpoint].Transform:GetWorldPosition()
-            return x, TUNING.BATTLE_ROYALE.SPAWN_HEIGHT, z
+        if not next(currentspawnpoints) then
+            currentspawnpoints = shallowcopy(spawnpoints)
         end
 
-        return GetMasterPos()
+        local pt = GetRandomItem(currentspawnpoints)
+        local x, _, z = pt.Transform:GetWorldPosition()
+        RemoveByValue(currentspawnpoints, pt)
+        return x, TUNING.BATTLE_ROYALE.SPAWN_HEIGHT, z
     end
 
     function self:SpawnAtNextLocation(inst, player)
@@ -46,12 +45,6 @@ env.AddComponentPostInit("playerspawner", function(self)
         end
     end
 
-    local function OnRegisterSpawnPoint(inst, spawnpt)
-        if _masterpt == nil and spawnpt.master then
-            _masterpt = spawnpt
-        end
-    end
-
     local function OnNewPlayer(_, data)
 		if not data or not data.player then
 			return
@@ -60,7 +53,6 @@ env.AddComponentPostInit("playerspawner", function(self)
     end
     
     self.inst:ListenForEvent("ms_register_br_spawnpoint", function(_, point) self:BR_RegisterPoint(point) end)
-    self.inst:ListenForEvent("ms_registerspawnpoint", OnRegisterSpawnPoint)
     self.inst:ListenForEvent("ms_newplayercharacterspawned", OnNewPlayer)
 end)
 
