@@ -3,7 +3,7 @@
  <tileset firstgid="1" source="D:/DST mods/tileset/ground.tsx"/>
  <layer name="BG_TILES" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJzt271uwkAQBGBThCI8RFzm/Z8wiYSlkzEE27s3M3tTjHDh4nY+Hcg/XKZpujiO8zIfDjT24Mra40qwplFzfeJhE4zFKw+b8HnYpa/Fux424fOwSb6FPbgs9nrYJNfiiIdN8iyOetgkx+KMh03iLc562CTWIsLDJnEWUR52ibGI9kCafP7mdv9EGxxxqOZxa6JqkeGBcmHZH2d7y/IY8fckojN78Fhke4xiEtlXtkd1l+ie7MFj0dOjmklWRz09KpnYgytVPCqYZHaD8FA2ye4F5aFqUtlDzaRHH2gPFZdePdiDx4LJg9WkdwdMHmwmiPnZPFhMULPbg8eC1QPpgp7ZHhwOCh69XNDzqXlkmaBnUvaINkHPUsFjy2RefS7H88a5zA6qHmuTeXrsX9VC1aM1mafHPbFlg15vdY95Z9DrHcGjPf5aRcmggsfisOTP4Puetcc8xfss727fRD3a98+jLNrjLY82GfMsUfRo/58R5dGm9/eV98f7Nm0yTTJS5fdj69pQ0UXVo3V4di3Snote7wgeW9fpqteBqh6V7h2O6qFkouRR9R77qB4KJioeIzyLGtWD2UTBI9qC2WV0DzYTZo9sB0YTe3CZsHr0tmBxYfRAWqBN2DzQDmgTe3CZMHmgu2cwYfCI6q19pm0P/J5o3/lQ3SOVPLL2R08TpEdGZ9mxB1+qeaD7ZDbp7YHukd3EHlwmvTzQvam42GMsD3RPaiaZHuh+FE0yPNCdoMPkge6CJQwe6A7YgvRAz84ahAd6Zvb08kDPqZRsD/R8isnyQM+lnEgP9CxVctYDvf6q2euBXu8IeccDvcaR8p8Hen0jxx58sQdX1h6O4zzmB5Q+0i4=
+   eJzt28FSwkAQBNBwkIN8gEdz9P+/UC1J1bguCMnMds9sH7pAQ1k7/VxAEk/LspwURbmbFwUaeXCl9TgTrGnWnG94yARjcc9DJnwechlr8aiHTPg8ZBJvIQ8ui2c9ZBJrscdDJnEWez1kEmNxxEMm/hZHPWTia+HhIRM/Cy8PufhYeHsgTV6/crneog32OFTzuJhktYjwQLmw7I+jvUV5zPh64tGZPHgsoj1mMfHsK9qjuot3T/LgsRjpUc0kqqORHpVM5MGVKh4VTCK7QXhkNonuBeWR1aSyRzaTEX2gPbK4jOpBHjwWTB6sJqM7YPJgM0HMz+bBYoKaXR48FqweSBf0zPLgcMjgMcoFPV82jygT9EyZPazJttb1mnaG9nvb1+wW2Tw2k17X69J3sveZHbJ62DWvTXr7w95Hr7u6R7s/1kUeiKw7kmW2jB69PfDexB7PNlvWNa8m3wYf17Qe22M817Bdu3154LFvJl4ez/zMXuz15x4ebd89Dxvv37VXk4we9v8zjnbRdr15jHy+0v747dG+x7qVrM/FGdfc9t67tcfR667sYXtu/9Zoj8kjNrcsegZR76/k8ZPt86vWo2eg/THGo8pn69k9Kp7vmNkjg0kWj+rnBWf2YDbJ4BFx7pzVZXYPNhNmj2gHRhN5cJmweoy2YHFh9EBaoE3YPNAOaBN5cJkweaC7ZzBh8PDqzZ7Tlgd+T9hrPrLukUoeUftjpAnSI6Kz6MiDL9U80H0ym4z2QPfIbiIPLpNRHujesrjIYy4PdE/ZTCI90P1kNInwQHeCDpMHuguWMHigO2AL0gM9O2sQHuiZ2TPKAz1npkR7oOfLmCgP9FyZ4+mBnqVKjnqg1181z3qg1ztDHvFAr3Gm/OeBXt/MkQdf5MGV1kNRlL/5BEg/06o=
   </data>
  </layer>
  <objectgroup name="FG_OBJECTS" width="100" height="100">
@@ -110,7 +110,7 @@
   <object name="trees" type="trees" x="1848" y="4392"/>
   <object name="trees" type="trees" x="2320" y="3992"/>
   <object name="trees" type="trees" x="2480" y="3664"/>
-  <object name="trees" type="trees" x="3552" y="3176"/>
+  <object name="trees" type="trees" x="3704" y="3201"/>
   <object name="trees" type="trees" x="3832" y="3400"/>
   <object name="trees" type="trees" x="4088" y="3056"/>
   <object name="trees" type="trees" x="3816" y="3064"/>
@@ -259,8 +259,8 @@
   <object name="grass" type="grass" x="1544" y="1324"/>
   <object name="grass" type="grass" x="1048" y="864"/>
   <object name="grass" type="grass" x="552" y="372"/>
-  <object name="grass" type="grass" x="3216" y="3488"/>
-  <object name="grass" type="grass" x="2988" y="3568"/>
+  <object name="grass" type="grass" x="3311" y="3696"/>
+  <object name="grass" type="grass" x="2897" y="3713"/>
   <object name="grass" type="grass" x="2860" y="3880"/>
   <object name="grass" type="grass" x="2676" y="4256"/>
   <object name="grass" type="grass" x="2448" y="4508"/>
@@ -350,8 +350,8 @@
   <object name="resource_common" type="resource_common" x="1940" y="3628"/>
   <object name="resource_common" type="resource_common" x="2188" y="3904"/>
   <object name="resource_common" type="resource_common" x="2540" y="3732"/>
-  <object name="resource_common" type="resource_common" x="2800" y="3440"/>
-  <object name="resource_common" type="resource_common" x="2772" y="3108"/>
+  <object name="resource_common" type="resource_common" x="2714" y="3434"/>
+  <object name="resource_common" type="resource_common" x="2631" y="2945"/>
   <object name="resource_common" type="resource_common" x="544" y="5444"/>
   <object name="resource_common" type="resource_common" x="288" y="5676"/>
   <object name="resource_common" type="resource_common" x="584" y="5692"/>
@@ -415,7 +415,7 @@
   <object name="sapling" type="sapling" x="2680" y="3052"/>
   <object name="sapling" type="sapling" x="1792" y="2776"/>
   <object name="sapling" type="sapling" x="1240" y="2160"/>
-  <object name="sapling" type="sapling" x="3588" y="3132"/>
+  <object name="sapling" type="sapling" x="3693" y="2985"/>
   <object name="sapling" type="sapling" x="3936" y="2924"/>
   <object name="sapling" type="sapling" x="4172" y="2764"/>
   <object name="sapling" type="sapling" x="4580" y="2516"/>
@@ -462,30 +462,30 @@
   <object name="sapling" type="sapling" x="6168" y="4892"/>
   <object name="sapling" type="sapling" x="6104" y="4500"/>
   <object name="sapling" type="sapling" x="5908" y="5136"/>
-  <object name="rocks" type="rocks" x="3008" y="3392"/>
-  <object name="rocks" type="rocks" x="3072" y="3392"/>
-  <object name="rocks" type="rocks" x="3136" y="3392"/>
-  <object name="rocks" type="rocks" x="3200" y="3392"/>
-  <object name="rocks" type="rocks" x="3264" y="3392"/>
-  <object name="rocks" type="rocks" x="3328" y="3392"/>
+  <object name="rocks" type="rocks" x="3024" y="3392"/>
+  <object name="rocks" type="rocks" x="3058" y="3392"/>
+  <object name="rocks" type="rocks" x="3149" y="3392"/>
+  <object name="rocks" type="rocks" x="3180" y="3392"/>
+  <object name="rocks" type="rocks" x="3281" y="3392"/>
+  <object name="rocks" type="rocks" x="3312" y="3393"/>
   <object name="rocks" type="rocks" x="3392" y="3392"/>
   <object name="rocks" type="rocks" x="3392" y="3328"/>
   <object name="rocks" type="rocks" x="3392" y="3264"/>
   <object name="rocks" type="rocks" x="3392" y="3200"/>
-  <object name="rocks" type="rocks" x="3392" y="3136"/>
-  <object name="rocks" type="rocks" x="3392" y="3072"/>
-  <object name="rocks" type="rocks" x="3392" y="3008"/>
-  <object name="rocks" type="rocks" x="3328" y="3008"/>
-  <object name="rocks" type="rocks" x="3264" y="3008"/>
-  <object name="rocks" type="rocks" x="3200" y="3008"/>
+  <object name="rocks" type="rocks" x="3393" y="3231"/>
+  <object name="rocks" type="rocks" x="3391" y="3053"/>
+  <object name="rocks" type="rocks" x="3392" y="3018"/>
+  <object name="rocks" type="rocks" x="3315" y="3008"/>
+  <object name="rocks" type="rocks" x="3273" y="3007"/>
+  <object name="rocks" type="rocks" x="3181" y="3007"/>
   <object name="rocks" type="rocks" x="3136" y="3008"/>
-  <object name="rocks" type="rocks" x="3072" y="3008"/>
-  <object name="rocks" type="rocks" x="3008" y="3008"/>
-  <object name="rocks" type="rocks" x="3008" y="3072"/>
-  <object name="rocks" type="rocks" x="3008" y="3136"/>
-  <object name="rocks" type="rocks" x="3008" y="3200"/>
-  <object name="rocks" type="rocks" x="3008" y="3264"/>
-  <object name="rocks" type="rocks" x="3008" y="3328"/>
+  <object name="rocks" type="rocks" x="3092" y="3007"/>
+  <object name="rocks" type="rocks" x="3009" y="3019"/>
+  <object name="rocks" type="rocks" x="3008" y="3052"/>
+  <object name="rocks" type="rocks" x="3008" y="3148"/>
+  <object name="rocks" type="rocks" x="3009" y="3184"/>
+  <object name="rocks" type="rocks" x="3007" y="3278"/>
+  <object name="rocks" type="rocks" x="3008" y="3309"/>
   <object name="structure_3" type="structure_3" x="3200" y="3200"/>
   <object name="structure_1" type="structure_1" x="4928" y="3264"/>
   <object name="structure_1" type="structure_1" x="4992" y="3200"/>
@@ -495,5 +495,393 @@
   <object name="structure_2" type="structure_2" x="3200" y="1280"/>
   <object name="structure_1" type="structure_1" x="3200" y="4608"/>
   <object name="structure_1" type="structure_1" x="3264" y="4672"/>
+  <object name="item_1" type="item_1" x="254" y="4544"/>
+  <object name="item_1" type="item_1" x="251" y="3188"/>
+  <object name="item_1" type="item_1" x="251" y="1392"/>
+  <object name="item_1" type="item_1" x="254" y="217"/>
+  <object name="item_1" type="item_1" x="1568" y="221"/>
+  <object name="item_1" type="item_1" x="3366" y="226"/>
+  <object name="item_1" type="item_1" x="4836" y="251"/>
+  <object name="item_1" type="item_1" x="6204" y="255"/>
+  <object name="item_1" type="item_1" x="6157" y="1250"/>
+  <object name="item_1" type="item_1" x="6153" y="3380"/>
+  <object name="item_1" type="item_1" x="6159" y="4521"/>
+  <object name="item_1" type="item_1" x="6156" y="6195"/>
+  <object name="item_1" type="item_1" x="4699" y="6142"/>
+  <object name="item_1" type="item_1" x="3243" y="6136"/>
+  <object name="item_1" type="item_1" x="960" y="6143"/>
+  <object name="item_1" type="item_1" x="204" y="6148"/>
+  <object name="item_1" type="item_1" x="400" y="744"/>
+  <object name="item_1" type="item_1" x="400" y="1328"/>
+  <object name="item_1" type="item_1" x="384" y="1968"/>
+  <object name="item_1" type="item_1" x="352" y="2656"/>
+  <object name="item_1" type="item_1" x="336" y="3240"/>
+  <object name="item_1" type="item_1" x="360" y="3984"/>
+  <object name="item_1" type="item_1" x="344" y="4544"/>
+  <object name="item_1" type="item_1" x="312" y="5128"/>
+  <object name="item_1" type="item_1" x="312" y="5576"/>
+  <object name="item_1" type="item_1" x="552" y="3440"/>
+  <object name="item_1" type="item_1" x="528" y="6032"/>
+  <object name="item_1" type="item_1" x="1184" y="5992"/>
+  <object name="item_1" type="item_1" x="1672" y="5984"/>
+  <object name="item_1" type="item_1" x="2304" y="5984"/>
+  <object name="item_1" type="item_1" x="2768" y="5960"/>
+  <object name="item_1" type="item_1" x="3368" y="5920"/>
+  <object name="item_1" type="item_1" x="3872" y="5952"/>
+  <object name="item_1" type="item_1" x="4448" y="5952"/>
+  <object name="item_1" type="item_1" x="4888" y="5936"/>
+  <object name="item_1" type="item_1" x="5520" y="5960"/>
+  <object name="item_1" type="item_1" x="5896" y="5680"/>
+  <object name="item_1" type="item_1" x="5904" y="5280"/>
+  <object name="item_1" type="item_1" x="5912" y="4792"/>
+  <object name="item_1" type="item_1" x="5928" y="4176"/>
+  <object name="item_1" type="item_1" x="5904" y="3752"/>
+  <object name="item_1" type="item_1" x="5928" y="3232"/>
+  <object name="item_1" type="item_1" x="5896" y="2808"/>
+  <object name="item_1" type="item_1" x="5928" y="2296"/>
+  <object name="item_1" type="item_1" x="5896" y="1792"/>
+  <object name="item_1" type="item_1" x="5952" y="1288"/>
+  <object name="item_1" type="item_1" x="688" y="472"/>
+  <object name="item_1" type="item_1" x="1072" y="496"/>
+  <object name="item_1" type="item_1" x="1512" y="496"/>
+  <object name="item_1" type="item_1" x="1984" y="496"/>
+  <object name="item_1" type="item_1" x="2424" y="520"/>
+  <object name="item_1" type="item_1" x="2936" y="544"/>
+  <object name="item_1" type="item_1" x="3576" y="568"/>
+  <object name="item_1" type="item_1" x="4144" y="568"/>
+  <object name="item_1" type="item_1" x="4688" y="560"/>
+  <object name="item_1" type="item_1" x="5248" y="592"/>
+  <object name="healing_1" type="healing_1" x="432" y="920"/>
+  <object name="healing_1" type="healing_1" x="464" y="1720"/>
+  <object name="healing_1" type="healing_1" x="464" y="2192"/>
+  <object name="healing_1" type="healing_1" x="480" y="2800"/>
+  <object name="healing_1" type="healing_1" x="464" y="3536"/>
+  <object name="healing_1" type="healing_1" x="504" y="4136"/>
+  <object name="healing_1" type="healing_1" x="432" y="4768"/>
+  <object name="healing_1" type="healing_1" x="416" y="5280"/>
+  <object name="healing_1" type="healing_1" x="848" y="5136"/>
+  <object name="healing_1" type="healing_1" x="896" y="4488"/>
+  <object name="healing_1" type="healing_1" x="888" y="3880"/>
+  <object name="healing_1" type="healing_1" x="792" y="3240"/>
+  <object name="healing_1" type="healing_1" x="816" y="2784"/>
+  <object name="healing_1" type="healing_1" x="808" y="2264"/>
+  <object name="healing_1" type="healing_1" x="856" y="1528"/>
+  <object name="healing_1" type="healing_1" x="920" y="424"/>
+  <object name="healing_1" type="healing_1" x="1552" y="456"/>
+  <object name="healing_1" type="healing_1" x="2320" y="416"/>
+  <object name="healing_1" type="healing_1" x="3120" y="440"/>
+  <object name="healing_1" type="healing_1" x="3728" y="424"/>
+  <object name="healing_1" type="healing_1" x="4336" y="432"/>
+  <object name="healing_1" type="healing_1" x="5056" y="472"/>
+  <object name="healing_1" type="healing_1" x="5568" y="536"/>
+  <object name="healing_1" type="healing_1" x="5264" y="736"/>
+  <object name="healing_1" type="healing_1" x="4616" y="776"/>
+  <object name="healing_1" type="healing_1" x="3936" y="808"/>
+  <object name="healing_1" type="healing_1" x="3248" y="864"/>
+  <object name="healing_1" type="healing_1" x="2648" y="888"/>
+  <object name="healing_1" type="healing_1" x="2008" y="968"/>
+  <object name="healing_1" type="healing_1" x="1392" y="960"/>
+  <object name="healing_1" type="healing_1" x="5920" y="968"/>
+  <object name="healing_1" type="healing_1" x="5920" y="1408"/>
+  <object name="healing_1" type="healing_1" x="5856" y="1960"/>
+  <object name="healing_1" type="healing_1" x="5920" y="2560"/>
+  <object name="healing_1" type="healing_1" x="5848" y="3136"/>
+  <object name="healing_1" type="healing_1" x="5808" y="3696"/>
+  <object name="healing_1" type="healing_1" x="5776" y="4224"/>
+  <object name="healing_1" type="healing_1" x="5704" y="4728"/>
+  <object name="healing_1" type="healing_1" x="5760" y="5168"/>
+  <object name="healing_1" type="healing_1" x="5264" y="4560"/>
+  <object name="healing_1" type="healing_1" x="5216" y="3840"/>
+  <object name="healing_1" type="healing_1" x="5272" y="3416"/>
+  <object name="healing_1" type="healing_1" x="5296" y="2984"/>
+  <object name="healing_1" type="healing_1" x="5272" y="2560"/>
+  <object name="healing_1" type="healing_1" x="5288" y="2048"/>
+  <object name="healing_1" type="healing_1" x="5552" y="6032"/>
+  <object name="healing_1" type="healing_1" x="4872" y="6048"/>
+  <object name="healing_1" type="healing_1" x="4200" y="6072"/>
+  <object name="healing_1" type="healing_1" x="3520" y="6024"/>
+  <object name="healing_1" type="healing_1" x="3056" y="6032"/>
+  <object name="healing_1" type="healing_1" x="2288" y="6056"/>
+  <object name="healing_1" type="healing_1" x="1712" y="6024"/>
+  <object name="healing_1" type="healing_1" x="928" y="6008"/>
+  <object name="healing_1" type="healing_1" x="1496" y="5584"/>
+  <object name="healing_1" type="healing_1" x="2176" y="5528"/>
+  <object name="healing_1" type="healing_1" x="2864" y="5528"/>
+  <object name="healing_1" type="healing_1" x="3664" y="5560"/>
+  <object name="healing_1" type="healing_1" x="4248" y="5536"/>
+  <object name="healing_1" type="healing_1" x="4712" y="5528"/>
+  <object name="healing_1" type="healing_1" x="5192" y="5704"/>
+  <object name="healing_2" type="healing_2" x="2506" y="4200"/>
+  <object name="healing_2" type="healing_2" x="3164" y="4203"/>
+  <object name="healing_2" type="healing_2" x="3745" y="4197"/>
+  <object name="healing_2" type="healing_2" x="3942" y="3842"/>
+  <object name="healing_2" type="healing_2" x="3918" y="3403"/>
+  <object name="healing_2" type="healing_2" x="3891" y="2961"/>
+  <object name="healing_2" type="healing_2" x="3733" y="2679"/>
+  <object name="healing_2" type="healing_2" x="3212" y="2652"/>
+  <object name="healing_2" type="healing_2" x="2673" y="2642"/>
+  <object name="healing_2" type="healing_2" x="2479" y="2855"/>
+  <object name="healing_2" type="healing_2" x="2473" y="3197"/>
+  <object name="healing_2" type="healing_2" x="2476" y="3679"/>
+  <object name="healing_3" type="healing_3" x="3136" y="1280"/>
+  <object name="healing_3" type="healing_3" x="3200" y="1216"/>
+  <object name="healing_3" type="healing_3" x="1600" y="3328"/>
+  <object name="healing_3" type="healing_3" x="1664" y="3264"/>
+  <object name="healing_3" type="healing_3" x="3264" y="4608"/>
+  <object name="healing_3" type="healing_3" x="3200" y="4672"/>
+  <object name="healing_3" type="healing_3" x="4928" y="3200"/>
+  <object name="healing_3" type="healing_3" x="4992" y="3264"/>
+  <object name="item_2" type="item_2" x="800" y="1472"/>
+  <object name="item_2" type="item_2" x="832" y="2432"/>
+  <object name="item_2" type="item_2" x="800" y="3216"/>
+  <object name="item_2" type="item_2" x="816" y="4112"/>
+  <object name="item_2" type="item_2" x="816" y="4960"/>
+  <object name="item_2" type="item_2" x="1792" y="5200"/>
+  <object name="item_2" type="item_2" x="2608" y="5200"/>
+  <object name="item_2" type="item_2" x="3520" y="5216"/>
+  <object name="item_2" type="item_2" x="4304" y="5200"/>
+  <object name="item_2" type="item_2" x="4992" y="5264"/>
+  <object name="item_2" type="item_2" x="5376" y="4880"/>
+  <object name="item_2" type="item_2" x="5440" y="3888"/>
+  <object name="item_2" type="item_2" x="5440" y="3216"/>
+  <object name="item_2" type="item_2" x="5440" y="2512"/>
+  <object name="item_2" type="item_2" x="5424" y="1680"/>
+  <object name="item_2" type="item_2" x="4864" y="1312"/>
+  <object name="item_2" type="item_2" x="4016" y="1392"/>
+  <object name="item_2" type="item_2" x="3360" y="1440"/>
+  <object name="item_2" type="item_2" x="2976" y="1472"/>
+  <object name="item_2" type="item_2" x="2064" y="1536"/>
+  <object name="item_3" type="item_3" x="3148" y="2100"/>
+  <object name="item_3" type="item_3" x="2996" y="4908"/>
+  <object name="item_3" type="item_3" x="2079" y="3284"/>
+  <object name="item_3" type="item_3" x="4009" y="3245"/>
+  <object name="item_3" type="item_3" x="1633" y="5788"/>
+  <object name="item_3" type="item_3" x="4303" y="5864"/>
+  <object name="item_3" type="item_3" x="1824" y="685"/>
+  <object name="item_3" type="item_3" x="4573" y="733"/>
+  <object name="item_4" type="item_4" x="607" y="3296"/>
+  <object name="tentacle" type="tentacle" x="518" y="3205"/>
+  <object name="tentacle" type="tentacle" x="519" y="3229"/>
+  <object name="tentacle" type="tentacle" x="522" y="3257"/>
+  <object name="tentacle" type="tentacle" x="523" y="3278"/>
+  <object name="tentacle" type="tentacle" x="522" y="3301"/>
+  <object name="tentacle" type="tentacle" x="519" y="3326"/>
+  <object name="tentacle" type="tentacle" x="517" y="3353"/>
+  <object name="tentacle" type="tentacle" x="519" y="3379"/>
+  <object name="tentacle" type="tentacle" x="538" y="3380"/>
+  <object name="tentacle" type="tentacle" x="567" y="3383"/>
+  <object name="tentacle" type="tentacle" x="591" y="3384"/>
+  <object name="tentacle" type="tentacle" x="608" y="3383"/>
+  <object name="tentacle" type="tentacle" x="647" y="3386"/>
+  <object name="tentacle" type="tentacle" x="678" y="3387"/>
+  <object name="tentacle" type="tentacle" x="699" y="3380"/>
+  <object name="tentacle" type="tentacle" x="696" y="3358"/>
+  <object name="tentacle" type="tentacle" x="694" y="3338"/>
+  <object name="tentacle" type="tentacle" x="691" y="3317"/>
+  <object name="tentacle" type="tentacle" x="690" y="3300"/>
+  <object name="tentacle" type="tentacle" x="690" y="3278"/>
+  <object name="tentacle" type="tentacle" x="689" y="3250"/>
+  <object name="tentacle" type="tentacle" x="690" y="3227"/>
+  <object name="tentacle" type="tentacle" x="689" y="3210"/>
+  <object name="tentacle" type="tentacle" x="658" y="3207"/>
+  <object name="tentacle" type="tentacle" x="622" y="3206"/>
+  <object name="tentacle" type="tentacle" x="591" y="3205"/>
+  <object name="tentacle" type="tentacle" x="560" y="3204"/>
+  <object name="tentacle" type="tentacle" x="538" y="3206"/>
+  <object name="tentacle" type="tentacle" x="542" y="3232"/>
+  <object name="tentacle" type="tentacle" x="546" y="3247"/>
+  <object name="tentacle" type="tentacle" x="547" y="3268"/>
+  <object name="tentacle" type="tentacle" x="542" y="3291"/>
+  <object name="tentacle" type="tentacle" x="537" y="3321"/>
+  <object name="tentacle" type="tentacle" x="535" y="3341"/>
+  <object name="tentacle" type="tentacle" x="540" y="3353"/>
+  <object name="tentacle" type="tentacle" x="575" y="3356"/>
+  <object name="tentacle" type="tentacle" x="614" y="3359"/>
+  <object name="tentacle" type="tentacle" x="637" y="3360"/>
+  <object name="tentacle" type="tentacle" x="659" y="3359"/>
+  <object name="tentacle" type="tentacle" x="667" y="3341"/>
+  <object name="tentacle" type="tentacle" x="666" y="3313"/>
+  <object name="tentacle" type="tentacle" x="665" y="3292"/>
+  <object name="tentacle" type="tentacle" x="660" y="3264"/>
+  <object name="tentacle" type="tentacle" x="659" y="3248"/>
+  <object name="tentacle" type="tentacle" x="658" y="3234"/>
+  <object name="tentacle" type="tentacle" x="626" y="3236"/>
+  <object name="tentacle" type="tentacle" x="587" y="3232"/>
+  <object name="tentacle" type="tentacle" x="564" y="3235"/>
+  <object name="tentacle" type="tentacle" x="563" y="3248"/>
+  <object name="tentacle" type="tentacle" x="563" y="3292"/>
+  <object name="tentacle" type="tentacle" x="562" y="3314"/>
+  <object name="tentacle" type="tentacle" x="562" y="3331"/>
+  <object name="tentacle" type="tentacle" x="571" y="3334"/>
+  <object name="tentacle" type="tentacle" x="604" y="3337"/>
+  <object name="tentacle" type="tentacle" x="621" y="3336"/>
+  <object name="tentacle" type="tentacle" x="631" y="3334"/>
+  <object name="tentacle" type="tentacle" x="641" y="3330"/>
+  <object name="tentacle" type="tentacle" x="644" y="3299"/>
+  <object name="tentacle" type="tentacle" x="645" y="3271"/>
+  <object name="tentacle" type="tentacle" x="639" y="3256"/>
+  <object name="tentacle" type="tentacle" x="609" y="3257"/>
+  <object name="tentacle" type="tentacle" x="587" y="3256"/>
+  <object name="tentacle" type="tentacle" x="574" y="3262"/>
+  <object name="tentacle" type="tentacle" x="574" y="3274"/>
+  <object name="tentacle" type="tentacle" x="580" y="3310"/>
+  <object name="tentacle" type="tentacle" x="584" y="3325"/>
+  <object name="tentacle" type="tentacle" x="606" y="3323"/>
+  <object name="tentacle" type="tentacle" x="623" y="3319"/>
+  <object name="tentacle" type="tentacle" x="632" y="3297"/>
+  <object name="tentacle" type="tentacle" x="630" y="3284"/>
+  <object name="tentacle" type="tentacle" x="621" y="3277"/>
+  <object name="tentacle" type="tentacle" x="590" y="3278"/>
+  <object name="tentacle" type="tentacle" x="586" y="3288"/>
+  <object name="tentacle" type="tentacle" x="5719" y="3297"/>
+  <object name="tentacle" type="tentacle" x="5681" y="3274"/>
+  <object name="tentacle" type="tentacle" x="5686" y="3174"/>
+  <object name="tentacle" type="tentacle" x="5602" y="3170"/>
+  <object name="tentacle" type="tentacle" x="5600" y="3291"/>
+  <object name="tentacle" type="tentacle" x="5607" y="3206"/>
+  <object name="tentacle" type="tentacle" x="5692" y="3235"/>
+  <object name="tentacle" type="tentacle" x="5606" y="3185"/>
+  <object name="tentacle" type="tentacle" x="5690" y="3222"/>
+  <object name="tentacle" type="tentacle" x="5725" y="3230"/>
+  <object name="tentacle" type="tentacle" x="5754" y="3276"/>
+  <object name="tentacle" type="tentacle" x="5750" y="3238"/>
+  <object name="tentacle" type="tentacle" x="5583" y="3216"/>
+  <object name="tentacle" type="tentacle" x="5634" y="3200"/>
+  <object name="tentacle" type="tentacle" x="5750" y="3216"/>
+  <object name="tentacle" type="tentacle" x="5759" y="3318"/>
+  <object name="tentacle" type="tentacle" x="5718" y="3145"/>
+  <object name="tentacle" type="tentacle" x="5651" y="3143"/>
+  <object name="tentacle" type="tentacle" x="5627" y="3321"/>
+  <object name="tentacle" type="tentacle" x="5650" y="3216"/>
+  <object name="tentacle" type="tentacle" x="5582" y="3195"/>
+  <object name="tentacle" type="tentacle" x="5668" y="3321"/>
+  <object name="tentacle" type="tentacle" x="5727" y="3279"/>
+  <object name="tentacle" type="tentacle" x="5644" y="3263"/>
+  <object name="tentacle" type="tentacle" x="5674" y="3297"/>
+  <object name="tentacle" type="tentacle" x="5718" y="3172"/>
+  <object name="tentacle" type="tentacle" x="5622" y="3252"/>
+  <object name="tentacle" type="tentacle" x="5631" y="3272"/>
+  <object name="tentacle" type="tentacle" x="5701" y="3268"/>
+  <object name="tentacle" type="tentacle" x="5704" y="3237"/>
+  <object name="tentacle" type="tentacle" x="5666" y="3261"/>
+  <object name="tentacle" type="tentacle" x="5598" y="3144"/>
+  <object name="tentacle" type="tentacle" x="5647" y="3170"/>
+  <object name="tentacle" type="tentacle" x="5635" y="3294"/>
+  <object name="tentacle" type="tentacle" x="5647" y="3194"/>
+  <object name="tentacle" type="tentacle" x="5579" y="3317"/>
+  <object name="tentacle" type="tentacle" x="5651" y="3322"/>
+  <object name="tentacle" type="tentacle" x="5707" y="3324"/>
+  <object name="tentacle" type="tentacle" x="5577" y="3291"/>
+  <object name="tentacle" type="tentacle" x="5749" y="3148"/>
+  <object name="tentacle" type="tentacle" x="5582" y="3239"/>
+  <object name="tentacle" type="tentacle" x="5699" y="3194"/>
+  <object name="tentacle" type="tentacle" x="5682" y="3144"/>
+  <object name="tentacle" type="tentacle" x="5681" y="3215"/>
+  <object name="tentacle" type="tentacle" x="5578" y="3143"/>
+  <object name="tentacle" type="tentacle" x="5579" y="3264"/>
+  <object name="tentacle" type="tentacle" x="5705" y="3209"/>
+  <object name="tentacle" type="tentacle" x="5595" y="3279"/>
+  <object name="tentacle" type="tentacle" x="5720" y="3202"/>
+  <object name="tentacle" type="tentacle" x="5623" y="3230"/>
+  <object name="tentacle" type="tentacle" x="5622" y="3269"/>
+  <object name="tentacle" type="tentacle" x="5691" y="3272"/>
+  <object name="tentacle" type="tentacle" x="5664" y="3275"/>
+  <object name="tentacle" type="tentacle" x="5623" y="3186"/>
+  <object name="tentacle" type="tentacle" x="5640" y="3248"/>
+  <object name="tentacle" type="tentacle" x="5719" y="3186"/>
+  <object name="tentacle" type="tentacle" x="5683" y="3257"/>
+  <object name="tentacle" type="tentacle" x="5597" y="3259"/>
+  <object name="tentacle" type="tentacle" x="5624" y="3173"/>
+  <object name="tentacle" type="tentacle" x="5738" y="3325"/>
+  <object name="tentacle" type="tentacle" x="5634" y="3212"/>
+  <object name="tentacle" type="tentacle" x="5751" y="3255"/>
+  <object name="tentacle" type="tentacle" x="5646" y="3226"/>
+  <object name="tentacle" type="tentacle" x="5749" y="3188"/>
+  <object name="tentacle" type="tentacle" x="5669" y="3195"/>
+  <object name="tentacle" type="tentacle" x="5750" y="3165"/>
+  <object name="tentacle" type="tentacle" x="5579" y="3167"/>
+  <object name="tentacle" type="tentacle" x="5620" y="3142"/>
+  <object name="tentacle" type="tentacle" x="5598" y="3318"/>
+  <object name="tentacle" type="tentacle" x="5756" y="3296"/>
+  <object name="tentacle" type="tentacle" x="5602" y="3229"/>
+  <object name="tentacle" type="tentacle" x="5697" y="3298"/>
+  <object name="item_4" type="item_4" x="5667" y="3234"/>
+  <object name="tentacle" type="tentacle" x="5726" y="3251"/>
+  <object name="aggro" type="aggro" x="4896" y="3168"/>
+  <object name="aggro" type="aggro" x="5024" y="3168"/>
+  <object name="aggro" type="aggro" x="5025" y="3296"/>
+  <object name="aggro" type="aggro" x="4897" y="3297"/>
+  <object name="aggro" type="aggro" x="4895" y="3232"/>
+  <object name="aggro" type="aggro" x="4961" y="3166"/>
+  <object name="aggro" type="aggro" x="5026" y="3234"/>
+  <object name="aggro" type="aggro" x="4961" y="3299"/>
+  <object name="aggro" type="aggro" x="1566" y="3231"/>
+  <object name="aggro" type="aggro" x="1633" y="3231"/>
+  <object name="aggro" type="aggro" x="1695" y="3233"/>
+  <object name="aggro" type="aggro" x="1696" y="3296"/>
+  <object name="aggro" type="aggro" x="1695" y="3364"/>
+  <object name="aggro" type="aggro" x="1632" y="3362"/>
+  <object name="aggro" type="aggro" x="1568" y="3360"/>
+  <object name="aggro" type="aggro" x="1566" y="3296"/>
+  <object name="rocks" type="rocks" x="3393" y="3362"/>
+  <object name="flint" type="flint" x="360" y="984"/>
+  <object name="flint" type="flint" x="480" y="1440"/>
+  <object name="flint" type="flint" x="368" y="2328"/>
+  <object name="flint" type="flint" x="888" y="2000"/>
+  <object name="flint" type="flint" x="1888" y="2696"/>
+  <object name="flint" type="flint" x="1288" y="3304"/>
+  <object name="flint" type="flint" x="976" y="2784"/>
+  <object name="flint" type="flint" x="744" y="3888"/>
+  <object name="flint" type="flint" x="608" y="4864"/>
+  <object name="flint" type="flint" x="640" y="5520"/>
+  <object name="flint" type="flint" x="1360" y="4864"/>
+  <object name="flint" type="flint" x="1096" y="4552"/>
+  <object name="flint" type="flint" x="1760" y="4136"/>
+  <object name="flint" type="flint" x="2344" y="3720"/>
+  <object name="flint" type="flint" x="2512" y="3152"/>
+  <object name="flint" type="flint" x="2856" y="4000"/>
+  <object name="flint" type="flint" x="2560" y="4672"/>
+  <object name="flint" type="flint" x="2080" y="5096"/>
+  <object name="flint" type="flint" x="1424" y="5744"/>
+  <object name="flint" type="flint" x="2208" y="6032"/>
+  <object name="flint" type="flint" x="2728" y="5296"/>
+  <object name="flint" type="flint" x="2872" y="4832"/>
+  <object name="flint" type="flint" x="3168" y="4104"/>
+  <object name="flint" type="flint" x="3672" y="4168"/>
+  <object name="flint" type="flint" x="3832" y="4760"/>
+  <object name="flint" type="flint" x="3464" y="5280"/>
+  <object name="flint" type="flint" x="4032" y="5640"/>
+  <object name="flint" type="flint" x="4320" y="5208"/>
+  <object name="flint" type="flint" x="4792" y="5536"/>
+  <object name="flint" type="flint" x="5472" y="6008"/>
+  <object name="flint" type="flint" x="6104" y="5560"/>
+  <object name="flint" type="flint" x="5528" y="4984"/>
+  <object name="flint" type="flint" x="5024" y="4560"/>
+  <object name="flint" type="flint" x="4568" y="4096"/>
+  <object name="flint" type="flint" x="4096" y="3624"/>
+  <object name="flint" type="flint" x="4088" y="3064"/>
+  <object name="flint" type="flint" x="4456" y="2664"/>
+  <object name="flint" type="flint" x="4992" y="2144"/>
+  <object name="flint" type="flint" x="5520" y="1728"/>
+  <object name="flint" type="flint" x="6024" y="1304"/>
+  <object name="flint" type="flint" x="5656" y="2528"/>
+  <object name="flint" type="flint" x="4864" y="2960"/>
+  <object name="flint" type="flint" x="5296" y="3736"/>
+  <object name="flint" type="flint" x="5928" y="3768"/>
+  <object name="flint" type="flint" x="5384" y="3168"/>
+  <object name="flint" type="flint" x="3416" y="2512"/>
+  <object name="flint" type="flint" x="4056" y="2168"/>
+  <object name="flint" type="flint" x="4480" y="1760"/>
+  <object name="flint" type="flint" x="4912" y="1272"/>
+  <object name="flint" type="flint" x="5440" y="576"/>
+  <object name="flint" type="flint" x="3912" y="496"/>
+  <object name="flint" type="flint" x="2512" y="504"/>
+  <object name="flint" type="flint" x="1368" y="520"/>
+  <object name="flint" type="flint" x="1296" y="800"/>
+  <object name="flint" type="flint" x="2368" y="1504"/>
+  <object name="flint" type="flint" x="3072" y="944"/>
+  <object name="flint" type="flint" x="3832" y="1288"/>
+  <object name="flint" type="flint" x="2928" y="1816"/>
+  <object name="flint" type="flint" x="3712" y="2016"/>
  </objectgroup>
 </map>
