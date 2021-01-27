@@ -110,13 +110,13 @@ function BattleRoyale:CheckWinner()
 
         self:FinishGame()
     elseif num == 0 then
-        self.winner = 0
-        self:FinishGame()
+        self.winner = nil
+        self:FinishGame(true)
     end
 end
 
-function BattleRoyale:FinishGame()
-    if not self.winner then
+function BattleRoyale:FinishGame(nowinner)
+    if not self.winner and not nowinner then
         print("[BattleRoyale Component] Error! Failed to finish game: winner is undefined!", debugstack())
         return
     end
@@ -140,7 +140,7 @@ end
 function BattleRoyale:AnnounceWinner()
     local net = GetNetwork(self.inst)
     if net then
-        net:SetWinner(self.winner == 0 and nil or self.winner)
+        net:SetWinner(self.winner)
     end
 end
 

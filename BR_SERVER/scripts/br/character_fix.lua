@@ -80,3 +80,78 @@ env.AddPrefabPostInit("wort", function(inst)
     end
     inst:ListenForEvent("onattackother", inst._onattackother)
 end)
+
+-- Fox: Woby spawns in air
+do
+    local function SpawnWoby(inst)
+        if inst.spectator or inst.woby or inst.sg:HasStateTag("falling") then
+            return
+        end
+    
+        local attempts = 0
+        
+        local max_attempts = 30
+        local x, y, z = inst.Transform:GetWorldPosition()
+    
+        local woby = SpawnPrefab(TUNING.WALTER_STARTING_WOBY)
+        inst.woby = woby
+        woby:LinkToPlayer(inst)
+        inst:ListenForEvent("onremove", inst._woby_onremove, woby)
+        local fx = SpawnPrefab(woby.spawnfx)
+        fx.entity:SetParent(woby.entity)
+        
+        while true do
+            local offset = FindWalkableOffset(inst:GetPosition(), math.random() * PI, 2, 10)
+    
+            if offset then
+                local spawn_x = x + offset.x
+                local spawn_z = z + offset.z
+                
+                if attempts >= max_attempts then
+                    woby.Transform:SetPosition(spawn_x, y, spawn_z)
+                    break
+                elseif not IsAnyPlayerInRange(spawn_x, 0, spawn_z, 2) then
+                    woby.Transform:SetPosition(spawn_x, y, spawn_z)
+                    break
+                else
+                    attempts = attempts + 1
+                end
+            elseif attempts >= max_attempts then
+                woby.Transform:SetPosition(x, y, z)
+                break
+            else
+                attempts = attempts + 1    
+            end
+        end
+    
+        return woby
+    end
+    
+    local function OnDeath(inst)
+        if inst.woby then
+            inst.woby.sg:GoToState("nuzzle")
+            inst.woby:DoTaskInTime(1, function()
+                inst.woby:OnPlayerLinkDespawn(inst)
+                inst.woby = nil
+            end)
+        end
+    end
+    
+    local function OnRespawn(inst)
+        inst:DoTaskInTime(4, SpawnWoby)
+    end
+    
+    env.AddPrefabPostInit("walter", function(inst)
+        inst._woby_spawntask:Cancel()
+        inst._woby_spawntask = inst:DoTaskInTime(2, function() end)
+        inst._woby_onremove = function(woby)
+            
+        end
+
+        inst:ListenForEvent("done_falling", SpawnWoby)
+        
+        inst.SpawnWoby = SpawnWoby
+        inst:ListenForEvent("respawnfromghost", OnRespawn)
+        inst:ListenForEvent("death", OnDeath)
+    end)
+end

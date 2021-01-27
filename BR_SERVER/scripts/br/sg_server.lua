@@ -9,7 +9,7 @@ end
 return {
 	State{
         name = "spawn_on_arena",
-        tags = { "busy", "nopredict", "nomorph", "nodangle", "nointerrupt" },
+        tags = { "busy", "nopredict", "nomorph", "nodangle", "nointerrupt", "falling" },
 
         onenter = function(inst, fn)
             inst.AnimState:PlayAnimation("flying_loop", true)
@@ -36,7 +36,6 @@ return {
 
             inst:SetCameraDistance(inst.sg.statemem.camera.max)
             inst:SnapCamera()
-            -- inst:SetCameraZoomed(true)
         end,
 		
         onupdate = function(inst, dt)
@@ -114,7 +113,7 @@ return {
         },
 
         onexit = function(inst)
-            -- inst:SetCameraZoomed(false)
+            inst:PushEvent("done_falling")
 
 			if inst.components.health then
 				inst.components.health:SetInvincible(false)

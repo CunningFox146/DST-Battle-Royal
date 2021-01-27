@@ -143,7 +143,13 @@ do
     local function BecomeSpectator(inst)
         inst.spectator = true
         if inst.player_classified then
-            inst.player_classified.isspectator:set(true)
+            if not inst:HasTag("playerghost") then
+                inst.player_classified:DoTaskInTime(0.25, function(classified)
+                    classified.isspectator:set(true)
+                end)
+            else
+                inst.player_classified.isspectator:set(true)
+            end
         end
         FullyHidePlayer(inst)
     end

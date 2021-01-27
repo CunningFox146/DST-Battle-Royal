@@ -39,7 +39,7 @@ function BR_GetWxp(id)
 end
 
 function BR_GetLevel(id)
-	return GetLevelForWXP(BR_GetWxp(TheNet:GetUserID()))
+	return GetLevelForWXP(BR_GetWxp(id))
 end
 
 function InventoryProxy:GetWXPLevel()
@@ -64,6 +64,20 @@ GetSkinsDataFromClientTableData = function(data, ...)
 	data.eventlevel = BR_GetLevel(TheNet:GetUserID())
 	return _GetSkinsDataFromClientTableData(data, ...)
 end
+
+env.AddClassPostConstruct("widgets/truescrolllist", function(self)
+	local _SetItemsData = self.SetItemsData
+	self.SetItemsData = function(self, items, ...)
+		if items and next(items) then
+			for _, client in pairs(items) do
+				if client.userid and client.eventlevel then
+					client.eventlevel = BR_GetLevel(client.userid)
+				end
+			end
+		end
+		return _SetItemsData(self, items, ...)
+	end
+end)
 
 --[[
 require("wxputils")

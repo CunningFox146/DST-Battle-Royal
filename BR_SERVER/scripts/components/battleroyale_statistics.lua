@@ -146,7 +146,7 @@ function Statistics:UpdateStat(userid, stat, delta, value)
 end
 
 function Statistics:GetBestStat(userid)
-    local best_stat
+    local best_stat = {}
 
     if self.player_data[userid].stats.winner ~= 0 then
         best_stat = {"winner", self.player_data[userid].stats.winner}

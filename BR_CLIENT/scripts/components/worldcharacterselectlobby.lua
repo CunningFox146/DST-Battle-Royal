@@ -80,6 +80,7 @@ end
 
 -- Player is ready if they have a character selected
 local function CountPlayersReadyToStart()
+	--[[
 	local invalid_prefab = ""
 	local count = 0
 	for _, player in ipairs(GetPlayersClientTable()) do
@@ -87,7 +88,8 @@ local function CountPlayersReadyToStart()
 			count = count + 1
 		end
 	end
-	return count
+	return count]]
+	return #GetPlayersClientTable()
 end
 
 local function TryStartCountdown()
