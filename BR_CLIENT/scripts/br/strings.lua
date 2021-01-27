@@ -45,16 +45,16 @@ STRINGS.UI.MVP_LOADING_WIDGET.BATTLEROYALE = {
     TITLES =
     { 
         winner = "Arena Champion",
-        kills = "Merciless",
-        damage = "Assassin",
+        killer = "Merciless",
+        damager = "Assassin",
         
         none = "Participator",
     },
     DESCRIPTIONS =
     {
         winner = "Game won!",
-        kills = "players killed",
-        damage = "damage dealt",
+        killer = "players killed",
+        damager = "damage dealt",
 
         none = "thanks for playing",
     },

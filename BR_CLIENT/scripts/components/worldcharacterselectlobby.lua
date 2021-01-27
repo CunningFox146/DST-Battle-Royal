@@ -172,7 +172,7 @@ inst:ListenForEvent("canchangedirty", OnCountdownDirty)
 
 if _ismastersim then
     --Register events
-	inst:ListenForEvent("ms_requestedlobbycharacter", OnRequestLobbyCharacter, _world)
+	-- inst:ListenForEvent("ms_requestedlobbycharacter", OnRequestLobbyCharacter, _world)
 
 	inst:ListenForEvent("ms_clientauthenticationcomplete", OnLobbyClientConnected, _world)
     inst:ListenForEvent("ms_clientdisconnected", OnLobbyClientDisconnected, _world)
