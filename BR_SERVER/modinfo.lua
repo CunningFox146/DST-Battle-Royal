@@ -1,4 +1,4 @@
-name =						"Battle Royale [SERVER]"
+name =						"Battle Royale by CunningFox [SERVER]"
 version = 					"1.0"
 
 description =				"Version: "..version
