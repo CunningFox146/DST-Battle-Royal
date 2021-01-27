@@ -89,7 +89,13 @@ local function CountPlayersReadyToStart()
 		end
 	end
 	return count]]
-	return #GetPlayersClientTable()
+	local count = 0
+	for _, player in ipairs(GetPlayersClientTable()) do
+		if player.userflags and not checkbit(player.userflags, USERFLAGS.IS_LOADING) then
+			count = count + 1
+		end
+	end
+	return count
 end
 
 local function TryStartCountdown()

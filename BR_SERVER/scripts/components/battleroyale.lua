@@ -157,7 +157,7 @@ function BattleRoyale:ResetWorld()
 end
 
 function BattleRoyale:SelectMap()
-    local selected_map = GetRandomItem(BATTLE_ROYALE_MAPS)
+    local selected_map = GetRandomItem(BATTLE_ROYALE_MAP_ROTATION)
     TheMapSaver:Save(selected_map)
 end
 
