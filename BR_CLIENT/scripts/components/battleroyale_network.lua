@@ -50,7 +50,7 @@ function Network:UpdateWinner()
 end
 
 function Network:SetWinner(winner)
-    SetDirty(self._winner:set(winner))
+    SetDirty(self._winner, winner)
 end
 
 function Network:SetMap(map)
