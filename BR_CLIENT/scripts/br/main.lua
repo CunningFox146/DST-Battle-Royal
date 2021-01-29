@@ -55,4 +55,13 @@ env.AddComponentPostInit("playervision", function(self)
 	end
 end)
 
+--Fox: Well, we can't find out when client loaded, I believe
+local _Networking_JoinAnnouncement = Networking_JoinAnnouncement
+function Networking_JoinAnnouncement(...)
+	if TheWorld and TheWorld:IsValid() then
+		TheWorld:PushEvent("ms_clientloaded")
+	end
+	return _Networking_JoinAnnouncement(...)
+end
+
 env.AddPrefabPostInit("player_classified", require("br/networking"))

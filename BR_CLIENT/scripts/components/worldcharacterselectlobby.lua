@@ -9,7 +9,7 @@ return Class(function(self, inst)
 --------------------------------------------------------------------------
 local DEBUG = CHEATS_ENABLED
 
-local COUNTDOWN_TIME = DEBUG and 3 or 180
+local COUNTDOWN_TIME = DEBUG and 3 or 30
 local COUNTDOWN_INACTIVE = 65535
 local PLAYERS_TO_START = DEBUG and 1 or 2
 local LOBBY_CLOSE_TIME = 10
@@ -89,13 +89,14 @@ local function CountPlayersReadyToStart()
 		end
 	end
 	return count]]
+	--[[
 	local count = 0
 	for _, player in ipairs(GetPlayersClientTable()) do
 		if player.userflags and not checkbit(player.userflags, USERFLAGS.IS_LOADING) then
 			count = count + 1
 		end
-	end
-	return count
+	end]]
+	return #GetPlayersClientTable()
 end
 
 local function TryStartCountdown()
@@ -122,7 +123,7 @@ local function OnRequestLobbyCharacter(world, data)
 
 	TheNet:SetLobbyCharacter(data.userid, data.prefab_name, data.skin_base, data.clothing_body, data.clothing_hand, data.clothing_legs, data.clothing_feet)
 	
-	TryStartCountdown()
+	-- TryStartCountdown()
 end
 
 local function EnableSpectators()
@@ -160,7 +161,6 @@ end
 
 local function OnLobbyClientConnected()
 	if not _updating and #GetPlayersClientTable() > 0 then
-		-- Fox: Remove this after klei fixes but with ms_requestedlobbycharacter
 		_updating = true
 		self.inst:StartWallUpdatingComponent(self)
 	end
@@ -178,9 +178,10 @@ inst:ListenForEvent("canchangedirty", OnCountdownDirty)
 
 if _ismastersim then
     --Register events
-	-- inst:ListenForEvent("ms_requestedlobbycharacter", OnRequestLobbyCharacter, _world)
+	inst:ListenForEvent("ms_requestedlobbycharacter", OnRequestLobbyCharacter, _world)
 
-	inst:ListenForEvent("ms_clientauthenticationcomplete", OnLobbyClientConnected, _world)
+	-- inst:ListenForEvent("ms_clientauthenticationcomplete", OnLobbyClientConnected, _world)
+	inst:ListenForEvent("ms_clientloaded", OnLobbyClientConnected, _world)
     inst:ListenForEvent("ms_clientdisconnected", OnLobbyClientDisconnected, _world)
 end
 

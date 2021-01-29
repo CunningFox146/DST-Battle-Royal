@@ -112,7 +112,7 @@
   <object name="trees" type="trees" x="2480" y="3664"/>
   <object name="trees" type="trees" x="3704" y="3201"/>
   <object name="trees" type="trees" x="3832" y="3400"/>
-  <object name="trees" type="trees" x="4088" y="3056"/>
+  <object name="trees" type="trees" x="4067" y="3015"/>
   <object name="trees" type="trees" x="3816" y="3064"/>
   <object name="trees" type="trees" x="4360" y="2656"/>
   <object name="trees" type="trees" x="4840" y="2352"/>
@@ -785,7 +785,7 @@
   <object name="flint" type="flint" x="5024" y="4560"/>
   <object name="flint" type="flint" x="4568" y="4096"/>
   <object name="flint" type="flint" x="4096" y="3624"/>
-  <object name="flint" type="flint" x="4088" y="3064"/>
+  <object name="flint" type="flint" x="4089" y="3070"/>
   <object name="flint" type="flint" x="4456" y="2664"/>
   <object name="flint" type="flint" x="4992" y="2144"/>
   <object name="flint" type="flint" x="5520" y="1728"/>

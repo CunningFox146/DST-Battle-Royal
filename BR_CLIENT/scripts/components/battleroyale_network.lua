@@ -23,7 +23,6 @@ local Network = Class(function(self, inst)
     end
     
     if self.ismastersim then
-        self.cached_ranks = {}
         self:Init()
     end
 end)
@@ -33,8 +32,11 @@ function Network:Init()
     
     local rebuild = function() self:RebuildData() end
 
+    self.inst:ListenForEvent("ms_playerjoined", rebuild, TheWorld)
     self.inst:ListenForEvent("ms_clientauthenticationcomplete", rebuild, TheWorld)
+    self.inst:ListenForEvent("ms_clientdisconnected", rebuild, TheWorld)
     self.inst:ListenForEvent("ranks_changed", rebuild, TheWorld)
+
     self.inst:DoTaskInTime(0, rebuild)
 end
 

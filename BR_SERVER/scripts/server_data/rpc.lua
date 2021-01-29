@@ -1,6 +1,6 @@
 local RPC = {}
 
-RPC.SPECTRATE = function()
+RPC.SPECTRATE = function(inst, userid)
     if not inst or not inst.spectator then 
         return
     end

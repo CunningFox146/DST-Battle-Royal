@@ -81,7 +81,7 @@ function BattleRoyale:GetAlivePlayers()
 end
 
 function BattleRoyale:PlayerDied(player, data)
-    player.spectator = true
+    player.spectator = true -- Ugh.... We set spectator on becomming ghost, so this has to be there I guess....
 
     self:CheckWinner()
 
@@ -92,6 +92,11 @@ function BattleRoyale:PlayerDied(player, data)
     if data and data.afflicter and data.afflicter.userid then
         UpdateRank(data.afflicter.userid, RANKS.DELTA.KILL)
         UpdateStat(data.afflicter.userid, "kills", 1)
+    end
+
+    local net = GetNetwork(self.inst)
+    if net then
+        net:RebuildData()
     end
 end
 

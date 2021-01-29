@@ -12,7 +12,7 @@ local function OnDetached(inst)
     if parent then
         parent.components.locomotor:RemoveExternalSpeedMultiplier(inst, "debuff_pvp")
 
-        if not parent.components.grogginess:HasGrogginess() then
+        if parent.components.grogginess and not parent.components.grogginess:HasGrogginess() then
             parent:RemoveTag("groggy")
         end
     end
