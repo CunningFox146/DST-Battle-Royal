@@ -1,6 +1,6 @@
 require "class"
 
-local OVERRIDE_MAP = BATTLE_ROYALE_MAPS.CLASSIC
+local OVERRIDE_MAP = BATTLE_ROYALE_MAPS.NIGHT
 
 local MapSaver = Class(function(self, root)
     self.path = (root or "") .. "battleroyale_map.json"

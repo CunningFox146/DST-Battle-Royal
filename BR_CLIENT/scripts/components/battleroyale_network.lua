@@ -60,6 +60,9 @@ function Network:SetMap(map)
 end
 
 function Network:GetMap()
+    if self.ismastersim then
+        return TheMapSaver:GetMap()
+    end
     return self._map:value()
 end
 

@@ -32,6 +32,8 @@ local assets =
     Asset("SOUND", "sound/turnoftides_amb.fsb"),
 
     Asset("IMAGE", "images/wave_shadow.tex"),
+    Asset("IMAGE", "levels/textures/snow.tex"),
+    
 }
 
 local prefabs =
@@ -39,14 +41,6 @@ local prefabs =
     "battleroyale_network",
     "battleroyale_spawnpoint",
 }
-
-for _, defs in pairs(BATTLE_ROYALE_MAP_DEFS) do
-    for _, prefs in pairs(defs) do
-        for _, pref in ipairs(prefs) do
-            table.insert(prefabs, pref)
-        end
-    end
-end
 
 -- Fox: Since we don't have weather component, but we have lightning
 local LIGHTNINGSTRIKE_CANT_TAGS = { "playerghost", "INLIMBO" }
@@ -97,6 +91,72 @@ local function OnSendLightningStrike(src, pos)
     SpawnAt("lightning", pos)
 end
 
+local function SetGroundOverlay(world)
+	world.Map:SetOverlayTexture("levels/textures/snow.tex")
+	world.Map:SetOverlayColor0( 1, 1, 1, 1 )
+	world.Map:SetOverlayColor1( 1, 1, 1, 1 )
+	world.Map:SetOverlayColor2( 1, 1, 1, 1 )
+    world.Map:SetOverlayLerp(1)
+end
+
+local function OnPlayerActivated(inst, player)
+	if inst._snowfx then
+		inst._snowfx.entity:SetParent(player.entity)
+		inst._snowfx.particles_per_tick = 3
+		inst._snowfx:PostInit()
+	end
+end
+
+local function OnPlayerDeactivated(inst, player)
+	if inst._snowfx then
+		inst._snowfx.entity:SetParent(nil)
+	end
+end
+
+local function Init(inst)
+    local map = inst.net and inst.net.components.battleroyale_network:GetMap() or BATTLE_ROYALE_MAPS.CLASSIC
+    local OVERRIDES = BATTLE_ROYALE_OVERRIDES[map]
+
+    if not OVERRIDES then
+        return
+    end
+
+    if OVERRIDES.iswinter then
+        inst:PushEvent("seasontick", {
+            season = "winter",
+            elapseddaysinseason = 100,
+            remainingdaysinseason = 100,
+            progress = 0.5,
+        })
+        inst:PushEvent("weathertick", {
+            moisture = 1,
+            pop = 0,
+            precipitationrate = 0,
+            snowlevel = 0.2,
+            wetness = 0,
+            light = 1,
+        })
+        inst:PushEvent("precipitationchanged", "snow")
+        inst:PushEvent("snowcoveredchanged", true)
+        inst:PushEvent("temperaturetick", -5)
+
+        SetGroundOverlay(inst)
+
+        if not TheNet:IsDedicated() then
+            inst._snowfx = SpawnPrefab("snow")
+            inst._snowfx.particles_per_tick = 0
+            
+            inst:ListenForEvent("playeractivated", OnPlayerActivated, inst)
+            inst:ListenForEvent("playerdeactivated", OnPlayerDeactivated, inst)
+        end
+    
+        if OVERRIDES.isnight then
+            inst:PushEvent("phasechanged", "night")
+            inst:PushEvent("overrideambientlighting", Point(0, 0, 0))
+        end
+    end
+end
+
 local function common_postinit(inst)
     --Add waves
     inst.entity:AddWaveComponent()
@@ -120,6 +180,8 @@ local function common_postinit(inst)
         inst:AddComponent("colourcube")
         inst:AddComponent("hallucinations")
     end
+
+    inst:DoTaskInTime(0, Init)
 end
 
 local function master_postinit(inst)
@@ -136,4 +198,4 @@ local function master_postinit(inst)
     inst:ListenForEvent("ms_sendlightningstrike", OnSendLightningStrike)
 end
 
-return MakeWorld("battleroyale", prefabs, assets, common_postinit, master_postinit, {"battleroyale"})
+return MakeWorld("battleroyale", JoinArrays(PREFABS_TO_LOAD, prefabs), assets, common_postinit, master_postinit, {"battleroyale"})

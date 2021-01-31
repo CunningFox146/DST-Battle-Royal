@@ -5,7 +5,7 @@ local Text = require("widgets/text")
 
 local UpvalueHacker = require("tools/upvaluehacker")
 
--- Idk how to get it, upvaluehacker is no use here
+-- Fox: Idk how to get it, upvaluehacker is no use here
 local function StartGame(this)
 	if this.startbutton then
 		this.startbutton:Disable()
@@ -79,18 +79,31 @@ env.AddClassPostConstruct("screens/redux/lobbyscreen", function(self)
 		end
 	end
 
+	local function PickCharacter()
+		local characters = {}
+
+		for _, char in ipairs(GetActiveCharacterList()) do
+			if IsCharacterOwned(char) then
+				table.insert(characters, char)
+			end
+		end
+
+		return GetRandomItem(characters)
+	end
+
 	function self:ForceStart()
 		print("[Lobby]: Auto-set character to Random.")
 		ClearScreen()
 
-		if not self.lobbycharacter then
-			self.lobbycharacter = "random"
+		if not self.lobbycharacter or not IsCharacterOwned(self.lobbycharacter) then
+			self.lobbycharacter = PickCharacter()
 		end
+		print("self.lobbycharacter", self.lobbycharacter)
 		
 		local timing = 0
 		local count = #self.panels
 		for i = self.current_panel_index, count do
-			self.inst:DoTaskInTime(FRAMES * 2 * timing, function()
+			self.inst:DoTaskInTime(FRAMES * 2 * i, function()
 				ClearScreen()
 				if i == count then
 					self.inst:DoTaskInTime(FRAMES, function() _Start(TheWorld, {time = 0, active = true}) end)
@@ -102,7 +115,6 @@ env.AddClassPostConstruct("screens/redux/lobbyscreen", function(self)
 					end
 				end
 			end)
-			timing = timing + 1
 		end
 	end
 
@@ -129,7 +141,6 @@ env.AddClassPostConstruct("screens/redux/lobbyscreen", function(self)
 		return unpack(val)
 	end
 end)
-
 
 env.AddClassPostConstruct("widgets/waitingforplayers", function(self)
 	local Grid = require("widgets/grid")

@@ -9,7 +9,7 @@ return Class(function(self, inst)
 --------------------------------------------------------------------------
 local DEBUG = CHEATS_ENABLED
 
-local COUNTDOWN_TIME = DEBUG and 3 or 30
+local COUNTDOWN_TIME = DEBUG and 10 or 180
 local COUNTDOWN_INACTIVE = 65535
 local PLAYERS_TO_START = DEBUG and 1 or 2
 local LOBBY_CLOSE_TIME = 10
@@ -68,7 +68,7 @@ local function StarTimer(time)
 end
 
 local function StopTimer()
-	print ("[WorldCharacterSelectLobby] Countdown stopped")
+	print("[WorldCharacterSelectLobby] Countdown stopped")
 
 	_countdown_start = nil
 	_countdownf = -1

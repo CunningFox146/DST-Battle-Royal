@@ -164,6 +164,12 @@ do
     end
 
     env.AddPlayerPostInit(function(inst)
+        for pref, count in pairs(BATTLE_ROYALE_STARTING_INVENTORY[TheMapSaver:GetMap()]) do
+            for i = 1, count do
+                table.insert(inst.starting_inventory, pref)
+            end
+        end
+
         inst:AddComponent("br_poisonable")
         inst:AddComponent("spectator")
 

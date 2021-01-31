@@ -20,12 +20,16 @@ STRINGS.BATTLE_ROYALE = {
 
         NAMES = {
             [BATTLE_ROYALE_MAPS.TEST] = "Testing Chamber",
-            [BATTLE_ROYALE_MAPS.CLASSIC] = "Green and Yellow",
+            [BATTLE_ROYALE_MAPS.CLASSIC] = "Total Chaos",
+            [BATTLE_ROYALE_MAPS.WINTER] = "A Cold Reception",
+            [BATTLE_ROYALE_MAPS.NIGHT] = "The End is Night",
         },
 
         DESCRIPTIONS = {
-            [BATTLE_ROYALE_MAPS.CLASSIC] = "For debuging only. If you see this in game then something went wrong...",
-            [BATTLE_ROYALE_MAPS.CLASSIC] = "Gather resources before other players kill you!",
+            [BATTLE_ROYALE_MAPS.TEST] = "For debuging only. If you see this in game then something went wrong...",
+            [BATTLE_ROYALE_MAPS.CLASSIC] = "Lost of resources are spread around a map. Gather them before others!",
+            [BATTLE_ROYALE_MAPS.WINTER] = "Say pal, you don't look so good. You better find something to warm up.",
+            [BATTLE_ROYALE_MAPS.NIGHT] = "Charlie removed the sun from this arena! Use the lantern to fight in the dark.",
         }
     },
 

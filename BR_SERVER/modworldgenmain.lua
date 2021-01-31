@@ -31,13 +31,13 @@ do
 			local toadd = {}
 
 			for current_prefab, v in pairs(layout.layout) do
-				print("current_prefab: '"..tostring(current_prefab).."'", layout.defs[current_prefab])
+				-- print("current_prefab: '"..tostring(current_prefab).."'", layout.defs[current_prefab])
 				if layout.defs[current_prefab] then
 					for i, data in pairs(v) do
 						-- printwrap(i, data)
 						local idx = math.random(1, #layout.defs[current_prefab])
 						local swap_prefab = layout.defs[current_prefab][idx]
-						print("about to swap to", swap_prefab)
+						-- print("about to swap to", swap_prefab)
 						
 						local add = false
 						if not layout.layout[swap_prefab] then
@@ -50,17 +50,17 @@ do
 						end
 					end
 					table.insert(toremove, current_prefab)
-					print("!!!!REMOVED", current_prefab)
+					-- print("!!!!REMOVED", current_prefab)
 				end
 			end
 
-			printwrap("!!ABOUT TO ADD", toadd)
+			-- printwrap("!!ABOUT TO ADD", toadd)
 
 			for _, remove in ipairs(toremove) do
 				layout.layout[remove] = nil
 			end
 
-			printwrap("!!ABOUT TO REOMVE", toremove)
+			-- printwrap("!!ABOUT TO REOMVE", toremove)
 			for pref, toadd in pairs(toadd) do
 				layout.layout[pref] = toadd
 			end
@@ -68,7 +68,7 @@ do
 
 		layout.defs = nil
 
-		printwrap("!!Final:", layout.layout)
+		-- printwrap("!!Final:", layout.layout)
 		return _ConvertLayoutToEntitylist(layout, ...)
 	end
 	UpvalueHacker.SetUpvalue(object_layout.Convert, ConvertLayoutToEntitylist, "ConvertLayoutToEntitylist")
@@ -126,7 +126,9 @@ env.AddLocation({
 		no_joining_islands = true,
     },
     required_prefabs = {
-        --"lavaarena_portal",
+        "center_battleroyale",
+        "range_battleroyale",
+        "spawnpoint_battleroyale",
     },
 })
 

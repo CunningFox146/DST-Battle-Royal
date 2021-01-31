@@ -1,3 +1,5 @@
+local DEBUG = CHEATS_ENABLED or false
+
 local function center()
     local inst = CreateEntity()
     inst.entity:AddTransform()
@@ -6,7 +8,7 @@ local function center()
     TheWorld.center = inst
 
     inst.entity:SetCanSleep(false)
-    inst.persists = false
+    inst.persists = DEBUG
     
     inst:AddTag("CLASSIFIED")
     inst:AddTag("center_battleroyale")
