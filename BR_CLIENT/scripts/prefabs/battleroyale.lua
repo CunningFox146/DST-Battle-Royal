@@ -116,7 +116,8 @@ end
 local function Init(inst)
     local map = inst.net and inst.net.components.battleroyale_network:GetMap() or BATTLE_ROYALE_MAPS.CLASSIC
     local OVERRIDES = BATTLE_ROYALE_OVERRIDES[map]
-
+	print("map", map)
+	printwrap("OVERRIDES", OVERRIDES)
     if not OVERRIDES then
         return
     end
@@ -146,15 +147,20 @@ local function Init(inst)
             inst._snowfx = SpawnPrefab("snow")
             inst._snowfx.particles_per_tick = 0
             
-            inst:ListenForEvent("playeractivated", OnPlayerActivated, inst)
-            inst:ListenForEvent("playerdeactivated", OnPlayerDeactivated, inst)
-        end
-    
-        if OVERRIDES.isnight then
-            inst:PushEvent("phasechanged", "night")
-            inst:PushEvent("overrideambientlighting", Point(0, 0, 0))
+            inst:ListenForEvent("playeractivated", OnPlayerActivated)
+            inst:ListenForEvent("playerdeactivated", OnPlayerDeactivated)
         end
     end
+
+	if OVERRIDES.isnight then
+		-- inst:PushEvent("phasechanged", "night")
+		inst:PushEvent("overrideambientlighting", Point(0, 0, 0))
+		if not TheNet:IsDedicated() then
+			inst:ListenForEvent("playeractivated", function()
+				inst:PushEvent("overrideambientlighting", Point(0, 0, 0))
+			end)
+		end
+	end
 end
 
 local function common_postinit(inst)
@@ -181,7 +187,7 @@ local function common_postinit(inst)
         inst:AddComponent("hallucinations")
     end
 
-    inst:DoTaskInTime(0, Init)
+    inst:DoTaskInTime(0.1, Init)
 end
 
 local function master_postinit(inst)

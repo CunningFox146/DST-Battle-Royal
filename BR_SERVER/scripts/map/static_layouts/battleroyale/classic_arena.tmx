@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="64" tileheight="64" infinite="0" nextlayerid="3" nextobjectid="660">
+<map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="64" tileheight="64" infinite="0" nextlayerid="3" nextobjectid="678">
  <editorsettings>
   <export target="classic_arena.lua" format="lua"/>
  </editorsettings>
  <tileset firstgid="1" name="ground" tilewidth="64" tileheight="64" tilecount="64" columns="8">
   <image source="D:/DST mods/tileset/tiles.png" width="512" height="512"/>
  </tileset>
- <tileset firstgid="65" source="D:/DST mods/tileset/ds-tiles-sw-dst.tsx"/>
  <layer id="1" name="BG_TILES" width="100" height="100">
   <data encoding="csv">
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -121,22 +120,6 @@
   <object id="3" name="spawnpoint_multiplayer" type="spawnpoint_multiplayer" x="3200" y="3200">
    <ellipse/>
   </object>
-  <object id="5" template="templates/spawnpoint_battleroyale.tx" x="223.636" y="288"/>
-  <object id="6" template="templates/spawnpoint_battleroyale.tx" x="1648" y="352"/>
-  <object id="7" template="templates/spawnpoint_battleroyale.tx" x="2824" y="376"/>
-  <object id="8" template="templates/spawnpoint_battleroyale.tx" x="4512" y="440"/>
-  <object id="9" template="templates/spawnpoint_battleroyale.tx" x="5824" y="456"/>
-  <object id="10" template="templates/spawnpoint_battleroyale.tx" x="392" y="1528"/>
-  <object id="11" template="templates/spawnpoint_battleroyale.tx" x="568" y="3416"/>
-  <object id="12" template="templates/spawnpoint_battleroyale.tx" x="536" y="4640"/>
-  <object id="13" template="templates/spawnpoint_battleroyale.tx" x="600" y="5648"/>
-  <object id="14" template="templates/spawnpoint_battleroyale.tx" x="1928" y="5720"/>
-  <object id="15" template="templates/spawnpoint_battleroyale.tx" x="3264" y="5744"/>
-  <object id="16" template="templates/spawnpoint_battleroyale.tx" x="4672" y="5680"/>
-  <object id="17" template="templates/spawnpoint_battleroyale.tx" x="6016" y="5576"/>
-  <object id="18" template="templates/spawnpoint_battleroyale.tx" x="5920" y="4792"/>
-  <object id="19" template="templates/spawnpoint_battleroyale.tx" x="5936" y="3544"/>
-  <object id="20" template="templates/spawnpoint_battleroyale.tx" x="5960" y="2032"/>
   <object id="21" name="range_battleroyale" type="range_battleroyale" x="270" y="3072">
    <ellipse/>
   </object>
@@ -1915,6 +1898,54 @@
   </object>
   <object id="659" name="item_4" type="item_4" x="931" y="5282.33">
    <point/>
+  </object>
+  <object id="661" name="spawn" type="spawnpoint_battleroyale" x="304" y="416">
+   <ellipse/>
+  </object>
+  <object id="663" name="spawn" type="spawnpoint_battleroyale" x="1728" y="400">
+   <ellipse/>
+  </object>
+  <object id="664" name="spawn" type="spawnpoint_battleroyale" x="3056" y="368">
+   <ellipse/>
+  </object>
+  <object id="665" name="spawn" type="spawnpoint_battleroyale" x="4672" y="352">
+   <ellipse/>
+  </object>
+  <object id="666" name="spawn" type="spawnpoint_battleroyale" x="5984" y="400">
+   <ellipse/>
+  </object>
+  <object id="667" name="spawn" type="spawnpoint_battleroyale" x="6000" y="1792">
+   <ellipse/>
+  </object>
+  <object id="668" name="spawn" type="spawnpoint_battleroyale" x="6064" y="3120">
+   <ellipse/>
+  </object>
+  <object id="669" name="spawn" type="spawnpoint_battleroyale" x="5920" y="4528">
+   <ellipse/>
+  </object>
+  <object id="670" name="spawn" type="spawnpoint_battleroyale" x="6032" y="5680">
+   <ellipse/>
+  </object>
+  <object id="671" name="spawn" type="spawnpoint_battleroyale" x="4736" y="5888">
+   <ellipse/>
+  </object>
+  <object id="672" name="spawn" type="spawnpoint_battleroyale" x="3232" y="5888">
+   <ellipse/>
+  </object>
+  <object id="673" name="spawn" type="spawnpoint_battleroyale" x="1856" y="5856">
+   <ellipse/>
+  </object>
+  <object id="674" name="spawn" type="spawnpoint_battleroyale" x="496" y="5776">
+   <ellipse/>
+  </object>
+  <object id="675" name="spawn" type="spawnpoint_battleroyale" x="496" y="4640">
+   <ellipse/>
+  </object>
+  <object id="676" name="spawn" type="spawnpoint_battleroyale" x="448" y="3232">
+   <ellipse/>
+  </object>
+  <object id="677" name="spawn" type="spawnpoint_battleroyale" x="432" y="1744">
+   <ellipse/>
   </object>
  </objectgroup>
 </map>

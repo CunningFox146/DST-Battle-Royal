@@ -9,7 +9,7 @@ BATTLE_ROYALE_MAPS = {
 
 BATTLE_ROYALE_MAP_ROTATION = {
 	BATTLE_ROYALE_MAPS.CLASSIC,
-	BATTLE_ROYALE_MAPS.WINTER,
+	-- BATTLE_ROYALE_MAPS.WINTER,
 	BATTLE_ROYALE_MAPS.NIGHT,
 }
 
@@ -106,6 +106,11 @@ BATTLE_ROYALE_MAP_DEFS = {
 		healing_1 = {"spidergland", "tillweedsalve"},
 		healing_2 = {"healingsalve", "meat_dried"},
 		healing_3 = {"bandage", "trailmix"},
+
+		light = {"flower_cave", "flower_cave_double", "flower_cave_triple"},
+		chess = {"rook", "knight"},
+		ancient_parts = {"nightmarefuel", "thulecite"},
+		ancient_statues = {"ruins_statue_head",  "ruins_statue_mage"},
     },
 }
 
@@ -113,7 +118,7 @@ BATTLE_ROYALE_SETPIECES = {
 	[BATTLE_ROYALE_MAPS.TEST] = "test_arena",
 	[BATTLE_ROYALE_MAPS.CLASSIC] = "classic_arena",
 	[BATTLE_ROYALE_MAPS.WINTER] = "classic_arena",
-	[BATTLE_ROYALE_MAPS.NIGHT] = "classic_arena",
+	[BATTLE_ROYALE_MAPS.NIGHT] = "night_arena",
 }
 
 BATTLE_ROYALE_STARTING_INVENTORY = {
@@ -135,11 +140,10 @@ BATTLE_ROYALE_STARTING_INVENTORY = {
 	},
 
 	[BATTLE_ROYALE_MAPS.NIGHT] = {
-		flint = 2,
-		twigs = 2,
-		cutgrass = 6,
+		flint = 6,
+		twigs = 12,
+		cutgrass = 12,
 		log = 2,
-		spear = 1,
 		lantern = 1,
 	},
 }
