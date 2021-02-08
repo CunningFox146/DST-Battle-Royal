@@ -2,12 +2,9 @@ local RPC_DATA = {
 	"SPECTRATE",
 }
 
-for i, namespace in pairs(RPC_DATA) do
+for _, namespace in ipairs(RPC_DATA) do
 	AddModRPCHandler("BATTLE_ROYALE", namespace, function(...)
-		if not TheNet:GetIsServer() then 
-			return
-		end
-		
+		print("BATTLE_ROYALE RPC called")
 		local SERVER_FN = TheServerData:GetServerData("rpc")
 		if SERVER_FN and SERVER_FN[namespace] then
 			SERVER_FN[namespace](...)

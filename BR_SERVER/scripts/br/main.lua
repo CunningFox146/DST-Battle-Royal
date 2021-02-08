@@ -146,6 +146,10 @@ do
             if not inst:HasTag("playerghost") then
                 inst.player_classified:DoTaskInTime(0.25, function(classified)
                     classified.isspectator:set(true)
+
+					if inst.components.playercontroller then
+						inst.components.playercontroller:Enable(false)
+					end
                 end)
             else
                 inst.player_classified.isspectator:set(true)

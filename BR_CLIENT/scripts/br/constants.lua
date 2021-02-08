@@ -189,7 +189,7 @@ RANKS = {
 	EXP_DIFFICULTY = 75,
 
 	DELTA = {
-		DAMAGE = 1.25,
+		DAMAGE = 4,
         KILL = 1250,
         WIN = 3500,
     }

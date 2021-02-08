@@ -61,10 +61,12 @@ end
 function Spectator:UpdateData(data)
 	self._players = {}
 	self.count = #data
-	
+
 	if #data > 0 then
 		for i, id in ipairs(data) do
-			self._players[id] = i
+			if not self._players[id] then
+				self._players[id] = i
+			end
 		end
 	end
 	if self.selected.id then

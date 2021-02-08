@@ -9,7 +9,7 @@ return Class(function(self, inst)
 --------------------------------------------------------------------------
 local DEBUG = CHEATS_ENABLED
 
-local COUNTDOWN_TIME = DEBUG and 10 or 180
+local COUNTDOWN_TIME = DEBUG and 20 or 150
 local COUNTDOWN_INACTIVE = 65535
 local PLAYERS_TO_START = DEBUG and 1 or 2
 local LOBBY_CLOSE_TIME = 10
@@ -53,13 +53,19 @@ AddUserCommand("playerreadytostart", {
     end,
 })
 ]]
+
+rawset(_G, "skip_timer", function()
+	_countdownf = 10
+	_countdowni:set(10)
+end)
+
 --------------------------------------------------------------------------
 --[[ Private Server event handlers ]]
 --------------------------------------------------------------------------
 local function StarTimer(time)
 	print("[WorldCharacterSelectLobby] Countdown started")
 
-	_countdown_start = GetTimeRealSeconds()
+	_countdown_start = true--GetTimeRealSeconds()
 	_countdownf = time
 	_countdowni:set(math.ceil(time))
 
@@ -100,7 +106,7 @@ local function CountPlayersReadyToStart()
 end
 
 local function TryStartCountdown()
-	if CountPlayersReadyToStart() >= PLAYERS_TO_START then
+	if CountPlayersReadyToStart() >= PLAYERS_TO_START and not _spectators:value() then
 		StarTimer(COUNTDOWN_TIME)
 	end
 end
@@ -127,6 +133,7 @@ local function OnRequestLobbyCharacter(world, data)
 end
 
 local function EnableSpectators()
+	print("[WorldCharacterSelectLobby] Spectators enabled")
 	_spectators:set(true)
 end
 
@@ -138,9 +145,14 @@ local function OnCountdownDirty()
 	if _ismastersim and _countdowni:value() == 0 then
 		_updating = false
 		inst:StopWallUpdatingComponent(self)
+		_countdownf = 0
 
-		inst:DoTaskInTime(1, StopTimer)
-		inst:DoTaskInTime(3, EnableSpectators)
+		inst:DoTaskInTime(5, function()
+			_countdown_start = nil
+			_countdownf = -1
+			_countdowni:set(COUNTDOWN_INACTIVE)
+			EnableSpectators()
+		end)
 
 		TheWorld.components.battleroyale:StartGame()
         print("[WorldCharacterSelectLobby] Countdown finished")
@@ -250,7 +262,7 @@ end
 -- This is done for compatibility with servers with pause_when_empty = true
 -- Since OnUpdate does not get called if there's not players in world (e.g. players are in lobby)
 -- And OnWallUpdate gets called with dt 0 for some reason
-function self:OnWallUpdate()
+function self:OnWallUpdate(dt)
 	-- Fox: There's a listener for ms_requestedlobbycharacter event
 	-- But it never gets pushed
 	-- I found that it's supposed to be pushed from RequestedLobbyCharacter in networking.lua:272
@@ -263,9 +275,7 @@ function self:OnWallUpdate()
 	end
 
 	if _countdown_start then
-		local t = GetTimeRealSeconds() - _countdown_start
-
-		_countdownf = math.max(0, COUNTDOWN_TIME - t)
+		_countdownf = math.max(0, _countdownf - dt)
 		_countdowni:set(math.ceil(_countdownf))
 	end
 end

@@ -79,6 +79,7 @@ function Network:RebuildData()
 end
 
 function Network:UpdatePlayerData()
+	self.participating = {}
     self.data = json.decode(self._player_data:value())
     for id, data in pairs(self.data) do
         if data[2] then

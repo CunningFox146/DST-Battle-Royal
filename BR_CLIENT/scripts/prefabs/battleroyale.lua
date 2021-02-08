@@ -155,11 +155,6 @@ local function Init(inst)
 	if OVERRIDES.isnight then
 		-- inst:PushEvent("phasechanged", "night")
 		inst:PushEvent("overrideambientlighting", Point(0, 0, 0))
-		if not TheNet:IsDedicated() then
-			inst:ListenForEvent("playeractivated", function()
-				inst:PushEvent("overrideambientlighting", Point(0, 0, 0))
-			end)
-		end
 	end
 end
 
@@ -187,7 +182,7 @@ local function common_postinit(inst)
         inst:AddComponent("hallucinations")
     end
 
-    inst:DoTaskInTime(0.1, Init)
+    inst:DoTaskInTime(1, Init)
 end
 
 local function master_postinit(inst)
