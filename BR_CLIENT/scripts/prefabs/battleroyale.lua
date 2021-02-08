@@ -196,7 +196,7 @@ local function master_postinit(inst)
     inst:AddComponent("poisonmanager")
     inst:AddComponent("battleroyale")
 
-    inst:ListenForEvent("ms_sendlightningstrike", OnSendLightningStrike)
+    -- inst:ListenForEvent("ms_sendlightningstrike", OnSendLightningStrike)
 end
 
 return MakeWorld("battleroyale", JoinArrays(PREFABS_TO_LOAD, prefabs), assets, common_postinit, master_postinit, {"battleroyale"})

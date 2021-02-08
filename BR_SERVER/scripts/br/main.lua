@@ -126,9 +126,11 @@ do
     end
 
     local function OnAppliedDamage(inst, data)
-        if data then
+        if data and data.amount then
+			local val = math.floor(data.amount + 0.5)
             if data.target.userid then
-                UpdateStat(data.target.userid, "damage", data.amount)
+                UpdateStat(data.target.userid, "damage", val)
+				UpdateRank(self.winner.userid, RANKS.DELTA.DAMAGE * data.amount)
             end
 
             PvPSlowdown(data.target)
@@ -136,7 +138,7 @@ do
             local num = SpawnPrefab("damagenumber")
             num.entity:SetParent(inst.entity)
             num.Network:SetClassifiedTarget(inst)
-            num:Set(data.target, math.floor(data.amount + 0.5))
+            num:Set(data.target, val)
         end
     end
 
@@ -168,6 +170,9 @@ do
     end
 
     env.AddPlayerPostInit(function(inst)
+		if not inst.starting_inventory then
+			inst.starting_inventory = {}
+		end
         for pref, count in pairs(BATTLE_ROYALE_STARTING_INVENTORY[TheMapSaver:GetMap()]) do
             for i = 1, count do
                 table.insert(inst.starting_inventory, pref)

@@ -106,7 +106,7 @@ local function CountPlayersReadyToStart()
 end
 
 local function TryStartCountdown()
-	if CountPlayersReadyToStart() >= PLAYERS_TO_START and not _spectators:value() then
+	if CountPlayersReadyToStart() >= PLAYERS_TO_START and not self:SpectatorsEnabled() then
 		StarTimer(COUNTDOWN_TIME)
 	end
 end

@@ -178,7 +178,7 @@ do
 			add(pref)
 		end
 	end
-	printwrap("toload", toload)
+	-- printwrap("toload", toload)
 	for pref, _ in pairs(toload) do
 		table.insert(PREFABS_TO_LOAD, pref)
 	end
@@ -189,7 +189,7 @@ RANKS = {
 	EXP_DIFFICULTY = 75,
 
 	DELTA = {
-		DAMAGE = 4,
+		DAMAGE = 1.5,
         KILL = 1250,
         WIN = 3500,
     }
